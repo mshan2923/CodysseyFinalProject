@@ -5,8 +5,12 @@ using Codyssey.Gameplay.Entities;
 using Codyssey.Gameplay.Systems;
 using Codyssey.Infrastructure.Debugging;
 using Codyssey.Infrastructure.Input;
-using Codyssey.Presentation.Damage;
+using Codyssey.Presentation.Audio;
+using Codyssey.Presentation.UI;
+using Codyssey.Presentation.VFX;
+using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.UI;
 using GameplayEntityId = Codyssey.Gameplay.Entities.EntityId;
 
 namespace Codyssey.Infrastructure
@@ -18,10 +22,15 @@ namespace Codyssey.Infrastructure
     public sealed class GameCompositionRoot : MonoBehaviour
     {
         [SerializeField] private int startingHealth = 100;
-        [SerializeField] private int damagePerRequest = 10;
+        [SerializeField] private float damagePerRequest = 10f;
 
         private EventDebugLogger debugLogger;
-        private DamageAppliedPresenter damagePresenter;
+        private DamageUI damageUI;
+        private HealthUI healthUI;
+        private DamageVFX damageVFX;
+        private DamageAudio damageAudio;
+
+        public Slider slider;
 
         private void Awake()
         {
@@ -46,9 +55,14 @@ namespace Codyssey.Infrastructure
             dispatcher.Register<AttackRequest>(combatSystem);
             debugLogger = new EventDebugLogger(eventBus);
 
-            damagePresenter = gameObject.GetComponent<DamageAppliedPresenter>() ??
-                              gameObject.AddComponent<DamageAppliedPresenter>();
-            damagePresenter.Initialize(eventBus);
+            damageUI = gameObject.GetComponent<DamageUI>() ?? gameObject.AddComponent<DamageUI>();
+            damageUI.Initialize(eventBus);
+            healthUI = gameObject.GetComponent<HealthUI>() ?? gameObject.AddComponent<HealthUI>();
+            healthUI.Initialize(eventBus, target.Id, startingHealth, slider);
+            damageVFX = gameObject.GetComponent<DamageVFX>() ?? gameObject.AddComponent<DamageVFX>();
+            damageVFX.Initialize(eventBus);
+            damageAudio = gameObject.GetComponent<DamageAudio>() ?? gameObject.AddComponent<DamageAudio>();
+            damageAudio.Initialize(eventBus);
             Debug.Log($"[Composition] DamageApplied subscribers: " +
                       $"{eventBus.GetSubscriberCount<DamageApplied>()}");
 
@@ -56,8 +70,6 @@ namespace Codyssey.Infrastructure
                         gameObject.AddComponent<DemoInputController>();
             input.Initialize(dispatcher, attackerId, target.Id, damagePerRequest);
 
-
-            // eventBus.Publish<DamageApplied>(new DamageApplied(attackerId, target.Id, 1, 1));
         }
 
         private void OnDestroy()

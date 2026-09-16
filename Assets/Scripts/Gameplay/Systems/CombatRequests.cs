@@ -7,9 +7,9 @@ namespace Codyssey.Gameplay.Systems
     {
         public readonly EntityId AttackerId;
         public readonly EntityId TargetId;
-        public readonly int Damage;
+        public readonly float Damage;
 
-        public AttackRequest(EntityId attackerId, EntityId targetId, int damage)
+        public AttackRequest(EntityId attackerId, EntityId targetId, float damage)
         {
             AttackerId = attackerId;
             TargetId = targetId;

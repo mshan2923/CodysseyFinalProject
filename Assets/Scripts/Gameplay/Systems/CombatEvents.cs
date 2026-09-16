@@ -3,6 +3,27 @@ using Codyssey.Gameplay.Entities;
 
 namespace Codyssey.Gameplay.Systems
 {
+    public enum RequestRejectionReason
+    {
+        InvalidDamage,
+        AttackerNotFound,
+        TargetNotFound
+    }
+
+    public readonly struct RequestRejected : IGameEvent
+    {
+        public readonly EntityId AttackerId;
+        public readonly EntityId TargetId;
+        public readonly RequestRejectionReason Reason;
+
+        public RequestRejected(EntityId attackerId, EntityId targetId, RequestRejectionReason reason)
+        {
+            AttackerId = attackerId;
+            TargetId = targetId;
+            Reason = reason;
+        }
+    }
+
     public readonly struct AttackPerformed : IGameEvent
     {
         public readonly EntityId AttackerId;

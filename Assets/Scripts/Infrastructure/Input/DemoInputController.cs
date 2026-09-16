@@ -12,9 +12,9 @@ namespace Codyssey.Infrastructure.Input
         private RequestDispatcher dispatcher;
         private GameplayEntityId attackerId;
         private GameplayEntityId targetId;
-        private int damage;
+        private float damage;
 
-        public void Initialize(RequestDispatcher dispatcher, GameplayEntityId attackerId, GameplayEntityId targetId, int damage)
+        public void Initialize(RequestDispatcher dispatcher, GameplayEntityId attackerId, GameplayEntityId targetId, float damage)
         {
             this.dispatcher = dispatcher;
             this.attackerId = attackerId;

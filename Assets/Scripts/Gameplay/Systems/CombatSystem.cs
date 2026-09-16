@@ -19,10 +19,23 @@ namespace Codyssey.Gameplay.Systems
 
         public void Handle(AttackRequest request)
         {
-            if (request.Damage <= 0 ||
-                !entities.ContainsKey(request.AttackerId) ||
-                !entities.TryGetValue(request.TargetId, out var target))
+            if (request.Damage <= 0)
+            {
+                Reject(request, RequestRejectionReason.InvalidDamage);
                 return;
+            }
+
+            if (!entities.ContainsKey(request.AttackerId))
+            {
+                Reject(request, RequestRejectionReason.AttackerNotFound);
+                return;
+            }
+
+            if (!entities.TryGetValue(request.TargetId, out var target))
+            {
+                Reject(request, RequestRejectionReason.TargetNotFound);
+                return;
+            }
 
             eventBus.Publish(new AttackPerformed(request.AttackerId, request.TargetId));
             var applied = target.ApplyDamage(request.Damage);
@@ -31,6 +44,11 @@ namespace Codyssey.Gameplay.Systems
                 request.TargetId,
                 applied,
                 target.Health));
+        }
+
+        private void Reject(AttackRequest request, RequestRejectionReason reason)
+        {
+            eventBus.Publish(new RequestRejected(request.AttackerId, request.TargetId, reason));
         }
     }
 }
