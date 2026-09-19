@@ -52,12 +52,6 @@ namespace Unity.Behavior
 
             TargetPosition.Value = randomPosition;
 
-            Debug.Log(
-                $"[SetRandomPosition] " +
-                $"Agent: {Agent.Value.name}, " +
-                $"Radius: {Radius.Value}, " +
-                $"TargetPosition: {TargetPosition.Value}"
-            );
 
             return Status.Success;
         }

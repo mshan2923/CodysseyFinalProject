@@ -1,0 +1,1007 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5298118642556781361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c02bb70996b49eba31d0c206e28da24, type: 3}
+  m_Name: TestPlayer Behavior Graph Blackboard
+  m_EditorClassIdentifier: Unity.Behavior::Unity.Behavior.RuntimeBlackboardAsset
+  VersionTimestamp: 639254435607046712
+  AssetID:
+    m_Value0: 0
+    m_Value1: 0
+  m_Blackboard:
+    m_Variables:
+    - rid: 6453904991753077039
+    - rid: 6453904991753077063
+    - rid: 6453904991753077282
+    - rid: 6453904991753077073
+    - rid: 6453904991753077436
+  m_SharedBlackboardVariableGuids: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 6453904991753077039
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 1
+          m_Value1: 0
+        Name: Self
+        m_Value: {fileID: 0}
+    - rid: 6453904991753077063
+      type: {class: 'BlackboardVariable`1[[System.String, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 17626974011598692747
+          m_Value1: 16625975973658502999
+        Name: Question
+        m_Value: 
+    - rid: 6453904991753077073
+      type: {class: 'BlackboardVariable`1[[System.String, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 5914503944301594760
+          m_Value1: 41010223504882689
+        Name: Response
+        m_Value: 
+    - rid: 6453904991753077282
+      type: {class: 'BlackboardVariable`1[[System.String, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 6339016722272072363
+          m_Value1: 1099826825360465190
+        Name: SystemPrompt
+        m_Value: 'You are an NPC reasoning over current game sensor JSON. The input
+          is not a camera image. Use only currently detected targets. Return exactly
+          one valid JSON object and no markdown. Schema: {"action":"none|talk|pickup|drop|give|attach","targetInstanceId":0,"itemInstanceId":0,"confidence":0.0,"reason":"..."}.
+          Use 0 for no target. Never invent IDs. Do not execute actions.'
+    - rid: 6453904991753077436
+      type: {class: 'BlackboardVariable`1[[TMPro.TMP_FontAsset, Unity.TextMeshPro]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 16091770066444170639
+          m_Value1: 14887430687635756675
+        Name: TMP Font Asset
+        m_Value: {fileID: 11400000, guid: cdc43fb3b6fb46e48b5b950d0fcf9297, type: 2}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad8f2220607dac4db5082ff333fafb8, type: 3}
+  m_Name: TestPlayer Behavior Graph
+  m_EditorClassIdentifier: Unity.Behavior.Authoring::Unity.Behavior.BehaviorAuthoringGraph
+  Blackboard: {fileID: 2786579940599905713}
+  m_Description: 
+  m_Nodes:
+  - rid: 6453904991753077040
+  - rid: 6453904991753077048
+  - rid: 6453904991753077104
+  - rid: 6453904991753077121
+  - rid: 6453904991753077407
+  - rid: 6453904991753077501
+  - rid: 6453905000992079931
+  m_VersionTimestamp: 639254617015331846
+  m_SerializedVersion: 3
+  m_DebugInfo: {fileID: 4369715867905022595}
+  m_RuntimeGraph: {fileID: 750395920257023565}
+  AssetID:
+    m_Value0: 2648475974984887016
+    m_Value1: 13953794773790312009
+  Story:
+    Story: 
+    StoryVariableNames: []
+    Variables: []
+  m_NodeModelsInfo:
+  - Name: On Start
+    Story: 
+    RuntimeTypeString: Unity.Behavior.Start, Unity.Behavior, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    RuntimeTypeID:
+      m_Value0: 3335272451348827663
+      m_Value1: 11549843281177505721
+    Variables: []
+    NamedChildren: []
+    IsPlaceholder: 0
+  - Name: LLM Chat
+    Story: 'Send [Message] to the local LLM -> [Reslut]'
+    RuntimeTypeString: LlmChatAction, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    RuntimeTypeID:
+      m_Value0: 2905276889932413801
+      m_Value1: 699737346406700204
+    Variables:
+    - Name: systemMessage
+      Type:
+        m_SerializableType: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089
+      Tooltip: 
+    - Name: Message
+      Type:
+        m_SerializableType: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089
+      Tooltip: 
+    - Name: Reslut
+      Type:
+        m_SerializableType: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089
+      Tooltip: 
+    NamedChildren: []
+    IsPlaceholder: 0
+  - Name: SensingWorldAction
+    Story: 'Get Sensing : [Result]'
+    RuntimeTypeString: SensingWorldAction, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    RuntimeTypeID:
+      m_Value0: 11892219547346574501
+      m_Value1: 6594551699619723027
+    Variables:
+    - Name: Result
+      Type:
+        m_SerializableType: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089
+      Tooltip: 
+    NamedChildren: []
+    IsPlaceholder: 0
+  - Name: Sequence
+    Story: 
+    RuntimeTypeString: Unity.Behavior.SequenceComposite, Unity.Behavior, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    RuntimeTypeID:
+      m_Value0: 10181448252506100447
+      m_Value1: 8737116843063128493
+    Variables: []
+    NamedChildren: []
+    IsPlaceholder: 0
+  - Name: Talk
+    Story: '[Agent] says [Sentence]'
+    RuntimeTypeString: Unity.Behavior.Example.TalkKoreanAction, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    RuntimeTypeID:
+      m_Value0: 8689877259114670939
+      m_Value1: 8855490184659787655
+    Variables:
+    - Name: Agent
+      Type:
+        m_SerializableType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      Tooltip: 
+    - Name: Sentence
+      Type:
+        m_SerializableType: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089
+      Tooltip: 
+    - Name: Duration
+      Type:
+        m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089
+      Tooltip: 
+    - Name: Font
+      Type:
+        m_SerializableType: TMPro.TMP_FontAsset, Unity.TextMeshPro, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      Tooltip: 
+    NamedChildren: []
+    IsPlaceholder: 0
+  - Name: Wait (Seconds)
+    Story: Wait for [SecondsToWait] seconds
+    RuntimeTypeString: Unity.Behavior.WaitAction, Unity.Behavior, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    RuntimeTypeID:
+      m_Value0: 7729581452106168333
+      m_Value1: 8820302366443624372
+    Variables:
+    - Name: SecondsToWait
+      Type:
+        m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089
+      Tooltip: 
+    NamedChildren: []
+    IsPlaceholder: 0
+  m_Blackboards: []
+  m_MainBlackboardAuthoringAsset: {fileID: 2786579940599905713}
+  m_CommandBuffer:
+    m_Commands: []
+  m_SubgraphsInfo: []
+  m_BlackboardMissingManagedRef: 0
+  m_GraphMissingManagedRef: 0
+  m_HasMissingTypeInManagedRef: 0
+  m_EnumDependencyCache:
+    Entries: []
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 6453904991753077040
+      type: {class: StartNodeModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        Position: {x: 0, y: 0}
+        ID:
+          m_Value0: 14834948323866997704
+          m_Value1: 4419611892381087166
+        Parents: []
+        PortModels:
+        - rid: 6453904991753077041
+        NodeType:
+          m_SerializableType: Unity.Behavior.Start, Unity.Behavior, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        NodeTypeID:
+          m_Value0: 3335272451348827663
+          m_Value1: 11549843281177505721
+        m_FieldValues: []
+        Repeat: 1
+        AllowMultipleRepeatsPerTick: 0
+    - rid: 6453904991753077041
+      type: {class: PortModel, ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        m_Name: OutputPort
+        m_PortDataFlowType: 1
+        m_IsFloating: 0
+        m_NodeModel:
+          rid: 6453904991753077040
+        m_Connections:
+        - rid: 6453904991753077122
+    - rid: 6453904991753077048
+      type: {class: ActionNodeModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        Position: {x: 15.597612, y: 223.15422}
+        ID:
+          m_Value0: 3560083963438401341
+          m_Value1: 11846829312948857950
+        Parents: []
+        PortModels:
+        - rid: 6453904991753077049
+        - rid: 6453904991753077050
+        NodeType:
+          m_SerializableType: LlmChatAction, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+            PublicKeyToken=null
+        NodeTypeID:
+          m_Value0: 2905276889932413801
+          m_Value1: 699737346406700204
+        m_FieldValues:
+        - rid: 6453904991753077051
+        - rid: 6453904991753077052
+        - rid: 6453904991753077053
+    - rid: 6453904991753077049
+      type: {class: PortModel, ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        m_Name: InputPort
+        m_PortDataFlowType: 0
+        m_IsFloating: 0
+        m_NodeModel:
+          rid: 6453904991753077048
+        m_Connections:
+        - rid: 6453904991753077123
+    - rid: 6453904991753077050
+      type: {class: PortModel, ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        m_Name: OutputPort
+        m_PortDataFlowType: 1
+        m_IsFloating: 0
+        m_NodeModel:
+          rid: 6453904991753077048
+        m_Connections: []
+    - rid: 6453904991753077051
+      type: {class: BehaviorGraphNodeModel/FieldModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        FieldName: systemMessage
+        Type:
+          m_SerializableType: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        LocalValue:
+          rid: 6453904991753077054
+        LinkedVariable:
+          rid: 6453904991753077310
+    - rid: 6453904991753077052
+      type: {class: BehaviorGraphNodeModel/FieldModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        FieldName: Message
+        Type:
+          m_SerializableType: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        LocalValue:
+          rid: 6453904991753077055
+        LinkedVariable:
+          rid: 6453904991753077364
+    - rid: 6453904991753077053
+      type: {class: BehaviorGraphNodeModel/FieldModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        FieldName: Reslut
+        Type:
+          m_SerializableType: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        LocalValue:
+          rid: 6453904991753077056
+        LinkedVariable:
+          rid: 6453904991753077375
+    - rid: 6453904991753077054
+      type: {class: 'BlackboardVariable`1[[System.String, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: 'You are an NPC reasoning over current game sensor JSON. The input
+          is not a camera image. Use only currently detected targets. Return exactly
+          one valid JSON object and no markdown. Schema: {"action":"none|talk|pickup|drop|give|attach","targetInstanceId":0,"itemInstanceId":0,"confidence":0.0,"reason":"..."}.
+          Use 0 for no target. Never invent IDs. Do not execute actions.'
+    - rid: 6453904991753077055
+      type: {class: 'BlackboardVariable`1[[System.String, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: 
+    - rid: 6453904991753077056
+      type: {class: 'BlackboardVariable`1[[System.String, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: 
+    - rid: 6453904991753077104
+      type: {class: ActionNodeModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        Position: {x: -272.96024, y: 220.71992}
+        ID:
+          m_Value0: 5194237359642108516
+          m_Value1: 10686710869076125319
+        Parents: []
+        PortModels:
+        - rid: 6453904991753077105
+        - rid: 6453904991753077106
+        NodeType:
+          m_SerializableType: SensingWorldAction, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        NodeTypeID:
+          m_Value0: 11892219547346574501
+          m_Value1: 6594551699619723027
+        m_FieldValues:
+        - rid: 6453904991753077107
+    - rid: 6453904991753077105
+      type: {class: PortModel, ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        m_Name: InputPort
+        m_PortDataFlowType: 0
+        m_IsFloating: 0
+        m_NodeModel:
+          rid: 6453904991753077104
+        m_Connections:
+        - rid: 6453904991753077123
+    - rid: 6453904991753077106
+      type: {class: PortModel, ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        m_Name: OutputPort
+        m_PortDataFlowType: 1
+        m_IsFloating: 0
+        m_NodeModel:
+          rid: 6453904991753077104
+        m_Connections: []
+    - rid: 6453904991753077107
+      type: {class: BehaviorGraphNodeModel/FieldModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        FieldName: Result
+        Type:
+          m_SerializableType: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        LocalValue:
+          rid: 6453904991753077108
+        LinkedVariable:
+          rid: 6453904991753077112
+    - rid: 6453904991753077108
+      type: {class: 'BlackboardVariable`1[[System.String, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: 
+    - rid: 6453904991753077112
+      type: {class: 'TypedVariableModel`1[[System.String, mscorlib]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 17626974011598692747
+          m_Value1: 16625975973658502999
+        Name: Question
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: 
+    - rid: 6453904991753077121
+      type: {class: CompositeNodeModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        Position: {x: -1.1199749, y: 76.11995}
+        ID:
+          m_Value0: 9127066072748306202
+          m_Value1: 12230301030131260627
+        Parents: []
+        PortModels:
+        - rid: 6453904991753077122
+        - rid: 6453904991753077123
+        NodeType:
+          m_SerializableType: Unity.Behavior.SequenceComposite, Unity.Behavior, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        NodeTypeID:
+          m_Value0: 10181448252506100447
+          m_Value1: 8737116843063128493
+        m_FieldValues: []
+    - rid: 6453904991753077122
+      type: {class: PortModel, ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        m_Name: InputPort
+        m_PortDataFlowType: 0
+        m_IsFloating: 0
+        m_NodeModel:
+          rid: 6453904991753077121
+        m_Connections:
+        - rid: 6453904991753077041
+    - rid: 6453904991753077123
+      type: {class: PortModel, ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        m_Name: OutputPort
+        m_PortDataFlowType: 1
+        m_IsFloating: 0
+        m_NodeModel:
+          rid: 6453904991753077121
+        m_Connections:
+        - rid: 6453904991753077105
+        - rid: 6453904991753077049
+        - rid: 6453904991753077408
+        - rid: 6453904991753077502
+    - rid: 6453904991753077310
+      type: {class: 'TypedVariableModel`1[[System.String, mscorlib]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 6339016722272072363
+          m_Value1: 1099826825360465190
+        Name: SystemPrompt
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: 'You are an NPC reasoning over current game sensor JSON. The input
+          is not a camera image. Use only currently detected targets. Return exactly
+          one valid JSON object and no markdown. Schema: {"action":"none|talk|pickup|drop|give|attach","targetInstanceId":0,"itemInstanceId":0,"confidence":0.0,"reason":"..."}.
+          Use 0 for no target. Never invent IDs. Do not execute actions.'
+    - rid: 6453904991753077364
+      type: {class: 'TypedVariableModel`1[[System.String, mscorlib]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 17626974011598692747
+          m_Value1: 16625975973658502999
+        Name: Question
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: 
+    - rid: 6453904991753077375
+      type: {class: 'TypedVariableModel`1[[System.String, mscorlib]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 5914503944301594760
+          m_Value1: 41010223504882689
+        Name: Response
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: 
+    - rid: 6453904991753077407
+      type: {class: ActionNodeModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        Position: {x: 287.13712, y: 222.36256}
+        ID:
+          m_Value0: 16808138129764918650
+          m_Value1: 6722458278948552179
+        Parents: []
+        PortModels:
+        - rid: 6453904991753077408
+        - rid: 6453904991753077409
+        NodeType:
+          m_SerializableType: Unity.Behavior.Example.TalkKoreanAction, Assembly-CSharp,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        NodeTypeID:
+          m_Value0: 8689877259114670939
+          m_Value1: 8855490184659787655
+        m_FieldValues:
+        - rid: 6453904991753077416
+        - rid: 6453904991753077417
+        - rid: 6453904991753077418
+        - rid: 6453904991753077419
+    - rid: 6453904991753077408
+      type: {class: PortModel, ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        m_Name: InputPort
+        m_PortDataFlowType: 0
+        m_IsFloating: 0
+        m_NodeModel:
+          rid: 6453904991753077407
+        m_Connections:
+        - rid: 6453904991753077123
+    - rid: 6453904991753077409
+      type: {class: PortModel, ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        m_Name: OutputPort
+        m_PortDataFlowType: 1
+        m_IsFloating: 0
+        m_NodeModel:
+          rid: 6453904991753077407
+        m_Connections: []
+    - rid: 6453904991753077416
+      type: {class: BehaviorGraphNodeModel/FieldModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        FieldName: Agent
+        Type:
+          m_SerializableType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        LocalValue:
+          rid: 6453904991753077420
+        LinkedVariable:
+          rid: 6453904991753077424
+    - rid: 6453904991753077417
+      type: {class: BehaviorGraphNodeModel/FieldModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        FieldName: Sentence
+        Type:
+          m_SerializableType: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        LocalValue:
+          rid: 6453904991753077421
+        LinkedVariable:
+          rid: 6453904991753077478
+    - rid: 6453904991753077418
+      type: {class: BehaviorGraphNodeModel/FieldModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        FieldName: Duration
+        Type:
+          m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        LocalValue:
+          rid: 6453904991753077422
+        LinkedVariable:
+          rid: -2
+    - rid: 6453904991753077419
+      type: {class: BehaviorGraphNodeModel/FieldModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        FieldName: Font
+        Type:
+          m_SerializableType: TMPro.TMP_FontAsset, Unity.TextMeshPro, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        LocalValue:
+          rid: 6453904991753077423
+        LinkedVariable:
+          rid: 6453904991753077467
+    - rid: 6453904991753077420
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: {fileID: 0}
+    - rid: 6453904991753077421
+      type: {class: 'BlackboardVariable`1[[System.String, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: 
+    - rid: 6453904991753077422
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: 2
+    - rid: 6453904991753077423
+      type: {class: 'BlackboardVariable`1[[TMPro.TMP_FontAsset, Unity.TextMeshPro]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: {fileID: 0}
+    - rid: 6453904991753077424
+      type: {class: 'TypedVariableModel`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 1
+          m_Value1: 0
+        Name: Self
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: 0}
+    - rid: 6453904991753077467
+      type: {class: 'TypedVariableModel`1[[TMPro.TMP_FontAsset, Unity.TextMeshPro]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 16091770066444170639
+          m_Value1: 14887430687635756675
+        Name: TMP Font Asset
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: 11400000, guid: cdc43fb3b6fb46e48b5b950d0fcf9297, type: 2}
+    - rid: 6453904991753077478
+      type: {class: 'TypedVariableModel`1[[System.String, mscorlib]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 5914503944301594760
+          m_Value1: 41010223504882689
+        Name: Response
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: 
+    - rid: 6453904991753077501
+      type: {class: ActionNodeModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        Position: {x: 491.05188, y: 223.12189}
+        ID:
+          m_Value0: 8234611304209978026
+          m_Value1: 3144427014333758060
+        Parents: []
+        PortModels:
+        - rid: 6453904991753077502
+        - rid: 6453904991753077503
+        NodeType:
+          m_SerializableType: Unity.Behavior.WaitAction, Unity.Behavior, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        NodeTypeID:
+          m_Value0: 7729581452106168333
+          m_Value1: 8820302366443624372
+        m_FieldValues:
+        - rid: 6453904991753077504
+    - rid: 6453904991753077502
+      type: {class: PortModel, ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        m_Name: InputPort
+        m_PortDataFlowType: 0
+        m_IsFloating: 0
+        m_NodeModel:
+          rid: 6453904991753077501
+        m_Connections:
+        - rid: 6453904991753077123
+    - rid: 6453904991753077503
+      type: {class: PortModel, ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        m_Name: OutputPort
+        m_PortDataFlowType: 1
+        m_IsFloating: 0
+        m_NodeModel:
+          rid: 6453904991753077501
+        m_Connections: []
+    - rid: 6453904991753077504
+      type: {class: BehaviorGraphNodeModel/FieldModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        FieldName: SecondsToWait
+        Type:
+          m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        LocalValue:
+          rid: 6453904991753077505
+        LinkedVariable:
+          rid: -2
+    - rid: 6453904991753077505
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: 1
+    - rid: 6453905000992079931
+      type: {class: StickyNoteModel, ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        Position: {x: 190.85863, y: 299.177}
+        ID:
+          m_Value0: 7226275164980867153
+          m_Value1: 17169921409904706719
+        Parents: []
+        PortModels: []
+        Text: "1\uCC28 \uD638\uCD9C:\n- \uD604\uC7AC \uAC10\uC9C0\uB41C \uC0C1\uD669\uC744
+          \uC790\uC5F0\uC5B4\uB85C \uC124\uBA85\n- \uBAA8\uB378\uC774 \uC8FC\uBCC0
+          \uC0C1\uD669\uACFC \uAC00\uB2A5\uC131\uC744 \uD310\uB2E8\n- JSON \uD615\uC2DD
+          \uAC15\uC81C\uD558\uC9C0 \uC54A\uC74C\n2\uCC28 \uD638\uCD9C\uC740 \uD544\uC694\uD560
+          \uB54C\uB9CC:\n- 1\uCC28 \uC751\uB2F5\uC5D0\uC11C \uD2B9\uC815 \uB300\uC0C1\uC774\uB098
+          \uD589\uB3D9\uC774 \uD544\uC694\uD560 \uB54C\n- \uD604\uC7AC \uAC10\uC9C0
+          \uBAA9\uB85D\uACFC 1\uCC28 \uC751\uB2F5\uC744 \uB2E4\uC2DC \uC804\uB2EC\n-
+          \uCD5C\uC885 \uB300\uC0C1\uC758 InstanceID\uB9CC \uCD94\uCD9C"
+--- !u!114 &750395920257023565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db920e62f70f420bb33c771449926fa4, type: 3}
+  m_Name: TestPlayer Behavior Graph
+  m_EditorClassIdentifier: Unity.Behavior::Unity.Behavior.BehaviorGraph
+  Graphs:
+  - rid: 6453904991753077042
+  m_DebugInfo: {fileID: 4369715867905022595}
+  m_WasCompileWithPlaceholderNode: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 6453904991753077042
+      type: {class: BehaviorGraphModule, ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        AuthoringAssetID:
+          m_Value0: 2648475974984887016
+          m_Value1: 13953794773790312009
+        m_DebugInfo: {fileID: 4369715867905022595}
+        BlackboardReference:
+          rid: 6453904991753077043
+        BlackboardGroupReferences: []
+        Root:
+          rid: 6453905000992079956
+        m_VersionTimestamp: 639254617015331846
+    - rid: 6453904991753077043
+      type: {class: BlackboardReference, ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        m_Blackboard:
+          rid: 6453904991753077045
+        m_Source: {fileID: -5298118642556781361}
+    - rid: 6453904991753077045
+      type: {class: Blackboard, ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        m_Variables:
+        - rid: 6453905000992079958
+        - rid: 6453905000992079959
+        - rid: 6453905000992079960
+        - rid: 6453905000992079961
+        - rid: 6453905000992079962
+    - rid: 6453905000992079943
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: 2
+    - rid: 6453905000992079944
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: 1
+    - rid: 6453905000992079956
+      type: {class: Start, ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        ID:
+          m_Value0: 14834948323866997704
+          m_Value1: 4419611892381087166
+        Graph:
+          rid: 6453904991753077042
+        m_Parent:
+          rid: -2
+        m_Child:
+          rid: 6453905000992079957
+        Repeat: 1
+        AllowMultipleRepeatsPerTick: 0
+    - rid: 6453905000992079957
+      type: {class: SequenceComposite, ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        ID:
+          m_Value0: 9127066072748306202
+          m_Value1: 12230301030131260627
+        Graph:
+          rid: 6453904991753077042
+        m_Parent:
+          rid: 6453905000992079956
+        m_Children:
+        - rid: 6453905000992079963
+        - rid: 6453905000992079964
+        - rid: 6453905000992079965
+        - rid: 6453905000992079966
+        m_RegisteredObservers: []
+    - rid: 6453905000992079958
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 1
+          m_Value1: 0
+        Name: Self
+        m_Value: {fileID: 0}
+    - rid: 6453905000992079959
+      type: {class: 'BlackboardVariable`1[[System.String, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 17626974011598692747
+          m_Value1: 16625975973658502999
+        Name: Question
+        m_Value: 
+    - rid: 6453905000992079960
+      type: {class: 'BlackboardVariable`1[[System.String, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 6339016722272072363
+          m_Value1: 1099826825360465190
+        Name: SystemPrompt
+        m_Value: 'You are an NPC reasoning over current game sensor JSON. The input
+          is not a camera image. Use only currently detected targets. Return exactly
+          one valid JSON object and no markdown. Schema: {"action":"none|talk|pickup|drop|give|attach","targetInstanceId":0,"itemInstanceId":0,"confidence":0.0,"reason":"..."}.
+          Use 0 for no target. Never invent IDs. Do not execute actions.'
+    - rid: 6453905000992079961
+      type: {class: 'BlackboardVariable`1[[System.String, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 5914503944301594760
+          m_Value1: 41010223504882689
+        Name: Response
+        m_Value: 
+    - rid: 6453905000992079962
+      type: {class: 'BlackboardVariable`1[[TMPro.TMP_FontAsset, Unity.TextMeshPro]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 16091770066444170639
+          m_Value1: 14887430687635756675
+        Name: TMP Font Asset
+        m_Value: {fileID: 11400000, guid: cdc43fb3b6fb46e48b5b950d0fcf9297, type: 2}
+    - rid: 6453905000992079963
+      type: {class: SensingWorldAction, ns: , asm: Assembly-CSharp}
+      data:
+        ID:
+          m_Value0: 5194237359642108516
+          m_Value1: 10686710869076125319
+        Graph:
+          rid: 6453904991753077042
+        m_Parent:
+          rid: 6453905000992079957
+        Result:
+          rid: 6453905000992079959
+    - rid: 6453905000992079964
+      type: {class: LlmChatAction, ns: , asm: Assembly-CSharp}
+      data:
+        ID:
+          m_Value0: 3560083963438401341
+          m_Value1: 11846829312948857950
+        Graph:
+          rid: 6453904991753077042
+        m_Parent:
+          rid: 6453905000992079957
+        systemMessage:
+          rid: 6453905000992079960
+        Message:
+          rid: 6453905000992079959
+        Reslut:
+          rid: 6453905000992079961
+    - rid: 6453905000992079965
+      type: {class: TalkKoreanAction, ns: Unity.Behavior.Example, asm: Assembly-CSharp}
+      data:
+        ID:
+          m_Value0: 16808138129764918650
+          m_Value1: 6722458278948552179
+        Graph:
+          rid: 6453904991753077042
+        m_Parent:
+          rid: 6453905000992079957
+        Agent:
+          rid: 6453905000992079958
+        Sentence:
+          rid: 6453905000992079961
+        Duration:
+          rid: 6453905000992079943
+        Font:
+          rid: 6453905000992079962
+    - rid: 6453905000992079966
+      type: {class: WaitAction, ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        ID:
+          m_Value0: 8234611304209978026
+          m_Value1: 3144427014333758060
+        Graph:
+          rid: 6453904991753077042
+        m_Parent:
+          rid: 6453905000992079957
+        SecondsToWait:
+          rid: 6453905000992079944
+--- !u!114 &2786579940599905713
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dd922ae02c94c87a66e46a10a7319b9, type: 3}
+  m_Name: TestPlayer Behavior Graph Blackboard
+  m_EditorClassIdentifier: Unity.Behavior.Authoring::Unity.Behavior.BehaviorBlackboardAuthoringAsset
+  AssetID:
+    m_Value0: 2648475974984887016
+    m_Value1: 13953794773790312009
+  m_Variables:
+  - rid: 6453904991753077047
+  - rid: 6453904991753077062
+  - rid: 6453904991753077281
+  - rid: 6453904991753077072
+  - rid: 6453904991753077435
+  m_VersionTimestamp: 639254435607046712
+  m_CommandBuffer:
+    m_Commands: []
+  m_RuntimeBlackboardAsset: {fileID: -5298118642556781361}
+  references:
+    version: 2
+    RefIds:
+    - rid: 6453904991753077047
+      type: {class: 'TypedVariableModel`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 1
+          m_Value1: 0
+        Name: Self
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: 0}
+    - rid: 6453904991753077062
+      type: {class: 'TypedVariableModel`1[[System.String, mscorlib]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 17626974011598692747
+          m_Value1: 16625975973658502999
+        Name: Question
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: 
+    - rid: 6453904991753077072
+      type: {class: 'TypedVariableModel`1[[System.String, mscorlib]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 5914503944301594760
+          m_Value1: 41010223504882689
+        Name: Response
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: 
+    - rid: 6453904991753077281
+      type: {class: 'TypedVariableModel`1[[System.String, mscorlib]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 6339016722272072363
+          m_Value1: 1099826825360465190
+        Name: SystemPrompt
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: 'You are an NPC reasoning over current game sensor JSON. The input
+          is not a camera image. Use only currently detected targets. Return exactly
+          one valid JSON object and no markdown. Schema: {"action":"none|talk|pickup|drop|give|attach","targetInstanceId":0,"itemInstanceId":0,"confidence":0.0,"reason":"..."}.
+          Use 0 for no target. Never invent IDs. Do not execute actions.'
+    - rid: 6453904991753077435
+      type: {class: 'TypedVariableModel`1[[TMPro.TMP_FontAsset, Unity.TextMeshPro]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 16091770066444170639
+          m_Value1: 14887430687635756675
+        Name: TMP Font Asset
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: 11400000, guid: cdc43fb3b6fb46e48b5b950d0fcf9297, type: 2}
+--- !u!114 &4369715867905022595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b27bb6d9a2c8d540a10dff10acc543e, type: 3}
+  m_Name: TestPlayer Behavior Graph Debug Info
+  m_EditorClassIdentifier: Unity.Behavior::Unity.Behavior.BehaviorGraphDebugInfo
+  m_CodeBreakPointsList: []

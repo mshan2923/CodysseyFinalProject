@@ -611,14 +611,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Behavior::Unity.Behavior.BehaviorGraphAgent
   m_Graph: {fileID: 230537082325336525, guid: 7e92daf1de4d06c45bdba3c7d5eb74e9, type: 2}
   m_BlackboardVariableOverridesList:
-  - rid: 6453904947189645795
+  - rid: 6453904976449897458
   m_OriginalGraph: {fileID: 0}
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
     version: 2
     RefIds:
-    - rid: 6453904947189645795
+    - rid: 6453904976449897458
       type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -1220,6 +1220,7 @@ GameObject:
   - component: {fileID: 1701201099}
   - component: {fileID: 1701201101}
   - component: {fileID: 1701201102}
+  - component: {fileID: 1701201103}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -1315,6 +1316,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RegisterAllPawn
   Tag: Pawn
+--- !u!114 &1701201103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701201098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8f7ca881b0191b45b908cc636400b87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LLMService
+  ollamaUrl: http://localhost:11434/api/chat
+  model: gemma4:e2b
 --- !u!1 &1861740653
 GameObject:
   m_ObjectHideFlags: 0
