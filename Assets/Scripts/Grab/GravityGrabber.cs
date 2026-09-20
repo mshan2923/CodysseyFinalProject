@@ -24,6 +24,7 @@ namespace SensingWorld
 
         private GrabbableObject heldObject;
         private GrabbableObject pointedObject;
+        private GameObject lookedTarget;
         private bool restoreGravity;
 
         private void Awake()
@@ -37,6 +38,7 @@ namespace SensingWorld
 
         private void Update()
         {
+            UpdateLookEvent();
             UpdatePointedOutline();
 
             if (Keyboard.current != null && Keyboard.current[grabKey].wasPressedThisFrame)
@@ -95,6 +97,50 @@ namespace SensingWorld
             return hit.collider.GetComponentInParent<GrabbableObject>();
         }
 
+        private GameObject FindLookTargetInView()
+        {
+            if (viewCamera == null)
+                return null;
+
+            Ray ray = new Ray(viewCamera.transform.position, viewCamera.transform.forward);
+            if (!Physics.Raycast(ray, out RaycastHit hit, maxGrabDistance, grabbableLayers, QueryTriggerInteraction.Ignore))
+                return null;
+
+            SensingWorldEntity entity = hit.collider.GetComponentInParent<SensingWorldEntity>();
+            if (entity != null)
+                return entity.gameObject;
+
+            GrabbableObject grabbable = hit.collider.GetComponentInParent<GrabbableObject>();
+            if (grabbable != null)
+                return grabbable.gameObject;
+
+            Transform current = hit.collider.transform;
+            while (current != null)
+            {
+                if (current.CompareTag("Interaction") || current.CompareTag("NPC"))
+                    return current.gameObject;
+
+                current = current.parent;
+            }
+
+            return null;
+        }
+
+        private void UpdateLookEvent()
+        {
+            GameObject nextLookTarget = FindLookTargetInView();
+            if (nextLookTarget == lookedTarget)
+                return;
+
+            if (lookedTarget != null)
+                PublishEvent(SensingWorldEventType.TargetLookEnded, lookedTarget);
+
+            lookedTarget = nextLookTarget;
+
+            if (lookedTarget != null)
+                PublishEvent(SensingWorldEventType.TargetLookStarted, lookedTarget);
+        }
+
         private void UpdatePointedOutline()
         {
             GrabbableObject nextPointedObject = FindGrabbableInView();
@@ -136,6 +182,12 @@ namespace SensingWorld
 
         private void OnDisable()
         {
+            if (lookedTarget != null)
+            {
+                PublishEvent(SensingWorldEventType.TargetLookEnded, lookedTarget);
+                lookedTarget = null;
+            }
+
             if (pointedObject != null)
                 pointedObject.SetOutlineVisible(false);
 

@@ -66,13 +66,13 @@ namespace SensingWorld
             foreach (ActiveTarget target in activeTargets.Values)
             {
                 context.AppendLine(
-                    $"{target.Target.name} (InstanceID: {target.InstanceId}) is a {target.Kind} with state {target.State}. " +
+                    $"{target.Name} (InstanceID: {target.InstanceId}) is a {target.Kind} with state {target.State}. " +
                     $"It is {target.Distance:0.00} meters from the Player, " +
                     $"has a facing dot of {target.FacingDot:0.00}, " +
                     $"and an interaction priority score of {target.InteractionScore:0.00}.");
 
                 foreach (SensingWorldAttribute attribute in target.Attributes ?? new List<SensingWorldAttribute>())
-                    context.AppendLine($"{target.Target.name} {attribute.key}: {attribute.value}.");
+                    context.AppendLine($"{target.Name} {attribute.key}: {attribute.value}.");
             }
 
             context.AppendLine("[Current Relations]");
@@ -85,8 +85,9 @@ namespace SensingWorld
                 if (relation.Key == null)
                     continue;
 
-                string actorName = relation.Value != null ? relation.Value.name : "Player";
-                context.AppendLine($"{actorName} is holding {relation.Key.name}.");
+                string actorName = GetDisplayName(relation.Value, "Player");
+                string targetName = GetDisplayName(relation.Key, "Unknown");
+                context.AppendLine($"{actorName} is holding {targetName}.");
             }
 
             AppendRecentEvents(context, "[Recent Vision Events]", recentVisionEvents);
@@ -179,6 +180,7 @@ namespace SensingWorld
                 activeTargets[gameEvent.Target] = new ActiveTarget
                 {
                     Target = gameEvent.Target,
+                    Name = gameEvent.TargetName,
                     InstanceId = gameEvent.Target.GetInstanceID(),
                     TargetTag = gameEvent.TargetTag,
                     Kind = "Unknown",
@@ -204,6 +206,7 @@ namespace SensingWorld
                     activeTargets[gameEvent.Target] = new ActiveTarget
                     {
                         Target = gameEvent.Target,
+                        Name = gameEvent.TargetName,
                         InstanceId = gameEvent.Target.GetInstanceID(),
                         TargetTag = gameEvent.Target.tag,
                         Kind = "Unknown",
@@ -261,17 +264,32 @@ namespace SensingWorld
 
             foreach (SensingWorldEvent gameEvent in events)
             {
-                string actorName = gameEvent.Actor != null
-                    ? $"{gameEvent.Actor.name} (InstanceID: {gameEvent.Actor.GetInstanceID()})"
-                    : "None";
+                string actorName =
+                    $"{gameEvent.ActorName} (InstanceID: {GetInstanceId(gameEvent.Actor)})";
                 string targetName = gameEvent.Target != null
-                    ? $"{gameEvent.Target.name} (InstanceID: {gameEvent.Target.GetInstanceID()})"
-                    : "None";
+                    ? $"{gameEvent.TargetName} (InstanceID: {gameEvent.Target.GetInstanceID()})"
+                    : gameEvent.TargetName;
 
                 context.AppendLine(
                     $"[{gameEvent.Timestamp:0.00}] {gameEvent.Category}: " +
                     $"{actorName} -> {gameEvent.Type} -> {targetName}.");
             }
+        }
+
+        private static string GetDisplayName(GameObject entityObject, string fallback)
+        {
+            if (entityObject == null)
+                return fallback;
+
+            SensingWorldEntity entity = entityObject.GetComponent<SensingWorldEntity>();
+            return entity != null && !string.IsNullOrWhiteSpace(entity.DisplayName)
+                ? entity.DisplayName
+                : entityObject.name;
+        }
+
+        private static int GetInstanceId(GameObject entityObject)
+        {
+            return entityObject != null ? entityObject.GetInstanceID() : 0;
         }
 
         private void OnDisable()
@@ -288,6 +306,7 @@ namespace SensingWorld
         public sealed class ActiveTarget
         {
             public GameObject Target;
+            public string Name;
             public int InstanceId;
             public string TargetTag;
             public string Kind;
@@ -304,7 +323,7 @@ namespace SensingWorld
                 return new WorldTargetData
                 {
                     instanceId = InstanceId,
-                    name = Target != null ? Target.name : "Unknown",
+                    name = Target != null ? Name : "Unknown",
                     tag = TargetTag,
                     kind = Kind,
                     state = State,

@@ -33,21 +33,24 @@ public class LLMService : MonoBehaviour
         string systemPrompt,
         string userMessage,
         Action<string> onSuccess,
-        Action<string> onError = null)
+        Action<string> onError = null,
+        float? temperatureOverride = null)
     {
         StartCoroutine(
             ChatCoroutine(
                 systemPrompt,
                 userMessage,
                 onSuccess,
-                onError));
+                onError,
+                temperatureOverride));
     }
 
     private IEnumerator ChatCoroutine(
         string systemPrompt,
         string userMessage,
         Action<string> onSuccess,
-        Action<string> onError)
+        Action<string> onError,
+        float? temperatureOverride)
     {
         OllamaChatRequest requestData = new OllamaChatRequest
         {
@@ -55,7 +58,7 @@ public class LLMService : MonoBehaviour
             stream = false,
             options = new OllamaOptions
             {
-                temperature = temperature
+                temperature = temperatureOverride ?? temperature
             },
             messages = new[]
             {

@@ -15,6 +15,9 @@ public class LlmChatAction : Unity.Behavior.Action
     [SerializeReference]
     public BlackboardVariable<string> Reslut;
 
+    [SerializeReference]
+    public BlackboardVariable<float> Temperature = new BlackboardVariable<float>(0.7f);
+
 
     private bool isCompleted;
     private bool isSuccess;
@@ -46,6 +49,10 @@ public class LlmChatAction : Unity.Behavior.Action
             $"System: {systemMessage.Value}\n" +
             $"Message: {Message.Value}");
 
+        float? temperatureOverride = Temperature != null
+            ? Mathf.Clamp(Temperature.Value, 0f, 2f)
+            : null;
+
         LLMService.Instance.Chat(
             systemMessage.Value,
             Message.Value,
@@ -73,7 +80,8 @@ public class LlmChatAction : Unity.Behavior.Action
 
                 isSuccess = false;
                 isCompleted = true;
-            });
+            },
+            temperatureOverride: temperatureOverride);
 
         return Status.Running;
     }

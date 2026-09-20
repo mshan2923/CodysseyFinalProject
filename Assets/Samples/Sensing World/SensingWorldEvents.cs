@@ -10,6 +10,8 @@ namespace SensingWorld
         ObjectPickedUp,
         ObjectDropped,
         Hit,
+        TargetLookStarted,
+        TargetLookEnded,
 
         // TODO: NPC Health 시스템이 추가되면 실제 HP 변경 지점에서 발행한다.
         // HP 감소 원인을 공격으로 해석하지 않고, 이전 값과 현재 값을 사실로 기록한다.
@@ -36,7 +38,9 @@ namespace SensingWorld
         public readonly SensingWorldEventCategory Category;
         public readonly SensingWorldEventChannel Channel;
         public readonly GameObject Actor;
+        public readonly string ActorName;
         public readonly GameObject Target;
+        public readonly string TargetName;
         public readonly string TargetTag;
         public readonly float Timestamp;
         public readonly Vector3 Position;
@@ -61,13 +65,27 @@ namespace SensingWorld
             Category = category ?? GetDefaultCategory(type);
             Channel = channel ?? GetDefaultChannel(type);
             Actor = actor;
+            ActorName = GetDisplayName(actor, "None");
             Target = target;
+            TargetName = GetDisplayName(target, "None");
             TargetTag = targetTag;
             Timestamp = timestamp;
             Position = position;
             Distance = distance;
             FacingDot = facingDot;
             InteractionScore = interactionScore;
+        }
+
+        private static string GetDisplayName(GameObject entityObject, string fallback)
+        {
+            if (entityObject == null)
+                return fallback;
+
+            SensingWorldEntity entity = entityObject.GetComponent<SensingWorldEntity>();
+            if (entity != null && !string.IsNullOrWhiteSpace(entity.DisplayName))
+                return entity.DisplayName;
+
+            return entityObject.name;
         }
 
         private static SensingWorldEventCategory GetDefaultCategory(SensingWorldEventType type)
@@ -81,7 +99,9 @@ namespace SensingWorld
         private static SensingWorldEventChannel GetDefaultChannel(SensingWorldEventType type)
         {
             return type == SensingWorldEventType.TargetVisible ||
-                   type == SensingWorldEventType.TargetLost
+                   type == SensingWorldEventType.TargetLost ||
+                   type == SensingWorldEventType.TargetLookStarted ||
+                   type == SensingWorldEventType.TargetLookEnded
                 ? SensingWorldEventChannel.Vision
                 : SensingWorldEventChannel.WorldEvent;
         }

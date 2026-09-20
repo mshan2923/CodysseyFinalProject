@@ -30,6 +30,7 @@ namespace SensingWorld
         [SerializeField] private SensingWorldEntityState currentState = SensingWorldEntityState.Unknown;
         [SerializeField] private List<SensingWorldAttribute> attributes = new();
 
+        public string DisplayName = "Object";
         public SensingWorldEntityKind Kind => kind;
         public SensingWorldEntityState CurrentState => currentState;
         public IReadOnlyList<SensingWorldAttribute> Attributes => attributes;
