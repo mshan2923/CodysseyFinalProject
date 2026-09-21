@@ -14,6 +14,7 @@ namespace SensingWorld
         [SerializeField] private SensingWorldEventBusHost eventBusHost;
         [SerializeField] private InteractionSensor interactionSensor;
         [SerializeField] private int maxRecentEvents = 32;
+        [SerializeField] private bool includeRecentVisionEvents = true;
 
         private readonly Dictionary<GameObject, ActiveTarget> activeTargets = new();
         private readonly Dictionary<GameObject, GameObject> heldItems = new();
@@ -90,7 +91,9 @@ namespace SensingWorld
                 context.AppendLine($"{actorName} is holding {targetName}.");
             }
 
-            AppendRecentEvents(context, "[Recent Vision Events]", recentVisionEvents);
+            if (includeRecentVisionEvents)
+                AppendRecentEvents(context, "[Recent Vision Events]", recentVisionEvents);
+
             AppendRecentEvents(context, "[Recent World Events]", recentWorldEvents);
 
             return context.ToString();

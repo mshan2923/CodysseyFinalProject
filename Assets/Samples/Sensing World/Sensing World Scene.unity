@@ -170,6 +170,7 @@ MonoBehaviour:
   eventBusHost: {fileID: 142857001}
   interactionSensor: {fileID: 142857004}
   maxRecentEvents: 32
+  includeRecentVisionEvents: 0
 --- !u!1 &234527169
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,7 +247,7 @@ GameObject:
   - component: {fileID: 339008260}
   - component: {fileID: 339008259}
   - component: {fileID: 339008264}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (4)
   m_TagString: Interaction
   m_Icon: {fileID: 0}
@@ -421,7 +422,7 @@ GameObject:
   - component: {fileID: 387625058}
   - component: {fileID: 387625063}
   - component: {fileID: 387625064}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sphere
   m_TagString: Interaction
   m_Icon: {fileID: 0}
@@ -722,7 +723,8 @@ GameObject:
   - component: {fileID: 601677486}
   - component: {fileID: 601677485}
   - component: {fileID: 601677489}
-  m_Layer: 0
+  - component: {fileID: 601677490}
+  m_Layer: 3
   m_Name: Capsule (2)
   m_TagString: NPC
   m_Icon: {fileID: 0}
@@ -738,7 +740,7 @@ Transform:
   m_GameObject: {fileID: 601677483}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.97, y: 1.37, z: 0.4}
+  m_LocalPosition: {x: 2.97, y: 1, z: 0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -869,6 +871,33 @@ MonoBehaviour:
   currentState: 1
   attributes: []
   DisplayName: NPC
+--- !u!54 &601677490
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601677483}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &623263181
 GameObject:
   m_ObjectHideFlags: 0
@@ -884,7 +913,7 @@ GameObject:
   - component: {fileID: 623263184}
   - component: {fileID: 623263183}
   - component: {fileID: 623263188}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (5)
   m_TagString: Interaction
   m_Icon: {fileID: 0}
@@ -1059,7 +1088,7 @@ GameObject:
   - component: {fileID: 735783209}
   - component: {fileID: 735783214}
   - component: {fileID: 735783215}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Interaction
   m_Icon: {fileID: 0}
@@ -1181,7 +1210,7 @@ Transform:
   m_GameObject: {fileID: 735783208}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.7757901, y: 0, z: -5.25081}
+  m_LocalPosition: {x: -1.7757901, y: 0.74, z: -5.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1233,7 +1262,8 @@ GameObject:
   - component: {fileID: 779896550}
   - component: {fileID: 779896549}
   - component: {fileID: 779896553}
-  m_Layer: 0
+  - component: {fileID: 779896554}
+  m_Layer: 3
   m_Name: Capsule (3)
   m_TagString: NPC
   m_Icon: {fileID: 0}
@@ -1380,6 +1410,33 @@ MonoBehaviour:
   currentState: 1
   attributes: []
   DisplayName: NPC
+--- !u!54 &779896554
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779896547}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &834697910
 GameObject:
   m_ObjectHideFlags: 0
@@ -1419,7 +1476,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -1540,7 +1597,7 @@ GameObject:
   - component: {fileID: 871212830}
   - component: {fileID: 871212829}
   - component: {fileID: 871212834}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sphere (2)
   m_TagString: Interaction
   m_Icon: {fileID: 0}
@@ -2027,7 +2084,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1420296054}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: interection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2069,7 +2126,8 @@ GameObject:
   - component: {fileID: 1445601819}
   - component: {fileID: 1445601818}
   - component: {fileID: 1445601822}
-  m_Layer: 0
+  - component: {fileID: 1445601823}
+  m_Layer: 3
   m_Name: Capsule
   m_TagString: NPC
   m_Icon: {fileID: 0}
@@ -2085,7 +2143,7 @@ Transform:
   m_GameObject: {fileID: 1445601816}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.12, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2216,6 +2274,33 @@ MonoBehaviour:
   currentState: 1
   attributes: []
   DisplayName: NPC
+--- !u!54 &1445601823
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445601816}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &1744316008
 GameObject:
   m_ObjectHideFlags: 0
@@ -2230,7 +2315,8 @@ GameObject:
   - component: {fileID: 1744316011}
   - component: {fileID: 1744316010}
   - component: {fileID: 1744316014}
-  m_Layer: 0
+  - component: {fileID: 1744316015}
+  m_Layer: 3
   m_Name: Capsule (1)
   m_TagString: NPC
   m_Icon: {fileID: 0}
@@ -2377,6 +2463,33 @@ MonoBehaviour:
   currentState: 1
   attributes: []
   DisplayName: NPC
+--- !u!54 &1744316015
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744316008}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &1995317172
 GameObject:
   m_ObjectHideFlags: 0
@@ -2539,7 +2652,7 @@ GameObject:
   - component: {fileID: 2130960326}
   - component: {fileID: 2130960325}
   - component: {fileID: 2130960330}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sphere (1)
   m_TagString: Interaction
   m_Icon: {fileID: 0}
@@ -2802,6 +2915,10 @@ PrefabInstance:
       propertyPath: 'blackboard.m_Variables.Array.data[0]'
       value: -2
       objectReference: {fileID: 0}
+    - target: {fileID: 1842557506506056935, guid: 13dadf75340c66f4da1416cdbb5695ed, type: 3}
+      propertyPath: detectionRadius
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2253364355134283904, guid: 13dadf75340c66f4da1416cdbb5695ed, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.9
@@ -2845,6 +2962,22 @@ PrefabInstance:
     - target: {fileID: 3184764934046467673, guid: 13dadf75340c66f4da1416cdbb5695ed, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3184764934046467673, guid: 13dadf75340c66f4da1416cdbb5695ed, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3301507971138419243, guid: 13dadf75340c66f4da1416cdbb5695ed, type: 3}
+      propertyPath: m_Radius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7152429561900156465, guid: 13dadf75340c66f4da1416cdbb5695ed, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7331719309176086706, guid: 13dadf75340c66f4da1416cdbb5695ed, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

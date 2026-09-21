@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using SensingWorld;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Push")]
     [SerializeField] private float pushForce = 2f;
+    [SerializeField] private SensingWorldEventBusHost eventBusHost;
 
     private CharacterController controller;
     private InputAction moveAction;
@@ -31,6 +33,9 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+
+        if (eventBusHost == null)
+            eventBusHost = FindFirstObjectByType<SensingWorldEventBusHost>();
 
         var map = inputActions.FindActionMap("Player", throwIfNotFound: true);
         moveAction = map.FindAction("Move", throwIfNotFound: true);
@@ -117,6 +122,26 @@ public class PlayerController : MonoBehaviour
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Rigidbody body = hit.collider.attachedRigidbody;
+
+        SensingWorldEntity targetEntity =
+            hit.collider.GetComponentInParent<SensingWorldEntity>();
+
+        if (targetEntity != null &&
+            targetEntity.Kind == SensingWorldEntityKind.NPC &&
+            eventBusHost != null)
+        {
+            eventBusHost.Publish(new SensingWorldEvent(
+                SensingWorldEventType.Hit,
+                gameObject,
+                targetEntity.gameObject,
+                Time.time,
+                hit.point,
+                targetEntity.gameObject.tag,
+                Vector3.Distance(transform.position, targetEntity.transform.position),
+                0f,
+                0f));
+        }
+
         if (body == null || body.isKinematic) return;
 
         // 위/아래 방향으로는 밀지 않음 (바닥 밟았다고 아래로 미는 것 방지)
