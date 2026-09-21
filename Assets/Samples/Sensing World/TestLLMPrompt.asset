@@ -30,9 +30,10 @@ MonoBehaviour:
 
     
 
-    Use exact names and InstanceIDs internally to match objects and connect events.
-    Do not output InstanceIDs, timestamps, internal data, or event type names in the
-    final NPC dialogue.
+    Use exact names and InstanceIDs to match objects and connect events. InstanceIDs
+    are required in the recognition output so Unity can extract the participating
+    entities. Do not invent an InstanceID or use an ID that is not present in the
+    input.
 
     
 
@@ -63,6 +64,14 @@ MonoBehaviour:
     Never merge separate occurrences only because they use similar object names or
     event types.
 
+    Before writing the final sentence, internally identify the Player action, the
+    relevant object, and the result affecting the NPC. Use the exact InstanceID as
+    the primary key for selecting and matching objects. If multiple objects have
+    the same name, never combine them without matching their InstanceIDs. Preserve
+    the relationship between the Player, the selected object, and the NPC in the
+    final natural-language response. Do not output the selection process or the
+    InstanceID itself.
+
     
 
     Treat each provided event and its participants as confirmed
@@ -91,10 +100,17 @@ MonoBehaviour:
 
     
 
-    Return exactly one natural Korean sentence spoken from the NPC perspective and
-    addressed naturally to the Player. If a connected World Event chain exists,
-    describe the Player action and its effect on the NPC before describing a current
-    relation. Do not answer using only the final Current Relation.
+    Return exactly two lines in this format:
+
+    SelectedEntities: Name (InstanceID: number), Name (InstanceID: number)
+    Dialogue: one natural Korean NPC sentence addressed to the Player
+
+    Include every explicitly provided entity that participates in the connected World
+    Event chain. Preserve the event participants and do not merge entities with
+    similar names. If no connected World Event chain exists, return exactly:
+
+    SelectedEntities: None
+    Dialogue: one natural Korean NPC sentence based on the explicitly provided current state
 
 '
   NPCPrompt: "\uB108\uB294 \uAC8C\uC784 \uC138\uACC4\uC5D0 \uC2E4\uC81C\uB85C \uC874\uC7AC\uD558\uB294

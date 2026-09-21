@@ -170,7 +170,7 @@ MonoBehaviour:
   eventBusHost: {fileID: 142857001}
   interactionSensor: {fileID: 142857004}
   maxRecentEvents: 32
-  includeRecentVisionEvents: 0
+  includeRecentVisionEvents: 1
 --- !u!1 &234527169
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LLMService
   ollamaUrl: http://localhost:11434/api/chat
-  model: gemma4:e2b
+  model: 'gemma4:e2b '
   temperature: 0.2
 --- !u!4 &234527171
 Transform:

@@ -14,7 +14,7 @@ public partial class AppendAction : Action
 
     protected override Status OnStart()
     {
-        Result.Value = String.Join(",", TextA.Value ,  TextB.Value);
+        Result.Value = String.Join("\n", TextA.Value ,  TextB.Value);
                 return Status.Success;
     }
 

@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Unity.Behavior;
 using UnityEngine;
 
@@ -6,6 +8,10 @@ using UnityEngine;
 [NodeDescription(name: "LLM Chat", story: "Send [Message] to the local LLM -> [Reslut]", category: "Action/LLM", id: "69bb9246f09d5128ac54a5c068f7b509")]
 public class LlmChatAction : Unity.Behavior.Action
 {
+    private static readonly Regex SelectedEntityPattern = new Regex(
+        @"(?<name>[^,:;\r\n]+?)\s*(?:\(InstanceID:\s*|\()(?<id>-?\d+)\)",
+        RegexOptions.Compiled);
+
     [SerializeReference]
     public BlackboardVariable<string> systemMessage;
 
@@ -18,6 +24,13 @@ public class LlmChatAction : Unity.Behavior.Action
     [SerializeReference]
     public BlackboardVariable<float> Temperature = new BlackboardVariable<float>(0.7f);
 
+    [Tooltip("SelectedEntities와 InstanceID가 응답에 포함되어야 하는지 여부입니다.")]
+    [SerializeReference]
+    public BlackboardVariable<bool> requireSelectedEntities = new BlackboardVariable<bool>(true);
+
+
+    [SerializeReference]
+    public BlackboardVariable<string> Temp;
 
     private bool isCompleted;
     private bool isSuccess;
@@ -63,11 +76,25 @@ public class LlmChatAction : Unity.Behavior.Action
                     $"[LLMChat] Response Received\n" +
                     $"Response: [{response}]");
 
-                Reslut.Value = response;
+                if (requireSelectedEntities.Value)
+                    LogSelectedEntities(response);
+
+                if (requireSelectedEntities.Value)
+                {
+                    string dialogue = ExtractDialogue(response);
+
+                    if (string.IsNullOrWhiteSpace(dialogue))
+                        Debug.LogWarning("[LLM Recognition] Dialogue를 찾지 못했습니다.");
+
+                    Reslut.Value = dialogue;   
+                }else
+                {
+                    Reslut.Value = response;
+                }
 
                 Debug.Log(
                     $"[LLMChat] Result Saved\n" +
-                    $"Result: [{Reslut.Value}]");
+                    $"{Temp.Value} -- Result: [{Reslut.Value}]");
 
                 isSuccess = true;
                 isCompleted = true;
@@ -94,6 +121,41 @@ public class LlmChatAction : Unity.Behavior.Action
         return isSuccess
             ? Status.Success
             : Status.Failure;
+    }
+
+    private static void LogSelectedEntities(string response)
+    {
+        var selectedIds = new HashSet<int>();
+
+        foreach (Match match in SelectedEntityPattern.Matches(response ?? string.Empty))
+        {
+            if (!int.TryParse(match.Groups["id"].Value, out int instanceId))
+                continue;
+
+            if (!selectedIds.Add(instanceId))
+                continue;
+
+            string entityName = match.Groups["name"].Value.Trim();
+            Debug.Log($"[LLM Recognition] Target: {entityName} (InstanceID: {instanceId})");
+        }
+
+        if (selectedIds.Count == 0)
+            Debug.LogWarning("[LLM Recognition] SelectedEntities에서 InstanceID를 찾지 못했습니다.");
+        else
+            Debug.Log($"[LLM Recognition] Selected InstanceIDs: {string.Join(", ", selectedIds)}");
+    }
+
+    private static string ExtractDialogue(string response)
+    {
+        if (string.IsNullOrWhiteSpace(response))
+            return string.Empty;
+
+        const string dialogueMarker = "Dialogue:";
+        int dialogueIndex = response.IndexOf(dialogueMarker, StringComparison.OrdinalIgnoreCase);
+        if (dialogueIndex < 0)
+            return string.Empty;
+
+        return response.Substring(dialogueIndex + dialogueMarker.Length).Trim();
     }
 
 }
