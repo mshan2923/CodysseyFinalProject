@@ -81,15 +81,18 @@ public class LlmChatAction : Unity.Behavior.Action
 
                 if (requireSelectedEntities.Value)
                 {
-                    string dialogue = ExtractDialogue(response);
+                    string recognition = ExtractLabeledText(response, "Recognition:");
 
-                    if (string.IsNullOrWhiteSpace(dialogue))
-                        Debug.LogWarning("[LLM Recognition] Dialogue를 찾지 못했습니다.");
+                    if (string.IsNullOrWhiteSpace(recognition))
+                        Debug.LogWarning("[LLM Recognition] Recognition을 찾지 못했습니다.");
 
-                    Reslut.Value = dialogue;   
+                    Reslut.Value = recognition;
                 }else
                 {
-                    Reslut.Value = response;
+                    string dialogue = ExtractLabeledText(response, "Dialogue:");
+                    Reslut.Value = string.IsNullOrWhiteSpace(dialogue)
+                        ? response.Trim()
+                        : dialogue;
                 }
 
                 Debug.Log(
@@ -145,17 +148,16 @@ public class LlmChatAction : Unity.Behavior.Action
             Debug.Log($"[LLM Recognition] Selected InstanceIDs: {string.Join(", ", selectedIds)}");
     }
 
-    private static string ExtractDialogue(string response)
+    private static string ExtractLabeledText(string response, string marker)
     {
         if (string.IsNullOrWhiteSpace(response))
             return string.Empty;
 
-        const string dialogueMarker = "Dialogue:";
-        int dialogueIndex = response.IndexOf(dialogueMarker, StringComparison.OrdinalIgnoreCase);
-        if (dialogueIndex < 0)
+        int markerIndex = response.IndexOf(marker, StringComparison.OrdinalIgnoreCase);
+        if (markerIndex < 0)
             return string.Empty;
 
-        return response.Substring(dialogueIndex + dialogueMarker.Length).Trim();
+        return response.Substring(markerIndex + marker.Length).Trim();
     }
 
 }

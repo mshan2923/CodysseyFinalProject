@@ -1,3 +1,4 @@
+using SensingWorld;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -10,11 +11,16 @@ public class CatController : MonoBehaviour
     public float animSmoothTime = 0.1f;
     [Header("중력")]
     public float gravity = -20f;
+    public float JumpPower = 10f;
     private float verticalVelocity;
 
     [Header("참조")]
     public Transform cameraTransform;
     public Animator animator;
+
+    [Header("Push")]
+    [SerializeField] private float pushForce = 2f;
+    [SerializeField] private SensingWorldEventBusHost eventBusHost;
 
     Vector2 currentAnimVelocity; // 애니메이터로 보낼 X,Z (블렌드트리용)
     Vector2 animVelocityRef;
@@ -36,6 +42,7 @@ public class CatController : MonoBehaviour
         float inputX = Input.GetAxisRaw("Horizontal"); // A/D
         float inputZ = Input.GetAxisRaw("Vertical");   // W/S
         Vector3 inputDir = new Vector3(inputX, 0f, inputZ).normalized;
+        bool isJump = Input.GetKeyDown(KeyCode.Space);
 
         // 2. 카메라 기준으로 월드 방향 변환 (카메라가 자유 회전해도 이동은 카메라 정면 기준)
         Vector3 camForward = cameraTransform.forward;
@@ -55,11 +62,14 @@ public class CatController : MonoBehaviour
         else
             verticalVelocity += gravity * Time.deltaTime;
 
+        if (isJump)
+            verticalVelocity = JumpPower;
+
         Vector3 fullVelocity = new Vector3(velocity.x, verticalVelocity, velocity.z);
         characterController.Move(fullVelocity * Time.deltaTime);
 
         // 4. 캐릭터가 이동 방향(카메라 정면과의 DOT 결과 반영)으로 부드럽게 회전
-        if (moveDir.sqrMagnitude > 0.001f)
+        if (moveDir.sqrMagnitude > 0.001f && inputZ >= 0)
         {
             Quaternion targetRot = Quaternion.LookRotation(moveDir, Vector3.up);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.deltaTime);
@@ -75,5 +85,41 @@ public class CatController : MonoBehaviour
 
         animator.SetFloat("X", currentAnimVelocity.x);
         animator.SetFloat("Z", currentAnimVelocity.y);
+        animator.SetBool("Jump", isJump);
+        animator.SetBool("Fall", characterController.velocity.y < gravity * Time.deltaTime);
+    }
+
+        private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Rigidbody body = hit.collider.attachedRigidbody;
+
+        SensingWorldEntity targetEntity =
+            hit.collider.GetComponentInParent<SensingWorldEntity>();
+
+        // bool isPlayerOrNpc = targetEntity != null &&
+        //     (targetEntity.Kind == SensingWorldEntityKind.Player ||
+        //      targetEntity.Kind == SensingWorldEntityKind.NPC);
+
+        if (targetEntity != null && eventBusHost != null)
+        {
+            eventBusHost.Publish(new SensingWorldEvent(
+                SensingWorldEventType.Hit,
+                gameObject,
+                targetEntity.gameObject,
+                Time.time,
+                hit.point,
+                targetEntity.gameObject.tag,
+                Vector3.Distance(transform.position, targetEntity.transform.position),
+                0f,
+                0f));
+        }
+
+        if (body == null || body.isKinematic) return;
+
+        // 위/아래 방향으로는 밀지 않음 (바닥 밟았다고 아래로 미는 것 방지)
+        if (hit.moveDirection.y < -0.3f) return;
+
+        Vector3 pushDir = new Vector3(hit.moveDirection.x, 0f, hit.moveDirection.z);
+        body.AddForce(pushDir * pushForce, ForceMode.Impulse);
     }
 }

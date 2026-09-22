@@ -28,7 +28,10 @@ namespace SensingWorld
     {
         [SerializeField] private SensingWorldEntityKind kind = SensingWorldEntityKind.Unknown;
         [SerializeField] private SensingWorldEntityState currentState = SensingWorldEntityState.Unknown;
-        [SerializeField] private List<SensingWorldAttribute> attributes = new();
+
+        
+        [SerializeField, Tooltip("오브젝트에 추가하는 자유 형식의 설명 데이터야.")] 
+        private List<SensingWorldAttribute> attributes = new();
 
         public string DisplayName = "Object";
         public SensingWorldEntityKind Kind => kind;
