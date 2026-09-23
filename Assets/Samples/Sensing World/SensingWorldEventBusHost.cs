@@ -14,6 +14,9 @@ namespace SensingWorld
 
         public void Publish(SensingWorldEvent gameEvent)
         {
+            
+            // Debug.Log($"{gameEvent.Actor} -> {gameEvent.Target}");
+
             EventBus?.Publish(gameEvent);
         }
     }

@@ -36,6 +36,7 @@ namespace SensingWorld
             if (target == null)
                 return;
 
+
             if (colliderCounts.TryGetValue(target, out int count))
             {
                 colliderCounts[target] = count + 1;
@@ -90,7 +91,24 @@ namespace SensingWorld
 
         private GameObject FindTaggedTarget(Collider other)
         {
-            Transform current = other.transform;
+            GameObject target = FindTaggedTargetInHierarchy(other.transform);
+            if (target != null)
+                return target;
+
+            Rigidbody attachedRigidbody = other.attachedRigidbody;
+            if (attachedRigidbody != null && attachedRigidbody.transform != other.transform)
+            {
+                target = FindTaggedTargetInHierarchy(attachedRigidbody.transform);
+                if (target != null)
+                    return target;
+            }
+
+            return null;
+        }
+
+        private GameObject FindTaggedTargetInHierarchy(Transform start)
+        {
+            Transform current = start;
             while (current != null)
             {
                 if (targetTags.Contains(current.tag))

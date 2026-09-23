@@ -46,8 +46,30 @@ namespace SensingWorld
 
         private void OnEnable()
         {
-            if (eventBusHost?.EventBus == null)
+            TrySubscribeToEventBus();
+        }
+
+        private void Start()
+        {
+            // EventBusHost.Awake() may run after this component's OnEnable().
+            TrySubscribeToEventBus();
+        }
+
+        private void TrySubscribeToEventBus()
+        {
+            if (eventSubscription != null)
                 return;
+
+            if (eventBusHost == null)
+                eventBusHost = GetComponent<SensingWorldEventBusHost>();
+
+            if (eventBusHost?.EventBus == null)
+            {
+                Debug.LogWarning(
+                    "[SensingWorld] EventBus is not initialized yet; subscription will be retried in Start().",
+                    this);
+                return;
+            }
 
             eventSubscription = eventBusHost.EventBus.Subscribe<SensingWorldEvent>(OnSensingWorldEvent);
         }
@@ -56,6 +78,7 @@ namespace SensingWorld
 
         public string BuildContext()
         {
+
             RefreshActiveTargets();
             var context = new StringBuilder();
             context.AppendLine("[Current Sensor State]");
