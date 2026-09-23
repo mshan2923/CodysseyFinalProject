@@ -13,7 +13,9 @@ public partial class SensingWorldAction : Action
 
     protected override Status OnStart()
     {
-        Result.Value =  SensingWorldState.Instance.BuildContext();
+        string context = SensingWorldState.Instance.BuildContext();
+        SensingWorldState.Instance.ClearRecentEvents();
+        Result.Value = context;
         return Status.Success;
     }
 

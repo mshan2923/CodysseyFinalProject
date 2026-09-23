@@ -26,6 +26,12 @@ namespace SensingWorld
         public IReadOnlyList<SensingWorldEvent> RecentVisionEvents => recentVisionEvents;
         public IReadOnlyList<SensingWorldEvent> RecentWorldEvents => recentWorldEvents;
 
+        public void ClearRecentEvents()
+        {
+            recentVisionEvents.Clear();
+            recentWorldEvents.Clear();
+        }
+
         private void Awake()
         {
             if(Instance == null)
@@ -46,13 +52,7 @@ namespace SensingWorld
             eventSubscription = eventBusHost.EventBus.Subscribe<SensingWorldEvent>(OnSensingWorldEvent);
         }
 
-        // private void Update()
-        // {
-        //     if (Keyboard.current == null || !Keyboard.current[Key.Tab].wasPressedThisFrame)
-        //         return;
 
-        //     Debug.Log($"[SensingWorld Context]\n{BuildContext()}");
-        // }
 
         public string BuildContext()
         {
@@ -301,8 +301,7 @@ namespace SensingWorld
             eventSubscription = null;
             activeTargets.Clear();
             heldItems.Clear();
-            recentVisionEvents.Clear();
-            recentWorldEvents.Clear();
+            ClearRecentEvents();
         }
 
         [Serializable]

@@ -203,7 +203,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: Z
+  - m_Name: SpeedMagnitude
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -334,7 +334,7 @@ BlendTree:
     m_DirectBlendParameter: X
     m_Mirror: 0
   m_BlendParameter: X
-  m_BlendParameterY: Z
+  m_BlendParameterY: SpeedMagnitude
   m_MinThreshold: 0.5555556
   m_MaxThreshold: 0.70370376
   m_UseAutomaticThresholds: 1

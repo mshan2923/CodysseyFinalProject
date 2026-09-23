@@ -248,12 +248,13 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b277b58366dd5ff4fa72107bbdf0a442, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6924418073205441821}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b277b58366dd5ff4fa72107bbdf0a442, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6673116017881227891}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b277b58366dd5ff4fa72107bbdf0a442, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2009788161682272289}
   m_SourcePrefab: {fileID: 100100000, guid: b277b58366dd5ff4fa72107bbdf0a442, type: 3}
---- !u!95 &6924418073205441822 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: b277b58366dd5ff4fa72107bbdf0a442, type: 3}
-  m_PrefabInstance: {fileID: 597061126870867750}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &326588212004266615 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b277b58366dd5ff4fa72107bbdf0a442, type: 3}
@@ -397,7 +398,7 @@ MonoBehaviour:
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 597061126870867750}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 326588212004266615}
   m_Enabled: 1
@@ -405,12 +406,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0cbda8f2a44e92b09f2ad0c7d4d1ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CatNpcAnimationDriver
-  animator: {fileID: 6924418073205441822}
-  navigationAgent: {fileID: 0}
+  animator: {fileID: 6423182309873525431}
+  navigationAgent: {fileID: -6673116017881227891}
   characterController: {fileID: 2022470479608172980}
   smoothTime: 0.1
+  turnAngleThreshold: 5
+  minimumTurnSpeed: 0.05
+--- !u!195 &-6673116017881227891
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326588212004266615}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &2009788161682272289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326588212004266615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b1ed0b4e4cefc1409c403c37e761f88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JumpUpLinkTraversal
+  duration: 0.55
+  arcHeight: 1.25
+  onlyTraverseMarkedJumpUpLinks: 1
+  animator: {fileID: 0}
+  jumpParameter: Jump
+  fallParameter: Fall
+  onJumpStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  jumpCost: 1
 --- !u!4 &1135917089247754445 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b277b58366dd5ff4fa72107bbdf0a442, type: 3}
+  m_PrefabInstance: {fileID: 597061126870867750}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6423182309873525431 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: b277b58366dd5ff4fa72107bbdf0a442, type: 3}
   m_PrefabInstance: {fileID: 597061126870867750}
   m_PrefabAsset: {fileID: 0}

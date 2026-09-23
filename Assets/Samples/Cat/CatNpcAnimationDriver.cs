@@ -3,9 +3,15 @@ using UnityEngine.AI;
 
 public sealed class CatNpcAnimationDriver : MonoBehaviour
 {
+    private static readonly int FallHash = Animator.StringToHash("Fall");
+    private static readonly int JumpHash = Animator.StringToHash("Jump");
+    private static readonly int SpeedMagnitudeHash = Animator.StringToHash("SpeedMagnitude");
+    private static readonly int XHash = Animator.StringToHash("X");
+
     [SerializeField] private Animator animator;
     [SerializeField] private NavMeshAgent navigationAgent;
     [SerializeField] private CharacterController characterController;
+    [SerializeField] private JumpUpLinkTraversal jumpLinkTraversal;
     [SerializeField] private float smoothTime = 0.1f;
     [SerializeField] private float turnAngleThreshold = 5f;
     [SerializeField] private float minimumTurnSpeed = 0.05f;
@@ -25,6 +31,9 @@ public sealed class CatNpcAnimationDriver : MonoBehaviour
 
         if (characterController == null)
             characterController = GetComponent<CharacterController>();
+
+        if (jumpLinkTraversal == null)
+            jumpLinkTraversal = GetComponent<JumpUpLinkTraversal>();
     }
 
     private void Update()
@@ -48,51 +57,60 @@ public sealed class CatNpcAnimationDriver : MonoBehaviour
             Mathf.Clamp(localVelocity.x / speed, -1f, 1f),
             Mathf.Clamp(localVelocity.z / speed, -1f, 1f));
 
-        Vector3 desiredWorldVelocity = navigationAgent != null
-            ? navigationAgent.desiredVelocity
-            : worldVelocity;
-        desiredWorldVelocity.y = 0f;
+        // Vector3 desiredWorldVelocity = navigationAgent != null
+        //     ? navigationAgent.desiredVelocity
+        //     : worldVelocity;
+        // desiredWorldVelocity.y = 0f;
 
-        if (desiredWorldVelocity.sqrMagnitude > minimumTurnSpeed * minimumTurnSpeed)
+        // if (desiredWorldVelocity.sqrMagnitude > minimumTurnSpeed * minimumTurnSpeed)
+        // {
+        //     float signedAngle = Vector3.SignedAngle(
+        //         transform.forward,
+        //         desiredWorldVelocity.normalized,
+        //         Vector3.up);
+
+        //     float absoluteAngle = Mathf.Abs(signedAngle);
+
+        //     if (absoluteAngle > turnAngleThreshold)
+        //     {
+        //         float currentDirection = Mathf.Sign(signedAngle);
+
+        //         if (!isTurning || !Mathf.Approximately(turnDirection, currentDirection))
+        //         {
+        //             isTurning = true;
+        //             turnStartAngle = absoluteAngle;
+        //             turnDirection = currentDirection;
+        //         }
+
+        //         float turnProgress = 1f - Mathf.Clamp01(absoluteAngle / turnStartAngle);
+        //         float turnPulse = 1f - Mathf.Abs(turnProgress * 2f - 1f);
+        //         targetVelocity = new Vector2(turnDirection * turnPulse, 0f);
+        //     }
+        //     else
+        //     {
+        //         isTurning = false;
+        //     }
+        // }
+        // else
+        // {
+        //     isTurning = false;
+        // }
+
+        // float lerpFactor = 1f - Mathf.Exp(-Time.deltaTime / Mathf.Max(0.001f, smoothTime));
+        // currentVelocity = Vector2.Lerp(currentVelocity, targetVelocity, lerpFactor);
+
+        animator.SetFloat(XHash, targetVelocity.x);
+        // animator.SetFloat(SpeedMagnitudeHash, targetVelocity.magnitude);//NavigationToLocation Action에서
+
+        if (jumpLinkTraversal == null || !jumpLinkTraversal.IsTraversing)
         {
-            float signedAngle = Vector3.SignedAngle(
-                transform.forward,
-                desiredWorldVelocity.normalized,
-                Vector3.up);
-
-            float absoluteAngle = Mathf.Abs(signedAngle);
-
-            if (absoluteAngle > turnAngleThreshold)
-            {
-                float currentDirection = Mathf.Sign(signedAngle);
-
-                if (!isTurning || !Mathf.Approximately(turnDirection, currentDirection))
-                {
-                    isTurning = true;
-                    turnStartAngle = absoluteAngle;
-                    turnDirection = currentDirection;
-                }
-
-                float turnProgress = 1f - Mathf.Clamp01(absoluteAngle / turnStartAngle);
-                float turnPulse = 1f - Mathf.Abs(turnProgress * 2f - 1f);
-                targetVelocity = new Vector2(turnDirection * turnPulse, 0f);
-            }
-            else
-            {
-                isTurning = false;
-            }
+            animator.SetBool(JumpHash, false);
+            animator.SetBool(FallHash, false);
         }
-        else
-        {
-            isTurning = false;
-        }
+    }
 
-        float lerpFactor = 1f - Mathf.Exp(-Time.deltaTime / Mathf.Max(0.001f, smoothTime));
-        currentVelocity = Vector2.Lerp(currentVelocity, targetVelocity, lerpFactor);
-
-        animator.SetFloat("X", currentVelocity.x);
-        animator.SetFloat("Z", currentVelocity.y);
-        animator.SetBool("Jump", false);
-        animator.SetBool("Fall", false);
+    public void OnJump()
+    {
+        Debug.Log("Try Jump");
     }
 }
