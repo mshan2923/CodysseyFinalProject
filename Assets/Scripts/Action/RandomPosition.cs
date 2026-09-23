@@ -1,6 +1,7 @@
 using System;
 using Unity.Properties;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Unity.Behavior
 {
@@ -25,6 +26,15 @@ namespace Unity.Behavior
         [SerializeReference]
         public BlackboardVariable<Vector3> TargetPosition;
 
+        [Tooltip("Raycast height.")]
+        [SerializeReference]
+        public BlackboardVariable<float> RayHeight = new(10f);
+
+        [Tooltip("Raycast distance.")]
+        [SerializeReference]
+        public BlackboardVariable<float> RayDistance = new(20f);
+
+
         protected override Status OnStart()
         {
             if (Agent.Value == null)
@@ -46,14 +56,47 @@ namespace Unity.Behavior
                 Agent.Value.transform.position +
                 new Vector3(
                     randomOffset.x,
-                    0f,
+                    RayHeight.Value,
                     randomOffset.y
                 );
 
-            TargetPosition.Value = randomPosition;
+            if (!Physics.Raycast(
+                randomPosition,
+                Vector3.down,
+                out RaycastHit hit,
+                RayDistance.Value))
+            {
+                return Status.Failure;
+            }
 
+            if (!NavMesh.SamplePosition(
+                hit.point,
+                out NavMeshHit navHit,
+                2f,
+                NavMesh.AllAreas))
+            {
+                return Status.Failure;
+            }
 
+            NavMeshPath path = new NavMeshPath();
+
+            if (!NavMesh.CalculatePath(
+                Agent.Value.transform.position,
+                navHit.position,
+                NavMesh.AllAreas,
+                path))
+            {
+                return Status.Failure;
+            }
+
+            if (path.status != NavMeshPathStatus.PathComplete)
+            {
+                return Status.Failure;
+            }
+
+            TargetPosition.Value = navHit.position;
             return Status.Success;
+
         }
     }
 }

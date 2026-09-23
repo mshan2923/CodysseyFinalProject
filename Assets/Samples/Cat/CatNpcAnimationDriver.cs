@@ -5,21 +5,21 @@ public sealed class CatNpcAnimationDriver : MonoBehaviour
 {
     private static readonly int FallHash = Animator.StringToHash("Fall");
     private static readonly int JumpHash = Animator.StringToHash("Jump");
-    private static readonly int SpeedMagnitudeHash = Animator.StringToHash("SpeedMagnitude");
     private static readonly int XHash = Animator.StringToHash("X");
 
     [SerializeField] private Animator animator;
     [SerializeField] private NavMeshAgent navigationAgent;
     [SerializeField] private CharacterController characterController;
     [SerializeField] private JumpUpLinkTraversal jumpLinkTraversal;
-    [SerializeField] private float smoothTime = 0.1f;
-    [SerializeField] private float turnAngleThreshold = 5f;
-    [SerializeField] private float minimumTurnSpeed = 0.05f;
+    [SerializeField, Min(0f)] private float smoothTime = 0.1f;
+    [SerializeField, Min(1f)] private float fullTurnAngle = 90f;
+    [SerializeField, Min(0.001f)] private float minimumTurnSpeed = 0.05f;
+    [Header("Direction Debug")]
+    [SerializeField] private bool drawDirectionDebug = true;
+    [SerializeField, Min(0.1f)] private float debugRayLength = 2f;
 
-    private Vector2 currentVelocity;
-    private bool isTurning;
-    private float turnStartAngle;
-    private float turnDirection;
+    private float currentTurnX;
+    private float turnVelocity;
 
     private void Awake()
     {
@@ -34,6 +34,7 @@ public sealed class CatNpcAnimationDriver : MonoBehaviour
 
         if (jumpLinkTraversal == null)
             jumpLinkTraversal = GetComponent<JumpUpLinkTraversal>();
+
     }
 
     private void Update()
@@ -47,59 +48,26 @@ public sealed class CatNpcAnimationDriver : MonoBehaviour
                 ? characterController.velocity
                 : Vector3.zero;
 
-        Vector3 localVelocity = transform.InverseTransformDirection(worldVelocity);
-        float speed = navigationAgent != null ? navigationAgent.speed : 1f;
+        Vector3 desiredWorldVelocity = navigationAgent != null
+            ? navigationAgent.desiredVelocity
+            : worldVelocity;
+        desiredWorldVelocity.y = 0f;
 
-        if (speed <= 0.001f)
-            speed = 1f;
+        float targetTurnX = 0f;
+        Vector3 desiredDirection = desiredWorldVelocity.normalized;
 
-        Vector2 targetVelocity = new Vector2(
-            Mathf.Clamp(localVelocity.x / speed, -1f, 1f),
-            Mathf.Clamp(localVelocity.z / speed, -1f, 1f));
+        {
+            float absoluteAngle = Vector3.Angle(transform.forward, desiredDirection);
+            float magnitude = Mathf.Clamp01(absoluteAngle / fullTurnAngle);
+            float side = Vector3.Dot(transform.right, desiredDirection);
+            float sign = side < 0f ? -1f : 1f;
+            targetTurnX = magnitude * sign;
+        }
 
-        // Vector3 desiredWorldVelocity = navigationAgent != null
-        //     ? navigationAgent.desiredVelocity
-        //     : worldVelocity;
-        // desiredWorldVelocity.y = 0f;
 
-        // if (desiredWorldVelocity.sqrMagnitude > minimumTurnSpeed * minimumTurnSpeed)
-        // {
-        //     float signedAngle = Vector3.SignedAngle(
-        //         transform.forward,
-        //         desiredWorldVelocity.normalized,
-        //         Vector3.up);
+        animator.SetFloat(XHash, targetTurnX);
 
-        //     float absoluteAngle = Mathf.Abs(signedAngle);
-
-        //     if (absoluteAngle > turnAngleThreshold)
-        //     {
-        //         float currentDirection = Mathf.Sign(signedAngle);
-
-        //         if (!isTurning || !Mathf.Approximately(turnDirection, currentDirection))
-        //         {
-        //             isTurning = true;
-        //             turnStartAngle = absoluteAngle;
-        //             turnDirection = currentDirection;
-        //         }
-
-        //         float turnProgress = 1f - Mathf.Clamp01(absoluteAngle / turnStartAngle);
-        //         float turnPulse = 1f - Mathf.Abs(turnProgress * 2f - 1f);
-        //         targetVelocity = new Vector2(turnDirection * turnPulse, 0f);
-        //     }
-        //     else
-        //     {
-        //         isTurning = false;
-        //     }
-        // }
-        // else
-        // {
-        //     isTurning = false;
-        // }
-
-        // float lerpFactor = 1f - Mathf.Exp(-Time.deltaTime / Mathf.Max(0.001f, smoothTime));
-        // currentVelocity = Vector2.Lerp(currentVelocity, targetVelocity, lerpFactor);
-
-        animator.SetFloat(XHash, targetVelocity.x);
+        DrawDirectionDebug(desiredWorldVelocity, targetTurnX);
         // animator.SetFloat(SpeedMagnitudeHash, targetVelocity.magnitude);//NavigationToLocation Action에서
 
         if (jumpLinkTraversal == null || !jumpLinkTraversal.IsTraversing)
@@ -112,5 +80,48 @@ public sealed class CatNpcAnimationDriver : MonoBehaviour
     public void OnJump()
     {
         Debug.Log("Try Jump");
+    }
+
+    private void DrawDirectionDebug(Vector3 desiredWorldVelocity, float targetTurnX)
+    {
+        if (!drawDirectionDebug)
+            return;
+
+        Vector3 origin = transform.position + Vector3.up * 0.05f;
+        Vector3 desiredDirection = desiredWorldVelocity.sqrMagnitude > 0.0001f
+            ? desiredWorldVelocity.normalized
+            : Vector3.zero;
+
+        Debug.DrawRay(origin, transform.forward * debugRayLength, Color.green);
+        // Debug.DrawRay(origin, transform.right * debugRayLength, Color.blue);
+
+        if (desiredDirection != Vector3.zero)
+            Debug.DrawRay(origin, desiredDirection * debugRayLength, Color.cyan);
+
+        // Debug.DrawRay(
+        //     origin + Vector3.up * 0.05f,
+        //     transform.right * (targetTurnX * debugRayLength),
+        //     Color.red);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (!drawDirectionDebug)
+            return;
+
+        Vector3 origin = transform.position + Vector3.up * 0.1f;
+        Vector3 desiredDirection = navigationAgent != null
+            ? navigationAgent.desiredVelocity
+            : Vector3.zero;
+        desiredDirection.y = 0f;
+        float absoluteAngle = desiredDirection.sqrMagnitude > 0.0001f
+            ? Vector3.Angle(transform.forward, desiredDirection.normalized)
+            : 0f;
+
+#if UNITY_EDITOR
+        UnityEditor.Handles.Label(
+            origin,
+            $"Animator X: {currentTurnX:F2}\nTarget Angle: {absoluteAngle:F1}");
+#endif
     }
 }

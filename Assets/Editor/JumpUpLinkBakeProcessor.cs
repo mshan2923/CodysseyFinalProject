@@ -8,21 +8,23 @@ using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Generates persistent upward NavMeshLinks after the base NavMesh has been baked.
-/// This is intentionally an editor tool: runtime agents only consume the generated links.
+/// Generates persistent upward links from the baked NavMesh boundary.
+/// The generator is shape-agnostic: boxes, cylinders and arbitrary meshes use the same path.
 /// </summary>
 public sealed class JumpUpLinkBakeProcessor : EditorWindow
 {
     private const string GeneratedRootName = "_GeneratedJumpUpLinks";
 
-    [SerializeField, Min(0.1f)] private float sampleSpacing = 0.75f;
+    [SerializeField, Min(0.05f)] private float linkSpacing = 1f;
+    [SerializeField, Min(0f)] private float edgePadding = 0.1f;
+    [SerializeField, Min(0.01f)] private float startOffset = 1.5f;
+    [SerializeField, Min(0f)] private float landingOffset = 0.25f;
     [SerializeField, Min(0.01f)] private float stepHeight = 0.45f;
     [SerializeField, Min(0.01f)] private float maxJumpHeight = 2.5f;
-    [SerializeField, Min(0.1f)] private float jumpDistance = 1.5f;
     [SerializeField, Min(0f)] private float linkCost = 3f;
     [SerializeField] private NavMeshSurface navMeshSurface;
-    [SerializeField] private int area;
     [SerializeField] private LayerMask groundMask = ~0;
+    [SerializeField] private int area;
     [SerializeField] private bool bidirectional;
     [SerializeField] private bool clearPreviousLinks = true;
 
@@ -35,13 +37,15 @@ public sealed class JumpUpLinkBakeProcessor : EditorWindow
     private void OnGUI()
     {
         EditorGUILayout.HelpBox(
-            "Bake the base NavMesh first. This tool scans walkable floor samples, finds higher nearby floors, and stores Jump-Up NavMeshLinks in the scene.",
+            "Bake the base NavMesh first. Links are generated from NavMesh boundary edges, not collider types.",
             MessageType.Info);
 
-        sampleSpacing = EditorGUILayout.FloatField("Sample Spacing", sampleSpacing);
-        stepHeight = EditorGUILayout.FloatField("Step Height", stepHeight);
-        maxJumpHeight = EditorGUILayout.FloatField("Max Jump Height", maxJumpHeight);
-        jumpDistance = EditorGUILayout.FloatField("Jump Distance", jumpDistance);
+        linkSpacing = EditorGUILayout.FloatField("Link Spacing", linkSpacing);
+        edgePadding = EditorGUILayout.FloatField("Edge Padding", edgePadding);
+        startOffset = EditorGUILayout.FloatField("Start Offset", startOffset);
+        landingOffset = EditorGUILayout.FloatField("Landing Offset", landingOffset);
+        stepHeight = EditorGUILayout.FloatField("Minimum Height", stepHeight);
+        maxJumpHeight = EditorGUILayout.FloatField("Maximum Height", maxJumpHeight);
         linkCost = EditorGUILayout.FloatField("Link Cost (0 = default)", linkCost);
         navMeshSurface = (NavMeshSurface)EditorGUILayout.ObjectField(
             "NavMesh Surface",
@@ -49,35 +53,35 @@ public sealed class JumpUpLinkBakeProcessor : EditorWindow
             typeof(NavMeshSurface),
             true);
 
-        NavMeshSurface detectedSurface = ResolveSurface();
-        if (detectedSurface != null)
+        NavMeshSurface surface = ResolveSurface();
+        if (surface != null)
         {
             EditorGUILayout.HelpBox(
-                $"Using Agent Type ID {detectedSurface.agentTypeID} from {detectedSurface.name}.",
+                $"Using Agent Type ID {surface.agentTypeID} from {surface.name}.",
                 MessageType.None);
         }
         else
         {
-            EditorGUILayout.HelpBox("Assign a NavMeshSurface or enable one in the active scene.", MessageType.Warning);
+            EditorGUILayout.HelpBox("Assign or enable a NavMeshSurface in the active scene.", MessageType.Warning);
         }
 
+        groundMask = EditorGUILayout.MaskField(
+            "Ground Layers",
+            groundMask,
+            UnityEditorInternal.InternalEditorUtility.layers);
         area = EditorGUILayout.IntField("Area", area);
-        groundMask = EditorGUILayout.MaskField("Ground Layers", groundMask, UnityEditorInternal.InternalEditorUtility.layers);
         bidirectional = EditorGUILayout.Toggle("Bidirectional", bidirectional);
         clearPreviousLinks = EditorGUILayout.Toggle("Clear Previous Generated Links", clearPreviousLinks);
 
-        using (new EditorGUI.DisabledScope(!Application.isEditor))
-        {
-            if (GUILayout.Button("Generate Jump-Up Links"))
-                Generate();
-        }
+        if (GUILayout.Button("Generate Jump-Up Links"))
+            Generate();
     }
 
     private void Generate()
     {
-        if (sampleSpacing <= 0f || jumpDistance <= 0f || maxJumpHeight <= stepHeight)
+        if (linkSpacing <= 0f || startOffset <= 0f || maxJumpHeight <= stepHeight)
         {
-            EditorUtility.DisplayDialog("Jump-Up Links", "Check the spacing and jump height values.", "OK");
+            EditorUtility.DisplayDialog("Jump-Up Links", "Check the spacing, offsets and height values.", "OK");
             return;
         }
 
@@ -95,10 +99,10 @@ public sealed class JumpUpLinkBakeProcessor : EditorWindow
             return;
         }
 
-        Bounds bounds;
-        if (!TryGetGroundBounds(out bounds))
+        NavMeshTriangulation triangulation = NavMesh.CalculateTriangulation();
+        if (triangulation.vertices == null || triangulation.vertices.Length == 0)
         {
-            EditorUtility.DisplayDialog("Jump-Up Links", "No enabled ground colliders were found for the selected layers.", "OK");
+            EditorUtility.DisplayDialog("Jump-Up Links", "Bake the base NavMesh before generating links.", "OK");
             return;
         }
 
@@ -106,138 +110,169 @@ public sealed class JumpUpLinkBakeProcessor : EditorWindow
         if (clearPreviousLinks)
             ClearGeneratedLinks(root);
 
-        int agentTypeId = surface.agentTypeID;
-        Dictionary<Vector2Int, FloorSample> samples = SampleFloors(bounds);
-        HashSet<string> created = new HashSet<string>();
-        int generated = 0;
-
-        foreach (KeyValuePair<Vector2Int, FloorSample> pair in samples)
-        {
-            FloorSample lower = pair.Value;
-
-            foreach (Vector2 direction in Directions)
-            {
-                Vector3 probePosition = lower.position + new Vector3(direction.x, 0f, direction.y) * jumpDistance;
-                Vector2Int probeKey = ToKey(probePosition, bounds.min);
-
-                if (!samples.TryGetValue(probeKey, out FloorSample upper))
-                    continue;
-
-                float heightDifference = upper.position.y - lower.position.y;
-                if (heightDifference <= stepHeight || heightDifference > maxJumpHeight)
-                    continue;
-
-                if (!IsValidJump(lower.position, upper.position, direction, heightDifference))
-                    continue;
-
-                string key = BuildLinkKey(lower.position, upper.position);
-                if (!created.Add(key))
-                    continue;
-
-                CreateLink(root.transform, lower.position, upper.position, agentTypeId);
-                generated++;
-            }
-        }
+        List<BoundaryEdge> boundaries = FindBoundaryEdges(triangulation);
+        List<JumpCandidate> candidates = BuildCandidates(triangulation, boundaries);
+        int generated = CreateLinks(root.transform, candidates, surface.agentTypeID);
 
         EditorSceneManager.MarkSceneDirty(scene);
         AssetDatabase.SaveAssets();
         EditorUtility.DisplayDialog("Jump-Up Links", $"Generated {generated} jump-up link(s).", "OK");
     }
 
-    private static readonly Vector2[] Directions =
+    private List<BoundaryEdge> FindBoundaryEdges(NavMeshTriangulation triangulation)
     {
-        Vector2.right,
-        Vector2.left,
-        Vector2.up,
-        Vector2.down
-    };
+        Dictionary<EdgeKey, BoundaryEdge> edges = new Dictionary<EdgeKey, BoundaryEdge>();
+        int[] indices = triangulation.indices;
 
-    private Dictionary<Vector2Int, FloorSample> SampleFloors(Bounds bounds)
-    {
-        Dictionary<Vector2Int, FloorSample> result = new Dictionary<Vector2Int, FloorSample>();
-        int xCount = Mathf.CeilToInt(bounds.size.x / sampleSpacing);
-        int zCount = Mathf.CeilToInt(bounds.size.z / sampleSpacing);
-        float rayStart = bounds.max.y + maxJumpHeight + 2f;
-        float rayDistance = bounds.size.y + maxJumpHeight + 4f;
-
-        for (int x = 0; x <= xCount; x++)
+        for (int i = 0; i < indices.Length; i += 3)
         {
-            for (int z = 0; z <= zCount; z++)
+            int a = indices[i];
+            int b = indices[i + 1];
+            int c = indices[i + 2];
+            Vector3 center = (triangulation.vertices[a] + triangulation.vertices[b] + triangulation.vertices[c]) / 3f;
+
+            RegisterEdge(edges, a, b, center);
+            RegisterEdge(edges, b, c, center);
+            RegisterEdge(edges, c, a, center);
+        }
+
+        List<BoundaryEdge> boundaries = new List<BoundaryEdge>();
+        foreach (BoundaryEdge edge in edges.Values)
+        {
+            if (edge.UsageCount == 1)
+                boundaries.Add(edge);
+        }
+
+        return boundaries;
+    }
+
+    private static void RegisterEdge(
+        Dictionary<EdgeKey, BoundaryEdge> edges,
+        int first,
+        int second,
+        Vector3 triangleCenter)
+    {
+        EdgeKey key = new EdgeKey(first, second);
+        if (edges.TryGetValue(key, out BoundaryEdge existing))
+        {
+            existing.UsageCount++;
+            edges[key] = existing;
+            return;
+        }
+
+        edges.Add(key, new BoundaryEdge(first, second, triangleCenter));
+    }
+
+    private List<JumpCandidate> BuildCandidates(
+        NavMeshTriangulation triangulation,
+        List<BoundaryEdge> boundaries)
+    {
+        List<JumpCandidate> candidates = new List<JumpCandidate>();
+
+        foreach (BoundaryEdge boundary in boundaries)
+        {
+            Vector3 first = triangulation.vertices[boundary.FirstIndex];
+            Vector3 second = triangulation.vertices[boundary.SecondIndex];
+            Vector3 edge = second - first;
+            Vector3 horizontalEdge = Vector3.ProjectOnPlane(edge, Vector3.up);
+
+            if (horizontalEdge.sqrMagnitude < 0.0001f || Mathf.Abs(edge.y) > 0.1f)
+                continue;
+
+            Vector3 tangent = horizontalEdge.normalized;
+            Vector3 midpoint = (first + second) * 0.5f;
+            Vector3 inward = Vector3.ProjectOnPlane(boundary.TriangleCenter - midpoint, Vector3.up);
+
+            if (inward.sqrMagnitude < 0.0001f)
+                continue;
+
+            inward.Normalize();
+            float edgeLength = horizontalEdge.magnitude;
+            float usableLength = Mathf.Max(0f, edgeLength - edgePadding * 2f);
+            int count = Mathf.Max(1, Mathf.CeilToInt(usableLength / linkSpacing));
+
+            for (int i = 0; i <= count; i++)
             {
-                Vector3 origin = new Vector3(
-                    bounds.min.x + x * sampleSpacing,
-                    rayStart,
-                    bounds.min.z + z * sampleSpacing);
+                float t = count == 0 ? 0.5f : i / (float)count;
+                float alongEdge = Mathf.Lerp(edgePadding, edgeLength - edgePadding, t);
+                Vector3 edgePoint = first + tangent * alongEdge;
+                Vector3 upper = edgePoint + inward * landingOffset + Vector3.up * 0.05f;
+                Vector3 lowerProbe = edgePoint - inward * startOffset;
 
-                if (!Physics.Raycast(origin, Vector3.down, out RaycastHit hit, rayDistance, groundMask, QueryTriggerInteraction.Ignore))
+                if (!TryFindLowerFloor(lowerProbe, upper.y, out Vector3 lower))
                     continue;
 
-                Vector3 navmeshPosition = hit.point + Vector3.up * 0.05f;
-                if (!NavMesh.SamplePosition(navmeshPosition, out NavMeshHit navHit, sampleSpacing * 0.75f, NavMesh.AllAreas))
+                float heightDifference = upper.y - lower.y;
+                if (heightDifference <= stepHeight || heightDifference > maxJumpHeight)
                     continue;
 
-                result[new Vector2Int(x, z)] = new FloorSample(navHit.position);
+                if (!IsNavMeshPoint(lower, 0.2f) || !IsNavMeshPoint(upper, landingOffset + 0.1f))
+                    continue;
+
+                candidates.Add(new JumpCandidate(lower, upper));
             }
         }
 
-        return result;
+        return candidates;
     }
 
-    private bool IsValidJump(Vector3 lower, Vector3 upper, Vector2 direction, float heightDifference)
+    private bool TryFindLowerFloor(Vector3 probe, float upperY, out Vector3 lower)
     {
-        Vector3 horizontal = new Vector3(direction.x, 0f, direction.y).normalized;
-        Vector3 start = lower + Vector3.up * 0.1f;
-        Vector3 end = upper + Vector3.up * 0.1f;
-        float radius = 0.25f;
-        float capsuleHeight = 1.8f;
+        Vector3 rayOrigin = new Vector3(probe.x, upperY + maxJumpHeight + 1f, probe.z);
+        float rayDistance = maxJumpHeight * 2f + 2f;
 
-        if (Physics.CheckCapsule(
-                start + Vector3.up * radius,
-                start + Vector3.up * Mathf.Max(radius, capsuleHeight - radius),
-                radius,
+        if (Physics.Raycast(
+                rayOrigin,
+                Vector3.down,
+                out RaycastHit hit,
+                rayDistance,
                 groundMask,
                 QueryTriggerInteraction.Ignore))
-            return false;
+        {
+            lower = hit.point + Vector3.up * 0.05f;
+            return true;
+        }
 
-        if (Physics.CheckCapsule(
-                end + Vector3.up * radius,
-                end + Vector3.up * Mathf.Max(radius, capsuleHeight - radius),
-                radius,
-                groundMask,
-                QueryTriggerInteraction.Ignore))
-            return false;
-
-        Vector3 trajectoryStart = lower + Vector3.up * 0.2f;
-        Vector3 trajectoryEnd = upper + Vector3.up * 0.2f;
-        Vector3 apex = Vector3.Lerp(trajectoryStart, trajectoryEnd, 0.5f) + Vector3.up * Mathf.Max(0.5f, heightDifference * 0.5f);
-
-        if (Physics.Linecast(trajectoryStart, apex, groundMask, QueryTriggerInteraction.Ignore))
-            return false;
-
-        if (Physics.Linecast(apex, trajectoryEnd, groundMask, QueryTriggerInteraction.Ignore))
-            return false;
-
-        return true;
+        lower = default;
+        return false;
     }
 
-    private void CreateLink(Transform root, Vector3 start, Vector3 end, int agentTypeId)
+    private static bool IsNavMeshPoint(Vector3 point, float sampleRadius)
     {
-        GameObject linkObject = new GameObject("JumpUpLink");
-        Undo.RegisterCreatedObjectUndo(linkObject, "Create Jump-Up Link");
-        linkObject.transform.SetParent(root, false);
+        float radius = Mathf.Max(0.2f, sampleRadius);
+        return NavMesh.SamplePosition(point, out NavMeshHit hit, radius, NavMesh.AllAreas) &&
+               Vector3.Distance(hit.position, point) <= radius;
+    }
 
-        NavMeshLink link = linkObject.AddComponent<NavMeshLink>();
-        link.agentTypeID = agentTypeId;
-        link.area = area;
-        link.startPoint = start - linkObject.transform.position;
-        link.endPoint = end - linkObject.transform.position;
-        link.bidirectional = bidirectional;
-        // Unity requires a positive override to be at least 1. A value of 0 means
-        // use the normal area cost instead of forcing an extra link cost.
-        link.costModifier = linkCost > 0f ? Mathf.Max(1f, linkCost) : -1f;
-        link.autoUpdate = false;
+    private int CreateLinks(Transform root, List<JumpCandidate> candidates, int agentTypeId)
+    {
+        HashSet<string> created = new HashSet<string>();
+        int generated = 0;
 
-        linkObject.AddComponent<JumpUpLinkMarker>();
+        foreach (JumpCandidate candidate in candidates)
+        {
+            string key = BuildLinkKey(candidate.Start, candidate.End);
+            if (!created.Add(key))
+                continue;
+
+            GameObject linkObject = new GameObject("JumpUpLink");
+            Undo.RegisterCreatedObjectUndo(linkObject, "Create Jump-Up Link");
+            linkObject.transform.SetParent(root, false);
+
+            NavMeshLink link = linkObject.AddComponent<NavMeshLink>();
+            link.agentTypeID = agentTypeId;
+            link.area = area;
+            link.startPoint = candidate.Start - linkObject.transform.position;
+            link.endPoint = candidate.End - linkObject.transform.position;
+            link.bidirectional = bidirectional;
+            link.costModifier = linkCost > 0f ? Mathf.Max(1f, linkCost) : -1f;
+            link.autoUpdate = false;
+
+            linkObject.AddComponent<JumpUpLinkMarker>();
+            generated++;
+        }
+
+        return generated;
     }
 
     [MenuItem("Tools/NavMesh/Repair Generated Jump-Up Link Agent Types")]
@@ -286,34 +321,6 @@ public sealed class JumpUpLinkBakeProcessor : EditorWindow
             "OK");
     }
 
-    private bool TryGetGroundBounds(out Bounds bounds)
-    {
-        Collider[] colliders = Object.FindObjectsByType<Collider>(FindObjectsSortMode.None);
-        bool hasBounds = false;
-        bounds = default;
-
-        foreach (Collider collider in colliders)
-        {
-            if (collider == null || !collider.enabled || !collider.gameObject.activeInHierarchy)
-                continue;
-
-            if ((groundMask.value & (1 << collider.gameObject.layer)) == 0)
-                continue;
-
-            if (!hasBounds)
-            {
-                bounds = collider.bounds;
-                hasBounds = true;
-            }
-            else
-            {
-                bounds.Encapsulate(collider.bounds);
-            }
-        }
-
-        return hasBounds;
-    }
-
     private NavMeshSurface ResolveSurface()
     {
         if (navMeshSurface != null && navMeshSurface.gameObject.scene == SceneManager.GetActiveScene())
@@ -329,7 +336,7 @@ public sealed class JumpUpLinkBakeProcessor : EditorWindow
         return null;
     }
 
-    private GameObject GetOrCreateGeneratedRoot(Scene scene)
+    private static GameObject GetOrCreateGeneratedRoot(Scene scene)
     {
         GameObject root = GameObject.Find(GeneratedRootName);
         if (root != null && root.scene == scene)
@@ -351,33 +358,84 @@ public sealed class JumpUpLinkBakeProcessor : EditorWindow
             Undo.DestroyObjectImmediate(child);
     }
 
-    private Vector2Int ToKey(Vector3 position, Vector3 boundsMin)
-    {
-        return new Vector2Int(
-            Mathf.RoundToInt((position.x - boundsMin.x) / sampleSpacing),
-            Mathf.RoundToInt((position.z - boundsMin.z) / sampleSpacing));
-    }
-
     private static string BuildLinkKey(Vector3 start, Vector3 end)
     {
-        Vector3 roundedStart = new Vector3(
-            Mathf.Round(start.x * 10f) / 10f,
-            Mathf.Round(start.y * 10f) / 10f,
-            Mathf.Round(start.z * 10f) / 10f);
-        Vector3 roundedEnd = new Vector3(
-            Mathf.Round(end.x * 10f) / 10f,
-            Mathf.Round(end.y * 10f) / 10f,
-            Mathf.Round(end.z * 10f) / 10f);
+        Vector3 roundedStart = Round(start);
+        Vector3 roundedEnd = Round(end);
         return $"{roundedStart}->{roundedEnd}";
     }
 
-    private readonly struct FloorSample
+    private static Vector3 Round(Vector3 value)
     {
-        public readonly Vector3 position;
+        return new Vector3(
+            Mathf.Round(value.x * 100f) / 100f,
+            Mathf.Round(value.y * 100f) / 100f,
+            Mathf.Round(value.z * 100f) / 100f);
+    }
 
-        public FloorSample(Vector3 position)
+    private readonly struct EdgeKey : System.IEquatable<EdgeKey>
+    {
+        private readonly int first;
+        private readonly int second;
+
+        public EdgeKey(int first, int second)
         {
-            this.position = position;
+            if (first < second)
+            {
+                this.first = first;
+                this.second = second;
+            }
+            else
+            {
+                this.first = second;
+                this.second = first;
+            }
+        }
+
+        public bool Equals(EdgeKey other)
+        {
+            return first == other.first && second == other.second;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is EdgeKey other && Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return first * 397 ^ second;
+            }
+        }
+    }
+
+    private struct BoundaryEdge
+    {
+        public readonly int FirstIndex;
+        public readonly int SecondIndex;
+        public readonly Vector3 TriangleCenter;
+        public int UsageCount;
+
+        public BoundaryEdge(int firstIndex, int secondIndex, Vector3 triangleCenter)
+        {
+            FirstIndex = firstIndex;
+            SecondIndex = secondIndex;
+            TriangleCenter = triangleCenter;
+            UsageCount = 1;
+        }
+    }
+
+    private readonly struct JumpCandidate
+    {
+        public readonly Vector3 Start;
+        public readonly Vector3 End;
+
+        public JumpCandidate(Vector3 start, Vector3 end)
+        {
+            Start = start;
+            End = end;
         }
     }
 }

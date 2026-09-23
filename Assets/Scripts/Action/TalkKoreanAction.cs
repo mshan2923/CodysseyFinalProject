@@ -22,6 +22,8 @@ namespace Unity.Behavior.Example
         [Tooltip("The time in seconds for the text to show.")]
         [SerializeReference] public BlackboardVariable<float> Duration = new BlackboardVariable<float>(2.0f);
         [SerializeReference] public BlackboardVariable<TMP_FontAsset> Font ;
+        [SerializeReference] public BlackboardVariable<Vector3> Offset ;
+        [SerializeReference] public BlackboardVariable<float> Size  = new BlackboardVariable<float>(2);
 
         private float m_WaitTimer;
         private Animator m_Animator;
@@ -89,8 +91,9 @@ namespace Unity.Behavior.Example
             var tmp = m_TextObject.GetComponent<TMPro.TextMeshPro>();
             tmp.text = text;
             tmp.font = Font.Value;
+            tmp.fontSize = Size.Value;
 
-            m_TextObject.transform.localPosition = pos;
+            m_TextObject.transform.localPosition = pos + Offset.Value;
             m_TextObject.transform.rotation = GetTextLookRotation();
         }
 

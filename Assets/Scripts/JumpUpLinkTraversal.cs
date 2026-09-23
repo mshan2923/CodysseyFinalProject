@@ -21,7 +21,7 @@ public sealed class JumpUpLinkTraversal : MonoBehaviour
     [SerializeField, Min(0.01f)] private float fallDuration = 0.35f;
     [SerializeField, Min(0f)] private float arcHeight = 1.25f;
     [SerializeField, Min(0f)] private float fallArcHeight = 0.45f;
-    [SerializeField, Range(0.1f, 0.95f)] private float fallParameterOffTime = 0.75f;
+    [SerializeField, Min(0.1f)] private float animationTimeout = 1.5f;
 
     [Header("Animation")]
     [SerializeField] private Animator animator;
@@ -75,7 +75,6 @@ public sealed class JumpUpLinkTraversal : MonoBehaviour
         Vector3 end = data.endPos + Vector3.up * agent.baseOffset;
         float elapsed = 0f;
         float safeDuration = Mathf.Max(0.01f, isJumpUp ? duration : fallDuration);
-        bool fallParameterIsOn = true;
 
         while (elapsed < safeDuration)
         {
@@ -83,12 +82,6 @@ public sealed class JumpUpLinkTraversal : MonoBehaviour
             float selectedArcHeight = isJumpUp ? arcHeight : fallArcHeight;
             float height = selectedArcHeight * 4f * t * (1f - t);
             Vector3 position = Vector3.Lerp(start, end, t) + Vector3.up * height;
-
-            if (fallParameterIsOn && t >= fallParameterOffTime)
-            {
-                SetAnimation(true, false);
-                fallParameterIsOn = false;
-            }
 
             transform.position = position;
             agent.nextPosition = position;
@@ -101,8 +94,50 @@ public sealed class JumpUpLinkTraversal : MonoBehaviour
         agent.CompleteOffMeshLink();
         agent.updatePosition = true;
         agent.nextPosition = transform.position;
+
+        // JumpStart -> Jumping requires Fall=true. Keep it on until the
+        // Animator has actually reached Jumping, regardless of movement time.
+        yield return WaitForState("Jumping", animationTimeout);
+
+        // Jumping -> JumpEnd requires Fall=false.
+        SetAnimation(true, false);
+        yield return WaitForStateComplete("JumpEnd", animationTimeout);
+
         SetAnimation(false, false);
         traversing = false;
+    }
+
+    private IEnumerator WaitForState(string stateName, float timeout)
+    {
+        if (animator == null)
+            yield break;
+
+        float elapsed = 0f;
+        while (elapsed < timeout)
+        {
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName(stateName))
+                yield break;
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    private IEnumerator WaitForStateComplete(string stateName, float timeout)
+    {
+        if (animator == null)
+            yield break;
+
+        float elapsed = 0f;
+        while (elapsed < timeout)
+        {
+            AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
+            if (state.IsName(stateName) && state.normalizedTime >= 0.9f)
+                yield break;
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
     }
 
     private void SetAnimation(bool jumping, bool falling)

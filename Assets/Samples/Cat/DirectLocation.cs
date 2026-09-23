@@ -19,7 +19,7 @@ public class DirectLocation : MonoBehaviour
             }
         }
 
-        animator.SetFloat("X", navMeshAgent.velocity.x);
-        animator.SetFloat("SpeedMagnitude", navMeshAgent.velocity.magnitude);
+        // animator.SetFloat("X", navMeshAgent.velocity.x);
+        // animator.SetFloat("SpeedMagnitude", navMeshAgent.velocity.magnitude);
     }
 }
