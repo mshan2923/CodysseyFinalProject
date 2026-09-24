@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -25,12 +24,18 @@ namespace SensingWorld
         private GrabbableObject heldObject;
         private GrabbableObject pointedObject;
         private GameObject lookedTarget;
+
         private bool restoreGravity;
+        private CollisionDetectionMode restoreCollisionDetectionMode;
+        private RigidbodyInterpolation restoreInterpolation;
 
         private void Awake()
         {
             if (viewCamera == null)
                 viewCamera = GetComponentInChildren<Camera>();
+
+            if (holdPoint == null && viewCamera != null)
+                holdPoint = viewCamera.transform;
 
             if (eventBusHost == null)
                 eventBusHost = FindFirstObjectByType<SensingWorldEventBusHost>();
@@ -41,7 +46,8 @@ namespace SensingWorld
             UpdateLookEvent();
             UpdatePointedOutline();
 
-            if (Keyboard.current != null && Keyboard.current[grabKey].wasPressedThisFrame)
+            if (Keyboard.current != null &&
+                Keyboard.current[grabKey].wasPressedThisFrame)
             {
                 if (heldObject == null)
                     TryGrab();
@@ -56,33 +62,73 @@ namespace SensingWorld
                 return;
 
             Rigidbody body = heldObject.Body;
-            Vector3 targetPosition = holdPoint != null
-                ? holdPoint.position
-                : viewCamera.transform.position + viewCamera.transform.forward * holdDistance;
+
+            if (body == null)
+                return;
+
+            Vector3 targetPosition;
+
+            if (holdPoint != null)
+            {
+                targetPosition = holdPoint.position;
+            }
+            else if (viewCamera != null)
+            {
+                targetPosition =
+                    viewCamera.transform.position +
+                    viewCamera.transform.forward * holdDistance;
+            }
+            else
+            {
+                return;
+            }
+
             Vector3 positionError = targetPosition - body.position;
-            Vector3 acceleration = positionError * followStrength - body.linearVelocity * followDamping;
+
+            Vector3 acceleration =
+                positionError * followStrength -
+                body.linearVelocity * followDamping;
 
             body.AddForce(acceleration, ForceMode.Acceleration);
 
-            if (body.linearVelocity.sqrMagnitude > maxFollowSpeed * maxFollowSpeed)
-                body.linearVelocity = body.linearVelocity.normalized * maxFollowSpeed;
+            float maxSpeedSqr = maxFollowSpeed * maxFollowSpeed;
+
+            if (body.linearVelocity.sqrMagnitude > maxSpeedSqr)
+            {
+                body.linearVelocity = Vector3.zero;
+            }
         }
 
         private void TryGrab()
         {
             GrabbableObject grabbable = FindGrabbableInView();
+
             if (grabbable == null || grabbable.Body == null)
                 return;
 
-            grabbable.SetHeld(true);
-            grabbable.SetOutlineVisible(true);
-
             heldObject = grabbable;
-            restoreGravity = heldObject.Body.useGravity;
-            heldObject.Body.useGravity = false;
-            heldObject.Body.WakeUp();
+
+            Rigidbody body = heldObject.Body;
+
+            restoreGravity = body.useGravity;
+            restoreCollisionDetectionMode = body.collisionDetectionMode;
+            restoreInterpolation = body.interpolation;
+
+            body.useGravity = false;
+            body.collisionDetectionMode =
+                CollisionDetectionMode.ContinuousDynamic;
+
+            body.interpolation =
+                RigidbodyInterpolation.Interpolate;
+
+            body.WakeUp();
+
             heldObject.SetHeld(true);
-            PublishEvent(SensingWorldEventType.ObjectPickedUp, heldObject.gameObject);
+            heldObject.SetOutlineVisible(true);
+
+            PublishEvent(
+                SensingWorldEventType.ObjectPickedUp,
+                heldObject.gameObject);
         }
 
         private GrabbableObject FindGrabbableInView()
@@ -90,9 +136,19 @@ namespace SensingWorld
             if (viewCamera == null)
                 return null;
 
-            Ray ray = new Ray(viewCamera.transform.position, viewCamera.transform.forward);
-            if (!Physics.Raycast(ray, out RaycastHit hit, maxGrabDistance, grabbableLayers, QueryTriggerInteraction.Ignore))
+            Ray ray = new Ray(
+                viewCamera.transform.position,
+                viewCamera.transform.forward);
+
+            if (!Physics.Raycast(
+                    ray,
+                    out RaycastHit hit,
+                    maxGrabDistance,
+                    grabbableLayers,
+                    QueryTriggerInteraction.Ignore))
+            {
                 return null;
+            }
 
             return hit.collider.GetComponentInParent<GrabbableObject>();
         }
@@ -102,23 +158,41 @@ namespace SensingWorld
             if (viewCamera == null)
                 return null;
 
-            Ray ray = new Ray(viewCamera.transform.position, viewCamera.transform.forward);
-            if (!Physics.Raycast(ray, out RaycastHit hit, maxGrabDistance, grabbableLayers, QueryTriggerInteraction.Ignore))
-                return null;
+            Ray ray = new Ray(
+                viewCamera.transform.position,
+                viewCamera.transform.forward);
 
-            SensingWorldEntity entity = hit.collider.GetComponentInParent<SensingWorldEntity>();
+            if (!Physics.Raycast(
+                    ray,
+                    out RaycastHit hit,
+                    maxGrabDistance,
+                    grabbableLayers,
+                    QueryTriggerInteraction.Ignore))
+            {
+                return null;
+            }
+
+            SensingWorldEntity entity =
+                hit.collider.GetComponentInParent<SensingWorldEntity>();
+
             if (entity != null)
                 return entity.gameObject;
 
-            GrabbableObject grabbable = hit.collider.GetComponentInParent<GrabbableObject>();
+            GrabbableObject grabbable =
+                hit.collider.GetComponentInParent<GrabbableObject>();
+
             if (grabbable != null)
                 return grabbable.gameObject;
 
             Transform current = hit.collider.transform;
+
             while (current != null)
             {
-                if (current.CompareTag("Interaction") || current.CompareTag("NPC"))
+                if (current.CompareTag("Interaction") ||
+                    current.CompareTag("NPC"))
+                {
                     return current.gameObject;
+                }
 
                 current = current.parent;
             }
@@ -129,26 +203,36 @@ namespace SensingWorld
         private void UpdateLookEvent()
         {
             GameObject nextLookTarget = FindLookTargetInView();
+
             if (nextLookTarget == lookedTarget)
                 return;
 
             if (lookedTarget != null)
-                PublishEvent(SensingWorldEventType.TargetLookEnded, lookedTarget);
+                PublishEvent(
+                    SensingWorldEventType.TargetLookEnded,
+                    lookedTarget);
 
             lookedTarget = nextLookTarget;
 
             if (lookedTarget != null)
-                PublishEvent(SensingWorldEventType.TargetLookStarted, lookedTarget);
+                PublishEvent(
+                    SensingWorldEventType.TargetLookStarted,
+                    lookedTarget);
         }
 
         private void UpdatePointedOutline()
         {
-            GrabbableObject nextPointedObject = FindGrabbableInView();
+            GrabbableObject nextPointedObject =
+                FindGrabbableInView();
+
             if (nextPointedObject == pointedObject)
                 return;
 
             if (pointedObject != null)
-                pointedObject.SetOutlineVisible(pointedObject == heldObject);
+            {
+                pointedObject.SetOutlineVisible(
+                    pointedObject == heldObject);
+            }
 
             pointedObject = nextPointedObject;
 
@@ -161,30 +245,64 @@ namespace SensingWorld
             if (heldObject == null)
                 return;
 
-            heldObject.Body.useGravity = restoreGravity;
-            heldObject.Body.WakeUp();
+            Rigidbody body = heldObject.Body;
+
+            body.useGravity = restoreGravity;
+            body.collisionDetectionMode =
+                restoreCollisionDetectionMode;
+            body.interpolation = restoreInterpolation;
+
+            body.WakeUp();
+
             heldObject.SetHeld(false);
-            heldObject.SetOutlineVisible(heldObject == pointedObject);
-            PublishEvent(SensingWorldEventType.ObjectDropped, heldObject.gameObject);
+            heldObject.SetOutlineVisible(
+                heldObject == pointedObject);
+
+            PublishEvent(
+                SensingWorldEventType.ObjectDropped,
+                heldObject.gameObject);
+
             heldObject = null;
         }
 
-        private void PublishEvent(SensingWorldEventType type, GameObject target)
+        private void PublishEvent(
+            SensingWorldEventType type,
+            GameObject target)
         {
             if (eventBusHost == null)
                 return;
 
-            Vector3 position = target != null ? target.transform.position : transform.position;
-            string targetTag = target != null ? target.tag : string.Empty;
-            eventBusHost.Publish(new SensingWorldEvent(type, gameObject, target, Time.time, position,
-                targetTag, 0f, 0f, 0f));
+            Vector3 position =
+                target != null
+                    ? target.transform.position
+                    : transform.position;
+
+            string targetTag =
+                target != null
+                    ? target.tag
+                    : string.Empty;
+
+            eventBusHost.Publish(
+                new SensingWorldEvent(
+                    type,
+                    gameObject,
+                    target,
+                    Time.time,
+                    position,
+                    targetTag,
+                    0f,
+                    0f,
+                    0f));
         }
 
         private void OnDisable()
         {
             if (lookedTarget != null)
             {
-                PublishEvent(SensingWorldEventType.TargetLookEnded, lookedTarget);
+                PublishEvent(
+                    SensingWorldEventType.TargetLookEnded,
+                    lookedTarget);
+
                 lookedTarget = null;
             }
 
@@ -200,8 +318,10 @@ namespace SensingWorld
                 return;
 
             Gizmos.color = Color.cyan;
-            Gizmos.DrawRay(viewCamera.transform.position, viewCamera.transform.forward * maxGrabDistance);
+
+            Gizmos.DrawRay(
+                viewCamera.transform.position,
+                viewCamera.transform.forward * maxGrabDistance);
         }
-        
     }
 }

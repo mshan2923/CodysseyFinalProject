@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SensingWorld
@@ -14,12 +15,20 @@ namespace SensingWorld
         [SerializeField] private int outlineMaterialIndex;
         [SerializeField] private float outlineVisibleAlpha = 1f;
 
+        public float TouchMaxPower = 1f;
+
         public Rigidbody Body { get; private set; }
 
         public bool IsHeld { get; private set; }
 
         private Material outlineMaterial;
         private static readonly int ColorProperty = Shader.PropertyToID("_Color");
+        private readonly Dictionary<GameObject, int> collisionCounts = new();
+
+        private void OnDisable()
+        {
+            collisionCounts.Clear();
+        }
 
         private void Awake()
         {
@@ -40,22 +49,33 @@ namespace SensingWorld
             SetOutlineVisible(false);
         }
 
+
         private void OnCollisionEnter(Collision collision)
         {
             SensingWorldEntity targetEntity =
                 collision.gameObject.GetComponentInParent<SensingWorldEntity>();
 
+            Rigidbody body = collision.collider.attachedRigidbody;
+
             if (targetEntity == null ||
-                targetEntity.Kind != SensingWorldEntityKind.NPC ||
-                eventBusHost == null)
+                targetEntity.Kind != SensingWorldEntityKind.NPC)
+                return;
+
+            GameObject targetObject = targetEntity.gameObject;
+            collisionCounts.TryGetValue(targetObject, out int collisionCount);
+            collisionCounts[targetObject] = collisionCount + 1;
+
+            if (collisionCount > 0 || eventBusHost == null)
                 return;
 
             Vector3 contactPosition = collision.contactCount > 0
                 ? collision.GetContact(0).point
                 : targetEntity.transform.position;
 
+            float velocity = body != null ? body.linearVelocity.magnitude : 0f;
+
             eventBusHost.Publish(new SensingWorldEvent(
-                SensingWorldEventType.Hit,
+                velocity > TouchMaxPower ? SensingWorldEventType.Hit : SensingWorldEventType.Touch,
                 gameObject,
                 targetEntity.gameObject,
                 Time.time,
@@ -64,6 +84,25 @@ namespace SensingWorld
                 Vector3.Distance(transform.position, targetEntity.transform.position),
                 0f,
                 0f));
+        }
+
+        private void OnCollisionExit(Collision collision)
+        {
+            SensingWorldEntity targetEntity =
+                collision.gameObject.GetComponentInParent<SensingWorldEntity>();
+
+            if (targetEntity == null ||
+                targetEntity.Kind != SensingWorldEntityKind.NPC)
+                return;
+
+            GameObject targetObject = targetEntity.gameObject;
+            if (!collisionCounts.TryGetValue(targetObject, out int collisionCount))
+                return;
+
+            if (collisionCount <= 1)
+                collisionCounts.Remove(targetObject);
+            else
+                collisionCounts[targetObject] = collisionCount - 1;
         }
 
         internal void SetHeld(bool held)

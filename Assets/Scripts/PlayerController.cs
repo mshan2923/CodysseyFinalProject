@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using SensingWorld;
@@ -29,6 +30,10 @@ public class PlayerController : MonoBehaviour
     private Vector3 velocity;
     private float cameraPitch;
     private bool MouseLook = true;
+    private readonly HashSet<SensingWorldEntity> activeControllerContacts = new();
+    private readonly HashSet<SensingWorldEntity> controllerContactsThisMove = new();
+
+    public float TouchMaxPower = 1f;
 
     private void Awake()
     {
@@ -59,6 +64,9 @@ public class PlayerController : MonoBehaviour
         moveAction.Disable();
         lookAction.Disable();
         jumpAction.Disable();
+
+        activeControllerContacts.Clear();
+        controllerContactsThisMove.Clear();
     }
 
     private void OnJumpPerformed(InputAction.CallbackContext ctx)
@@ -90,6 +98,8 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMove()
     {
+        controllerContactsThisMove.Clear();
+
         Vector2 input = moveAction.ReadValue<Vector2>();
         Vector3 move = transform.right * input.x + transform.forward * input.y;
         controller.Move(move * moveSpeed * Time.deltaTime);
@@ -101,6 +111,9 @@ public class PlayerController : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
+        activeControllerContacts.RemoveWhere(target =>
+            target == null || !controllerContactsThisMove.Contains(target));
     }
 
     private void HandleLook()
@@ -130,24 +143,47 @@ public class PlayerController : MonoBehaviour
             targetEntity.Kind == SensingWorldEntityKind.NPC &&
             eventBusHost != null)
         {
+            float velocity = body != null
+                ? body.linearVelocity.magnitude
+                : 0f;
+
             eventBusHost.Publish(new SensingWorldEvent(
-                SensingWorldEventType.Hit,
+                velocity > TouchMaxPower
+                    ? SensingWorldEventType.Hit
+                    : SensingWorldEventType.Touch,
                 gameObject,
                 targetEntity.gameObject,
                 Time.time,
                 hit.point,
                 targetEntity.gameObject.tag,
-                Vector3.Distance(transform.position, targetEntity.transform.position),
+                Vector3.Distance(
+                    transform.position,
+                    targetEntity.transform.position),
                 0f,
                 0f));
         }
 
-        if (body == null || body.isKinematic) return;
+        // 여기부터는 플레이어가 물체를 미는 처리
 
-        // 위/아래 방향으로는 밀지 않음 (바닥 밟았다고 아래로 미는 것 방지)
-        if (hit.moveDirection.y < -0.3f) return;
+        GrabbableObject grabbable =
+            hit.collider.GetComponentInParent<GrabbableObject>();
 
-        Vector3 pushDir = new Vector3(hit.moveDirection.x, 0f, hit.moveDirection.z);
-        body.AddForce(pushDir * pushForce, ForceMode.Impulse);
+        if (grabbable != null && grabbable.IsHeld)
+            return;
+
+        if (body == null || body.isKinematic)
+            return;
+
+        if (hit.moveDirection.y < -0.3f)
+            return;
+
+        Vector3 pushDir = new Vector3(
+            hit.moveDirection.x,
+            0f,
+            hit.moveDirection.z);
+
+        body.AddForce(
+            pushDir * pushForce,
+            ForceMode.Impulse);
     }
 }

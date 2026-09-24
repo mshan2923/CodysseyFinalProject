@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using SensingWorld;
 using UnityEngine;
 
@@ -25,6 +26,11 @@ public class CatController : MonoBehaviour
     Vector2 currentAnimVelocity; // 애니메이터로 보낼 X,Z (블렌드트리용)
     Vector2 animVelocityRef;
     public CharacterController characterController;
+
+    public float TouchMaxPower = 1f;
+
+    private readonly HashSet<SensingWorldEntity> activeControllerContacts = new();
+    private readonly HashSet<SensingWorldEntity> controllerContactsThisMove = new();
 
     void Start()
     {
@@ -66,7 +72,11 @@ public class CatController : MonoBehaviour
             verticalVelocity = JumpPower;
 
         Vector3 fullVelocity = new Vector3(velocity.x, verticalVelocity, velocity.z);
+        controllerContactsThisMove.Clear();
         characterController.Move(fullVelocity * Time.deltaTime);
+
+        activeControllerContacts.RemoveWhere(target =>
+            target == null || !controllerContactsThisMove.Contains(target));
 
         // 4. 캐릭터가 이동 방향(카메라 정면과의 DOT 결과 반영)으로 부드럽게 회전
         if (moveDir.sqrMagnitude > 0.001f && inputZ >= 0)
@@ -89,7 +99,13 @@ public class CatController : MonoBehaviour
         animator.SetBool("Fall", characterController.velocity.y < gravity * Time.deltaTime);
     }
 
-        private void OnControllerColliderHit(ControllerColliderHit hit)
+    private void OnDisable()
+    {
+        activeControllerContacts.Clear();
+        controllerContactsThisMove.Clear();
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Rigidbody body = hit.collider.attachedRigidbody;
 
@@ -100,18 +116,25 @@ public class CatController : MonoBehaviour
         //     (targetEntity.Kind == SensingWorldEntityKind.Player ||
         //      targetEntity.Kind == SensingWorldEntityKind.NPC);
 
+        float velocity = body != null ? body.linearVelocity.magnitude : 0f;
+
         if (targetEntity != null && eventBusHost != null)
         {
-            eventBusHost.Publish(new SensingWorldEvent(
-                SensingWorldEventType.Hit,
-                gameObject,
-                targetEntity.gameObject,
-                Time.time,
-                hit.point,
-                targetEntity.gameObject.tag,
-                Vector3.Distance(transform.position, targetEntity.transform.position),
-                0f,
-                0f));
+            controllerContactsThisMove.Add(targetEntity);
+
+            if (activeControllerContacts.Add(targetEntity))
+            {
+                eventBusHost.Publish(new SensingWorldEvent(
+                    velocity > TouchMaxPower? SensingWorldEventType.Hit : SensingWorldEventType.Touch,
+                    gameObject,
+                    targetEntity.gameObject,
+                    Time.time,
+                    hit.point,
+                    targetEntity.gameObject.tag,
+                    Vector3.Distance(transform.position, targetEntity.transform.position),
+                    0f,
+                    0f));
+            }
         }
 
         if (body == null || body.isKinematic) return;

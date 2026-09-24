@@ -9,6 +9,7 @@ namespace SensingWorld
         TargetLost,
         ObjectPickedUp,
         ObjectDropped,
+        Touch,
         Hit,
         TargetLookStarted,
         TargetLookEnded,
