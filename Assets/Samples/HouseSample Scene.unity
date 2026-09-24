@@ -21835,8 +21835,16 @@ PrefabInstance:
       value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 2430064051711992007, guid: 13dadf75340c66f4da1416cdbb5695ed, type: 3}
+      propertyPath: maxFollowSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2430064051711992007, guid: 13dadf75340c66f4da1416cdbb5695ed, type: 3}
       propertyPath: maxGrabDistance
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2430064051711992007, guid: 13dadf75340c66f4da1416cdbb5695ed, type: 3}
+      propertyPath: enableFollowForce
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2430064051711992007, guid: 13dadf75340c66f4da1416cdbb5695ed, type: 3}
       propertyPath: grabbableLayers.m_Bits
@@ -21865,6 +21873,10 @@ PrefabInstance:
     - target: {fileID: 6356344957150618210, guid: 13dadf75340c66f4da1416cdbb5695ed, type: 3}
       propertyPath: pushForce
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356344957150618210, guid: 13dadf75340c66f4da1416cdbb5695ed, type: 3}
+      propertyPath: enablePushForce
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7935592650850751580, guid: 13dadf75340c66f4da1416cdbb5695ed, type: 3}
       propertyPath: m_RayTracingMode

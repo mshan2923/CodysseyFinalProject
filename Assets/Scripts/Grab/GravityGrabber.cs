@@ -9,25 +9,29 @@ namespace SensingWorld
         [SerializeField] private Camera viewCamera;
         [SerializeField] private Transform holdPoint;
         [SerializeField] private SensingWorldEventBusHost eventBusHost;
+        [SerializeField] private Collider playerCollider; // 플레이어 CharacterController 콜라이더
 
         [Header("Grab")]
         [SerializeField] private float maxGrabDistance = 4f;
         [SerializeField] private float holdDistance = 2.5f;
         [SerializeField] private LayerMask grabbableLayers = ~0;
         [SerializeField] private Key grabKey = Key.E;
+        [SerializeField] private float maxHoldDistanceBeforeDrop = 6f; // 이 거리보다 멀어지면 자동 드롭
 
-        [Header("Physics Follow")]
-        [SerializeField] private float followStrength = 35f;
-        [SerializeField] private float followDamping = 8f;
-        [SerializeField] private float maxFollowSpeed = 15f;
+        [Header("Physics Follow (PD control)")]
+        [SerializeField] private float followSpring = 150f;   // 위치 오차에 대한 가속도 계수
+        [SerializeField] private float followDamping = 15f;   // 속도 감쇠 계수 (진동 방지 핵심)
+        [SerializeField] private float maxFollowAccel = 100f;
 
         private GrabbableObject heldObject;
         private GrabbableObject pointedObject;
         private GameObject lookedTarget;
+        private Collider[] heldColliders;
 
         private bool restoreGravity;
         private CollisionDetectionMode restoreCollisionDetectionMode;
         private RigidbodyInterpolation restoreInterpolation;
+        private float restoreSleepThreshold;
 
         private void Awake()
         {
@@ -62,41 +66,44 @@ namespace SensingWorld
                 return;
 
             Rigidbody body = heldObject.Body;
-
             if (body == null)
                 return;
 
             Vector3 targetPosition;
 
-            if (holdPoint != null)
-            {
-                targetPosition = holdPoint.position;
-            }
-            else if (viewCamera != null)
+            if (viewCamera != null)
             {
                 targetPosition =
                     viewCamera.transform.position +
                     viewCamera.transform.forward * holdDistance;
+            }
+            else if (holdPoint != null)
+            {
+                targetPosition = holdPoint.position;
             }
             else
             {
                 return;
             }
 
+            // 너무 멀어지면 (벽에 막혀서 못 따라오는 경우 등) 자동으로 놓기
+            if (Vector3.Distance(body.position, targetPosition) > maxHoldDistanceBeforeDrop)
+            {
+                Release();
+                return;
+            }
+
+            body.WakeUp();
+
             Vector3 positionError = targetPosition - body.position;
 
-            Vector3 acceleration =
-                positionError * followStrength -
-                body.linearVelocity * followDamping;
+            // PD 제어: 스프링(오차) - 댐퍼(현재 속도) → 진동 없이 수렴
+            Vector3 desiredAccel =
+                positionError * followSpring - body.linearVelocity * followDamping;
 
-            body.AddForce(acceleration, ForceMode.Acceleration);
+            desiredAccel = Vector3.ClampMagnitude(desiredAccel, maxFollowAccel);
 
-            float maxSpeedSqr = maxFollowSpeed * maxFollowSpeed;
-
-            if (body.linearVelocity.sqrMagnitude > maxSpeedSqr)
-            {
-                body.linearVelocity = Vector3.zero;
-            }
+            body.AddForce(desiredAccel, ForceMode.Acceleration);
         }
 
         private void TryGrab()
@@ -113,15 +120,21 @@ namespace SensingWorld
             restoreGravity = body.useGravity;
             restoreCollisionDetectionMode = body.collisionDetectionMode;
             restoreInterpolation = body.interpolation;
+            restoreSleepThreshold = body.sleepThreshold;
 
             body.useGravity = false;
-            body.collisionDetectionMode =
-                CollisionDetectionMode.ContinuousDynamic;
-
-            body.interpolation =
-                RigidbodyInterpolation.Interpolate;
-
+            body.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+            body.interpolation = RigidbodyInterpolation.Interpolate;
+            body.sleepThreshold = 0f; // 잡고 있는 동안 재우지 않음
             body.WakeUp();
+
+            // 플레이어와의 충돌만 무시 — 벽/바닥과는 정상 충돌 유지
+            if (playerCollider != null)
+            {
+                heldColliders = heldObject.GetComponentsInChildren<Collider>();
+                foreach (var col in heldColliders)
+                    Physics.IgnoreCollision(col, playerCollider, true);
+            }
 
             heldObject.SetHeld(true);
             heldObject.SetOutlineVisible(true);
@@ -248,11 +261,21 @@ namespace SensingWorld
             Rigidbody body = heldObject.Body;
 
             body.useGravity = restoreGravity;
-            body.collisionDetectionMode =
-                restoreCollisionDetectionMode;
+            body.collisionDetectionMode = restoreCollisionDetectionMode;
             body.interpolation = restoreInterpolation;
+            body.sleepThreshold = restoreSleepThreshold;
 
             body.WakeUp();
+
+            if (playerCollider != null && heldColliders != null)
+            {
+                foreach (var col in heldColliders)
+                {
+                    if (col != null)
+                        Physics.IgnoreCollision(col, playerCollider, false);
+                }
+            }
+            heldColliders = null;
 
             heldObject.SetHeld(false);
             heldObject.SetOutlineVisible(
