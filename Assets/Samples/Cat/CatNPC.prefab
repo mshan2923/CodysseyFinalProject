@@ -409,9 +409,12 @@ MonoBehaviour:
   animator: {fileID: 6423182309873525431}
   navigationAgent: {fileID: -6673116017881227891}
   characterController: {fileID: 2022470479608172980}
+  jumpLinkTraversal: {fileID: 0}
   smoothTime: 0.1
-  turnAngleThreshold: 5
+  fullTurnAngle: 90
   minimumTurnSpeed: 0.05
+  drawDirectionDebug: 0
+  debugRayLength: 2
 --- !u!195 &-6673116017881227891
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -447,8 +450,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JumpUpLinkTraversal
   duration: 0.55
+  fallDuration: 0.35
   arcHeight: 1.25
-  onlyTraverseMarkedJumpUpLinks: 1
+  fallArcHeight: 0.45
+  animationTimeout: 1.5
   animator: {fileID: 0}
   jumpParameter: Jump
   fallParameter: Fall

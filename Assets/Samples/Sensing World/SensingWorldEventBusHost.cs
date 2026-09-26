@@ -5,11 +5,15 @@ namespace SensingWorld
 {
     public sealed class SensingWorldEventBusHost : MonoBehaviour
     {
+        public static SensingWorldEventBusHost Instance {get; private set;}
         public GameEventBus EventBus { get; private set; }
 
         private void Awake()
         {
             EventBus = new GameEventBus();
+
+            if (Instance == null)
+                Instance = this;
         }
 
         public void Publish(SensingWorldEvent gameEvent)

@@ -1,3 +1,4 @@
+using System;
 using Codyssey.Core.Events;
 using UnityEngine;
 
@@ -5,18 +6,29 @@ namespace SensingWorld
 {
     public enum SensingWorldEventType
     {
+        Idle,
         TargetVisible,
         TargetLost,
         ObjectPickedUp,
         ObjectDropped,
         Touch,
         Hit,
+        Scratch,
+        Jump,
+        Sit,
+        Lie,
+        Moew,
         TargetLookStarted,
         TargetLookEnded,
+        Move,
 
         // TODO: NPC Health 시스템이 추가되면 실제 HP 변경 지점에서 발행한다.
         // HP 감소 원인을 공격으로 해석하지 않고, 이전 값과 현재 값을 사실로 기록한다.
         HPChanged
+    }
+        public enum CatEventState
+    {
+        Idle, Touch, Scratch,  Sit, Lie, Meow, Move
     }
 
     public enum SensingWorldEventCategory

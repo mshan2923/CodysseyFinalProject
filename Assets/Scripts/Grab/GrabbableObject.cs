@@ -74,6 +74,8 @@ namespace SensingWorld
 
             float velocity = body != null ? body.linearVelocity.magnitude : 0f;
 
+            Debug.Log(velocity);
+
             eventBusHost.Publish(new SensingWorldEvent(
                 velocity > TouchMaxPower ? SensingWorldEventType.Hit : SensingWorldEventType.Touch,
                 gameObject,

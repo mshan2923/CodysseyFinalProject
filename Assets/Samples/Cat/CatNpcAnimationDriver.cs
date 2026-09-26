@@ -1,3 +1,4 @@
+using SensingWorld;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -6,6 +7,9 @@ public sealed class CatNpcAnimationDriver : MonoBehaviour
     private static readonly int FallHash = Animator.StringToHash("Fall");
     private static readonly int JumpHash = Animator.StringToHash("Jump");
     private static readonly int XHash = Animator.StringToHash("X");
+
+    [Header("SensingWorld Events")]
+    [SerializeField] private SensingWorldEventBusHost eventBusHost;
 
     [SerializeField] private Animator animator;
     [SerializeField] private NavMeshAgent navigationAgent;
@@ -34,6 +38,9 @@ public sealed class CatNpcAnimationDriver : MonoBehaviour
 
         if (jumpLinkTraversal == null)
             jumpLinkTraversal = GetComponent<JumpUpLinkTraversal>();
+
+        if (eventBusHost == null)
+            eventBusHost = FindFirstObjectByType<SensingWorldEventBusHost>();
 
     }
 
@@ -79,7 +86,14 @@ public sealed class CatNpcAnimationDriver : MonoBehaviour
 
     public void OnJump()
     {
-        Debug.Log("Try Jump");
+        eventBusHost.Publish(new SensingWorldEvent
+            (
+                SensingWorldEventType.Jump,
+             gameObject, gameObject, Time.time, 
+             gameObject.transform.position, 
+             gameObject.tag, 
+             0,0,0
+            ));
     }
 
     private void DrawDirectionDebug(Vector3 desiredWorldVelocity, float targetTurnX)

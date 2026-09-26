@@ -144,10 +144,14 @@ public class PlayerController : MonoBehaviour
             eventBusHost != null)
         {
             float velocity = body != null
-                ? body.linearVelocity.magnitude
+                ? controller.velocity.magnitude
                 : 0f;
 
-            eventBusHost.Publish(new SensingWorldEvent(
+            // Debug.Log($"Body :  {body != null} / {hit.collider?.name} -  {hit.rigidbody?.name} - {velocity} / {controller.velocity.magnitude}");
+
+            if (velocity > 0)
+            {
+                eventBusHost.Publish(new SensingWorldEvent(
                 velocity > TouchMaxPower
                     ? SensingWorldEventType.Hit
                     : SensingWorldEventType.Touch,
@@ -160,7 +164,8 @@ public class PlayerController : MonoBehaviour
                     transform.position,
                     targetEntity.transform.position),
                 0f,
-                0f));
+                0f));   
+            }
         }
 
         // 여기부터는 플레이어가 물체를 미는 처리

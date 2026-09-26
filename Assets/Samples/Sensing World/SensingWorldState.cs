@@ -14,6 +14,7 @@ namespace SensingWorld
         [SerializeField] private SensingWorldEventBusHost eventBusHost;
         [SerializeField] private InteractionSensor interactionSensor;
         [SerializeField] private int maxRecentEvents = 32;
+        [SerializeField] private int maxContextTargets = 12;
         [SerializeField] private bool includeRecentVisionEvents = true;
 
         private readonly Dictionary<GameObject, ActiveTarget> activeTargets = new();
@@ -78,6 +79,8 @@ namespace SensingWorld
 
         public string BuildContext()
         {
+            if (!includeRecentVisionEvents)
+                recentVisionEvents.Clear();
 
             RefreshActiveTargets();
             var context = new StringBuilder();
@@ -87,8 +90,16 @@ namespace SensingWorld
             if (activeTargets.Count == 0)
                 context.AppendLine("No Interaction or NPC targets are currently detected.");
 
-            foreach (ActiveTarget target in activeTargets.Values)
+            List<ActiveTarget> contextTargets = new(activeTargets.Values);
+            contextTargets.Sort(CompareContextTargets);
+
+            int contextTargetCount = Mathf.Min(
+                Mathf.Max(0, maxContextTargets),
+                contextTargets.Count);
+
+            for (int i = 0; i < contextTargetCount; i++)
             {
+                ActiveTarget target = contextTargets[i];
                 context.AppendLine(
                     $"{target.Name} (InstanceID: {target.InstanceId}) is a {target.Kind} with state {target.State}. " +
                     $"It is {target.Distance:0.00} meters from the Player, " +
@@ -120,6 +131,22 @@ namespace SensingWorld
             AppendRecentEvents(context, "[Recent World Events]", recentWorldEvents);
 
             return context.ToString();
+        }
+
+        private static int CompareContextTargets(ActiveTarget left, ActiveTarget right)
+        {
+            bool leftIsNpc = string.Equals(left.Kind, "NPC", StringComparison.OrdinalIgnoreCase);
+            bool rightIsNpc = string.Equals(right.Kind, "NPC", StringComparison.OrdinalIgnoreCase);
+
+            int npcComparison = rightIsNpc.CompareTo(leftIsNpc);
+            if (npcComparison != 0)
+                return npcComparison;
+
+            int scoreComparison = right.InteractionScore.CompareTo(left.InteractionScore);
+            if (scoreComparison != 0)
+                return scoreComparison;
+
+            return left.Distance.CompareTo(right.Distance);
         }
 
         private CurrentWorldContext CreateContextData()
@@ -262,6 +289,13 @@ namespace SensingWorld
 
         private void RecordRecentEvent(SensingWorldEvent gameEvent)
         {
+            if (gameEvent.Channel == SensingWorldEventChannel.Vision &&
+                !includeRecentVisionEvents)
+            {
+                recentVisionEvents.Clear();
+                return;
+            }
+
             // HPChanged도 별도 버퍼를 만들지 않고 WorldEvent 순서에 그대로 기록한다.
             // 추후 HP 시스템에서 이벤트를 발행하면 Hit 직후의 결과로 LLM이 해석할 수 있다.
             List<SensingWorldEvent> eventBuffer = gameEvent.Channel == SensingWorldEventChannel.Vision

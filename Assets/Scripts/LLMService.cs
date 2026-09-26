@@ -13,7 +13,7 @@ public class LLMService : MonoBehaviour
     private string ollamaUrl = "http://localhost:11434/api/chat";
 
     [SerializeField]
-    private string model = "gemma4:e2b";
+    private string model = "codyssey-cat-q4";//"gemma4:e2b";
 
     public float temperature = 0.2f;
 
@@ -56,6 +56,7 @@ public class LLMService : MonoBehaviour
         {
             model = model,
             stream = false,
+            think = false,
             options = new OllamaOptions
             {
                 temperature = temperatureOverride ?? temperature
@@ -157,6 +158,7 @@ public class LLMService : MonoBehaviour
     {
         public string model;
         public bool stream;
+        public bool think;
         public OllamaOptions options;
         public OllamaMessage[] messages;
     }

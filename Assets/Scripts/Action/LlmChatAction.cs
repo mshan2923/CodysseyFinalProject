@@ -30,7 +30,9 @@ public class LlmChatAction : Unity.Behavior.Action
 
 
     [SerializeReference]
-    public BlackboardVariable<string> Temp;
+    public BlackboardVariable<string> TextTag;
+        [SerializeReference]
+    public BlackboardVariable<bool> SaveData;
 
     private bool isCompleted;
     private bool isSuccess;
@@ -81,10 +83,20 @@ public class LlmChatAction : Unity.Behavior.Action
 
                 if (requireSelectedEntities.Value)
                 {
-                    string recognition = ExtractLabeledText(response, "Recognition:");
+                    string recognition = ExtractRecognitionEvents(response);
 
                     if (string.IsNullOrWhiteSpace(recognition))
                         Debug.LogWarning("[LLM Recognition] Recognition을 찾지 못했습니다.");
+
+                    int eventCount = CountRecognitionEvents(recognition);
+                    Debug.Log($"[LLM Recognition] Preserved events: {eventCount}");
+
+                    if (SaveData.Value)
+                        TrainingBundleTextWriter.Append(
+                            Message.Value,
+                            recognition,
+                            response,
+                            eventCount);
 
                     Reslut.Value = recognition;
                 }else
@@ -97,7 +109,7 @@ public class LlmChatAction : Unity.Behavior.Action
 
                 Debug.Log(
                     $"[LLMChat] Result Saved\n" +
-                    $"{Temp.Value} -- Result: [{Reslut.Value}]");
+                    $"{TextTag.Value} -- Result: [{Reslut.Value}]");
 
                 isSuccess = true;
                 isCompleted = true;
@@ -158,6 +170,50 @@ public class LlmChatAction : Unity.Behavior.Action
             return string.Empty;
 
         return response.Substring(markerIndex + marker.Length).Trim();
+    }
+
+    private static string ExtractRecognitionEvents(string response)
+    {
+        string recognition = ExtractLabeledText(response, "Recognition:");
+
+        if (string.IsNullOrWhiteSpace(recognition))
+            return string.Empty;
+
+        var lines = recognition.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+        var eventLines = new List<string>();
+
+        foreach (string rawLine in lines)
+        {
+            string line = rawLine.Trim();
+
+            if (line.StartsWith("```") || line.Equals("Recognition:", StringComparison.OrdinalIgnoreCase))
+                continue;
+
+            if (line.StartsWith("Event ", StringComparison.OrdinalIgnoreCase))
+                eventLines.Add(line);
+        }
+
+        // Keep a non-conforming response available for diagnosis instead of losing it.
+        return eventLines.Count > 0
+            ? string.Join("\n", eventLines)
+            : recognition.Trim().Trim('`');
+    }
+
+    private static int CountRecognitionEvents(string recognition)
+    {
+        if (string.IsNullOrWhiteSpace(recognition))
+            return 0;
+
+        int count = 0;
+        string[] lines = recognition.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string line in lines)
+        {
+            if (line.TrimStart().StartsWith("Event ", StringComparison.OrdinalIgnoreCase))
+                count++;
+        }
+
+        return count > 0 ? count : 1;
     }
 
 }
