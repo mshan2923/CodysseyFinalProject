@@ -18,7 +18,6 @@ public partial class PickRandomAction : Action
     {
 
         int random = UnityEngine.Random.Range(0, List.Value.Count);
-        Debug.Log($"{random} / {List.Value.Count}");
         Value.Value = List.Value[random];
 
         return Status.Success;

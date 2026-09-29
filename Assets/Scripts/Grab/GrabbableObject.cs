@@ -55,7 +55,7 @@ namespace SensingWorld
             SensingWorldEntity targetEntity =
                 collision.gameObject.GetComponentInParent<SensingWorldEntity>();
 
-            Rigidbody body = collision.collider.attachedRigidbody;
+            // Rigidbody body = collision.collider.attachedRigidbody;
 
             if (targetEntity == null ||
                 targetEntity.Kind != SensingWorldEntityKind.NPC)
@@ -72,9 +72,8 @@ namespace SensingWorld
                 ? collision.GetContact(0).point
                 : targetEntity.transform.position;
 
-            float velocity = body != null ? body.linearVelocity.magnitude : 0f;
-
-            Debug.Log(velocity);
+            // float velocity = body != null ? body.linearVelocity.magnitude : 0f;
+            float velocity = collision.relativeVelocity.magnitude;
 
             eventBusHost.Publish(new SensingWorldEvent(
                 velocity > TouchMaxPower ? SensingWorldEventType.Hit : SensingWorldEventType.Touch,

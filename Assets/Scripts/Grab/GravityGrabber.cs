@@ -23,7 +23,10 @@ namespace SensingWorld
         [SerializeField] private float followDamping = 15f;   // 속도 감쇠 계수 (진동 방지 핵심)
         [SerializeField] private float maxFollowAccel = 100f;
 
+        [SerializeField] private float ThrowPower = 10f;
+
         private GrabbableObject heldObject;
+        public bool isHold { get => heldObject != null;}
         private GrabbableObject pointedObject;
         private GameObject lookedTarget;
         private Collider[] heldColliders;
@@ -264,6 +267,42 @@ namespace SensingWorld
             body.collisionDetectionMode = restoreCollisionDetectionMode;
             body.interpolation = restoreInterpolation;
             body.sleepThreshold = restoreSleepThreshold;
+
+            body.WakeUp();
+
+            if (playerCollider != null && heldColliders != null)
+            {
+                foreach (var col in heldColliders)
+                {
+                    if (col != null)
+                        Physics.IgnoreCollision(col, playerCollider, false);
+                }
+            }
+            heldColliders = null;
+
+            heldObject.SetHeld(false);
+            heldObject.SetOutlineVisible(
+                heldObject == pointedObject);
+
+            PublishEvent(
+                SensingWorldEventType.ObjectDropped,
+                heldObject.gameObject);
+
+            heldObject = null;
+        }
+
+        public void Throw()
+        {
+            if (heldObject == null)
+                return;
+
+            Rigidbody body = heldObject.Body;
+
+            body.useGravity = restoreGravity;
+            body.collisionDetectionMode = restoreCollisionDetectionMode;
+            body.interpolation = restoreInterpolation;
+            body.sleepThreshold = restoreSleepThreshold;
+            body.linearVelocity = Camera.main.transform.forward * ThrowPower;
 
             body.WakeUp();
 

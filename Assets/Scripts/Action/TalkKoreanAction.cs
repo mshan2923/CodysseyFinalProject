@@ -29,7 +29,7 @@ namespace Unity.Behavior.Example
         private Animator m_Animator;
         private GameObject m_TextObject;
         private GameObject m_TextMeshAsset;
-        private static readonly int s_Talking = Animator.StringToHash("Talking");
+
 
         protected override Status OnStart()
         {
@@ -44,13 +44,6 @@ namespace Unity.Behavior.Example
                 m_TextMeshAsset = Resources.Load<GameObject>("TextMesh Speech Preset");
             }
             CreateTextObject(Sentence, Agent);
-
-            // Animate the character.
-            m_Animator = Agent.Value.GetComponent<Animator>();
-            if (m_Animator != null)
-            {
-                m_Animator.SetBool(s_Talking, true);
-            }
 
             // Start the timer.
             m_WaitTimer = Duration.Value;
@@ -80,7 +73,7 @@ namespace Unity.Behavior.Example
             }
             if (m_Animator != null)
             {
-                m_Animator.SetBool(s_Talking, false);
+                //m_Animator.SetBool(s_Talking, false);
             }
         }
 

@@ -13,6 +13,8 @@ namespace SensingWorld
 
         [SerializeField] private SensingWorldEventBusHost eventBusHost;
         [SerializeField] private InteractionSensor interactionSensor;
+
+        [SerializeField] private int maxViewEvents = 8;
         [SerializeField] private int maxRecentEvents = 32;
         [SerializeField] private int maxContextTargets = 12;
         [SerializeField] private bool includeRecentVisionEvents = true;
@@ -94,7 +96,7 @@ namespace SensingWorld
             contextTargets.Sort(CompareContextTargets);
 
             int contextTargetCount = Mathf.Min(
-                Mathf.Max(0, maxContextTargets),
+                Mathf.Max(0, maxViewEvents),
                 contextTargets.Count);
 
             for (int i = 0; i < contextTargetCount; i++)
@@ -301,10 +303,12 @@ namespace SensingWorld
             List<SensingWorldEvent> eventBuffer = gameEvent.Channel == SensingWorldEventChannel.Vision
                 ? recentVisionEvents
                 : recentWorldEvents;
+            
+            int count = gameEvent.Channel == SensingWorldEventChannel.Vision ? maxViewEvents : maxRecentEvents;
 
             eventBuffer.Add(gameEvent);
 
-            int eventLimit = Mathf.Max(1, maxRecentEvents);
+            int eventLimit = Mathf.Max(1, count);
             while (eventBuffer.Count > eventLimit)
                 eventBuffer.RemoveAt(0);
         }
@@ -342,7 +346,7 @@ namespace SensingWorld
                 return fallback;
 
             SensingWorldEntity entity = entityObject.GetComponent<SensingWorldEntity>();
-            return entity != null && !string.IsNullOrWhiteSpace(entity.DisplayName)
+            return entity != null && !string.IsNullOrWhiteSpace(entity.DisplayName) && !string.Equals(entity.DisplayName, "Object")
                 ? entity.DisplayName
                 : entityObject.name;
         }

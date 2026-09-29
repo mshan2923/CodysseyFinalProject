@@ -10,7 +10,7 @@ public static class TrainingBundleTextWriter
 
     public static string Append(string context, string recognition, string rawResponse, int eventCount)
     {
-        string directoryPath = Path.Combine(Application.persistentDataPath, DirectoryName);
+        string directoryPath = Path.Combine(Application.dataPath, DirectoryName);
         string filePath = Path.Combine(directoryPath, FileName);
 
         try

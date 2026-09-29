@@ -23,9 +23,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private SensingWorldEventBusHost eventBusHost;
 
     private CharacterController controller;
+    [SerializeField] GravityGrabber grabber;
     private InputAction moveAction;
     private InputAction lookAction;
     private InputAction jumpAction;
+    private InputAction attackAction;
 
     private Vector3 velocity;
     private float cameraPitch;
@@ -41,11 +43,14 @@ public class PlayerController : MonoBehaviour
 
         if (eventBusHost == null)
             eventBusHost = FindFirstObjectByType<SensingWorldEventBusHost>();
+        if (grabber == null)
+            grabber = GetComponent<GravityGrabber>();
 
         var map = inputActions.FindActionMap("Player", throwIfNotFound: true);
         moveAction = map.FindAction("Move", throwIfNotFound: true);
         lookAction = map.FindAction("Look", throwIfNotFound: true);
         jumpAction = map.FindAction("Jump", throwIfNotFound: true);
+        attackAction = map.FindAction("Attack", throwIfNotFound: true);
     }
 
     private void OnEnable()
@@ -55,6 +60,7 @@ public class PlayerController : MonoBehaviour
         jumpAction.Enable();
 
         jumpAction.performed += OnJumpPerformed;
+        attackAction.performed += OnAttackPerformed;
     }
 
     private void OnDisable()
@@ -74,6 +80,29 @@ public class PlayerController : MonoBehaviour
         if (controller.isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+
+            eventBusHost.Publish(new SensingWorldEvent(
+                SensingWorldEventType.Jump, gameObject, gameObject, Time.time, gameObject.transform.position, gameObject.tag, 0,0,0
+            ));
+        }
+    }
+    private void OnAttackPerformed(InputAction.CallbackContext ctx)
+    {
+        if (grabber.isHold)
+        {
+            grabber.Throw();
+
+            eventBusHost.Publish(
+                new SensingWorldEvent(
+                    SensingWorldEventType.Throw,
+                    gameObject,
+                    gameObject,
+                    Time.time,
+                    gameObject.transform.position,
+                    gameObject.tag,
+                    0f,
+                    0f,
+                    0f));
         }
     }
 
@@ -83,6 +112,7 @@ public class PlayerController : MonoBehaviour
 
         if (Keyboard.current[Key.Tab].wasPressedThisFrame)
             MouseLook = !MouseLook;
+
         if (MouseLook)
         {
             Cursor.visible = false;

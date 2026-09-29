@@ -372,5 +372,1149 @@
       "아이고, 연달아 건드려서 정신이 하나도 없네, 냥.",
       "흥, 다음에 또 치면 발톱으로 항의할 거다옹!"
     ]
+  },
+  "20260927_012530_399": {
+    "bundle": {
+      "bundleId": "20260927_012530_399",
+      "eventCount": 1,
+      "createdAt": "2026-09-27T01:25:30.3998307+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\nNo Interaction or NPC targets are currently detected.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\nNo recent events have been recorded.\r\n[Recent World Events]\r\nNo recent events have been recorded.\r\n",
+      "recognition": "Event 1 | Actor=none | Target=none | Fact=No relevant confirmed event.",
+      "rawResponse": "SelectedEntities: 집사 (InstanceID: 74), 상자 (InstanceID: 68)\nRecognition: Event 1 | Actor=none | Target=none | Fact=No relevant confirmed event."
+    },
+    "responses": [
+      "야옹, 아직 아무 일도 없으니 느긋하게 골골거릴래.",
+      "흥, 집사도 상자도 조용하네—난 먼저 낮잠 잘 거야.",
+      "냐아, 심심한데 뭐라도 시작해 보면 안 돼?",
+      "오늘은 아무도 날 건드리지 않는구나, 참 평화롭다냥.",
+      "에구, 별일 없으니 꼬리만 살랑살랑 흔들어야지.",
+      "킁킁, 조용하네; 상자 안에 재미있는 게 있으면 좋겠다.",
+      "후아암, 아무 소식도 없으니 졸음이 쏟아져.",
+      "괜찮아, 집사야, 난 여기서 얌전히 기다릴게.",
+      "흥냐, 이렇게 한가한 틈에 그루밍이나 해야겠다.",
+      "야옹! 아무 일도 없지만 난 언제든 놀 준비가 됐어."
+    ]
+  },
+  "20260927_012534_006": {
+    "bundle": {
+      "bundleId": "20260927_012534_006",
+      "eventCount": 1,
+      "createdAt": "2026-09-27T01:25:34.0067746+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56652) is a NPC with state Unknown. It is 3.16 meters from the Player, has a facing dot of -0.35, and an interaction priority score of 0.18.\r\n고양이! 특징: 이 개체는 당신이다.. \r\n쓰래기통 (InstanceID: 58486) is a Unknown with state Held. It is 0.89 meters from the Player, has a facing dot of 0.00, and an interaction priority score of 1.00.\r\n[Current Relations]\r\n집사 is holding 쓰래기통.\r\n[Recent Vision Events]\r\n[1.98] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookEnded -> 쓰래기통 (InstanceID: 58486).\r\n[1.99] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookStarted -> 쓰래기통 (InstanceID: 58486).\r\n[Recent World Events]\r\n[1.83] PlayerAction: 집사 (InstanceID: 58082) -> ObjectPickedUp -> 쓰래기통 (InstanceID: 58486).\r\n[1.98] WorldEvent: 고양이! (InstanceID: 56652) -> Move -> 고양이! (InstanceID: 56652).\r\n",
+      "recognition": "Event 3 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Move",
+      "rawResponse": "SelectedEntities: 고양이! (InstanceID: 56652), 쓰래기통 (InstanceID: 58486), 집사 (InstanceID: 58082)\nRecognition: 집사 (InstanceID: 58082) | Actor=집사 | Target=쓰래기통 (InstanceID: 58486) | Fact=ObjectPickedUp Event 1 | Actor=집사 | Target=쓰래기통 (InstanceID: 58486) | Fact=ObjectPickedUp Event 2 | Actor=집사 | Target=쓰래기통 (InstanceID: 58486)\nEvent 3 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Move"
+    },
+    "responses": [
+      "어라, 집사야! 쓰레기통은 왜 들고 가는 거야, 야옹?",
+      "나도 슬쩍 움직였는데, 집사 눈에는 안 띄었나 보네.",
+      "쓰레기통 들었으면 간식도 같이 꺼내 줘, 냐앙!",
+      "으음, 집사가 쓰레기통을 들고 있으니 괜히 궁금해지네.",
+      "집사야, 그거 내려놓고 나부터 쓰다듬어 줘!",
+      "깜짝이야, 집사가 쓰레기통을 번쩍 들었잖아!",
+      "히히, 나도 한 발 움직였으니 칭찬해 줘, 집사야.",
+      "쓰레기통 안에 보물이 있나 살펴봐도 돼?",
+      "흥, 쓰레기통만 보고 나한텐 관심도 없다니 서운하네.",
+      "야옹, 집사 손에 든 쓰레기통에서 맛있는 냄새가 나는 것 같은데!"
+    ]
+  },
+  "20260927_012537_768": {
+    "bundle": {
+      "bundleId": "20260927_012537_768",
+      "eventCount": 4,
+      "createdAt": "2026-09-27T01:25:37.7681162+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56652) is a NPC with state Unknown. It is 2.69 meters from the Player, has a facing dot of 0.92, and an interaction priority score of 0.69.\r\n고양이! 특징: 이 개체는 당신이다.. \r\n쓰래기통 (InstanceID: 57976) is a Item with state Unknown. It is 1.51 meters from the Player, has a facing dot of 0.80, and an interaction priority score of 0.75.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[5.54] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookStarted -> 쓰래기통 (InstanceID: 57976).\r\n[5.54] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookEnded -> 쓰래기통 (InstanceID: 57976).\r\n[Recent World Events]\r\n[3.73] PlayerAction: 집사 (InstanceID: 58082) -> ObjectDropped -> 쓰래기통 (InstanceID: 58486).\r\n[3.98] WorldEvent: 고양이! (InstanceID: 56652) -> Lie -> 고양이! (InstanceID: 56652).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58082) | Target=쓰래기통 (InstanceID: 57976) | Fact=TargetLookStarted\nEvent 2 | Actor=집사 (InstanceID: 58082) | Target=쓰래기통 (InstanceID: 57976) | Fact=TargetLookEnded\nEvent 3 | Actor=집사 (InstanceID: 58082) | Target=쓰래기통 (InstanceID: 57976) | Fact=ObjectDropped\nEvent 4 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Lie",
+      "rawResponse": "SelectedEntities: 고양이! (InstanceID: 56652), 쓰래기통 (InstanceID: 57976), 집사 (InstanceID: 58082)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58082) | Target=쓰래기통 (InstanceID: 57976) | Fact=TargetLookStarted\nEvent 2 | Actor=집사 (InstanceID: 58082) | Target=쓰래기통 (InstanceID: 57976) | Fact=TargetLookEnded\nEvent 3 | Actor=집사 (InstanceID: 58082) | Target=쓰래기통 (InstanceID: 57976) | Fact=ObjectDropped\nEvent 4 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Lie"
+    },
+    "responses": [
+      "쓰레기통에 뭘 버렸어, 집사야? 킁킁, 궁금하잖아.",
+      "난 여기 누워 있을래… 집사 일은 집사 알아서 해, 냥.",
+      "쓰레기통 앞에서 부산 떨지 말고 나도 쓰다듬어 줘!",
+      "아, 편하다냥… 그런데 쓰레기통에서 맛있는 냄새는 안 나나?",
+      "집사가 뭘 떨어뜨렸든 내 낮잠보다 중요하진 않아, 하암.",
+      "쓰레기통을 빤히 보더니 뭔가 버렸네, 나도 한 번 살펴볼까?",
+      "으으, 난 일어나기 싫어… 집사가 치우면 되잖아.",
+      "집사야, 쓰레기통에 간식 버린 건 아니지? 얼른 확인해야겠다냥!",
+      "나는 얌전히 누워 있을 테니 괜히 깨우지 마, 알았지?",
+      "킁, 집사가 쓰레기통을 신경 쓰는 사이에 더 편한 자리나 찾아야겠어!"
+    ]
+  },
+  "20260927_012541_725": {
+    "bundle": {
+      "bundleId": "20260927_012541_725",
+      "eventCount": 1,
+      "createdAt": "2026-09-27T01:25:41.7251967+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56652) is a NPC with state Unknown. It is 2.53 meters from the Player, has a facing dot of 0.07, and an interaction priority score of 0.28.\r\n고양이! 특징: 이 개체는 당신이다.. \r\nCamera (InstanceID: 59004) is a Item with state Unknown. It is 1.40 meters from the Player, has a facing dot of 0.99, and an interaction priority score of 0.86.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[9.38] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookEnded -> Camera (InstanceID: 59004).\r\n[9.38] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookStarted -> Camera (InstanceID: 59004).\r\n[Recent World Events]\r\n[7.17] PlayerAction: 집사 (InstanceID: 58082) -> ObjectDropped -> 쓰래기통 (InstanceID: 57976).\r\n[8.97] WorldEvent: 고양이! (InstanceID: 56652) -> Touch -> 고양이! (InstanceID: 56652).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58082) | Target=쓰래기통 (InstanceID: 57976) | Fact=ObjectDropped. Event 2 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Touch. Event 3 | Actor=집사 (InstanceID: 58082) | Target=Camera (InstanceID: 59004) | Fact=TargetLookEnded. Event 4 | Actor=집사 (InstanceID: 58082) | Target=Camera (InstanceID: 59004) | Fact=TargetLookStarted.",
+      "rawResponse": "SelectedEntities: 고양이! (InstanceID: 56652), Camera (InstanceID: 59004), 집사 (InstanceID: 58082), 쓰래기통 (InstanceID: 57976)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58082) | Target=쓰래기통 (InstanceID: 57976) | Fact=ObjectDropped. Event 2 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Touch. Event 3 | Actor=집사 (InstanceID: 58082) | Target=Camera (InstanceID: 59004) | Fact=TargetLookEnded. Event 4 | Actor=집사 (InstanceID: 58082) | Target=Camera (InstanceID: 59004) | Fact=TargetLookStarted."
+    },
+    "responses": [
+      "냐옹, 나를 쓰다듬으니 기분이 좋구나!",
+      "으음, 쓰레기통에 뭘 버렸어, 집사야?",
+      "카메라만 보지 말고 나도 좀 봐줘, 야옹!",
+      "골골골, 내 털을 직접 만지면 참 포근하지?",
+      "흥, 카메라보다 내가 더 귀엽다니까!",
+      "앗, 간지러워서 나도 모르게 몸을 만졌네.",
+      "집사야, 버릴 거면 간식 봉지는 내게 남겨줘!",
+      "야옹, 카메라 앞에서 멋진 포즈를 보여줄까?",
+      "꼬리를 살랑살랑, 오늘은 관심을 독차지하고 싶어!",
+      "에구, 카메라만 바라보니 괜히 심심하네."
+    ]
+  },
+  "20260927_012544_778": {
+    "bundle": {
+      "bundleId": "20260927_012544_778",
+      "eventCount": 1,
+      "createdAt": "2026-09-27T01:25:44.7786961+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56652) is a NPC with state Unknown. It is 3.42 meters from the Player, has a facing dot of -0.56, and an interaction priority score of 0.16.\r\n고양이! 특징: 이 개체는 당신이다.. \r\n빗 (InstanceID: 57596) is a Item with state Unknown. It is 1.88 meters from the Player, has a facing dot of 0.98, and an interaction priority score of 0.80.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[13.24] WorldEvent: 집사 (InstanceID: 58082) -> TargetVisible -> mesh-5.003 (InstanceID: 59152).\r\n[13.32] WorldEvent: 집사 (InstanceID: 58082) -> TargetVisible -> 큰 상자 (InstanceID: 58164).\r\n[Recent World Events]\r\n[11.46] WorldEvent: Camera (InstanceID: 59004) -> Touch -> 고양이! (InstanceID: 56652).\r\n[11.97] WorldEvent: 고양이! (InstanceID: 56652) -> Sit -> 고양이! (InstanceID: 56652).\r\n",
+      "recognition": "Event 1 | Actor=Camera (InstanceID: 59004) | Target=고양이! (InstanceID: 56652) | Fact=Touch Event 2 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Sit",
+      "rawResponse": "SelectedEntities: 고양이! (InstanceID: 56652), 빗 (InstanceID: 57596), 집사 (InstanceID: 58082)\nRecognition: Event 1 | Actor=Camera (InstanceID: 59004) | Target=고양이! (InstanceID: 56652) | Fact=Touch Event 2 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Sit"
+    },
+    "responses": [
+      "앗, 털을 건드렸잖아, 이제 그루밍할 거야!",
+      "냐아, 살짝 닿았을 뿐이니 너무 호들갑 떨지 마.",
+      "흥, 내가 먼저 앉아 있었으니 이 자리는 내 거야.",
+      "빗이 저기 있네, 집사야 얼른 가져와서 빗겨 줘.",
+      "으으, 털이 간질간질해졌어, 한 번만 더 쓰다듬어 줘.",
+      "잠깐 쉬는 중이야, 방해하면 꼬리로 탁 칠 거다냥.",
+      "집사야, 빗을 보고도 모른 척할 셈이냐옹?",
+      "후후, 이렇게 얌전히 앉아 있으니 간식 하나쯤 받을 만하지.",
+      "깜짝이야, 갑자기 닿으면 심장이 콩콩 뛴다냥.",
+      "냐옹, 난 여기서 편하게 앉아 있을 테니 알아서 모셔라!"
+    ]
+  },
+  "20260927_012548_188": {
+    "bundle": {
+      "bundleId": "20260927_012548_188",
+      "eventCount": 1,
+      "createdAt": "2026-09-27T01:25:48.1880915+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n믹서기 (InstanceID: 58154) is a Item with state Held. It is 0.78 meters from the Player, has a facing dot of 0.00, and an interaction priority score of 1.00.\r\nEgg (InstanceID: 56680) is a Item with state Unknown. It is 2.47 meters from the Player, has a facing dot of 0.94, and an interaction priority score of 0.72.\r\n[Current Relations]\r\n집사 is holding 믹서기.\r\n[Recent Vision Events]\r\n[16.38] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookEnded -> 믹서기 (InstanceID: 58154).\r\n[16.38] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookStarted -> 믹서기 (InstanceID: 58154).\r\n[Recent World Events]\r\n[14.97] WorldEvent: 고양이! (InstanceID: 56652) -> Scratch -> 고양이! (InstanceID: 56652).\r\n[16.06] PlayerAction: 집사 (InstanceID: 58082) -> ObjectPickedUp -> 믹서기 (InstanceID: 58154).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58082) | Target=믹서기 (InstanceID: 58154) | Fact=TargetLookEnded Event 2 | Actor=집사 (InstanceID: 58082) | Target=믹서기 (InstanceID: 58154) | Fact=TargetLookStarted Event 3 | Actor=집사 (InstanceID: 58082) | Target=믹서기 (InstanceID: 58154) | Fact=ObjectPickedUp",
+      "rawResponse": "SelectedEntities: 믹서기 (InstanceID: 58154), Egg (InstanceID: 56680)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58082) | Target=믹서기 (InstanceID: 58154) | Fact=TargetLookEnded Event 2 | Actor=집사 (InstanceID: 58082) | Target=믹서기 (InstanceID: 58154) | Fact=TargetLookStarted Event 3 | Actor=집사 (InstanceID: 58082) | Target=믹서기 (InstanceID: 58154) | Fact=ObjectPickedUp"
+    },
+    "responses": [
+      "야옹, 집사야 그 믹서기 내려놓고 내 턱부터 긁어 줘!",
+      "그르릉, 믹서기를 들었구나—내 간식 만들 차례야?",
+      "냐앙, 그 시끄러운 물건은 내 낮잠을 방해하면 안 돼!",
+      "흥, 믹서기만 바라보지 말고 나도 좀 봐 줘.",
+      "오호, 집사가 뭔가 요리하려나 보네, 나도 검사할래!",
+      "으르릉, 그 믹서기 소리 나면 난 저 멀리 도망갈 거야!",
+      "야옹야옹, 손에 든 물건보다 내 꼬리가 더 매력적이지 않냐옹?",
+      "음, 믹서기라니 수상하군, 일단 발톱으로 확인하겠어!",
+      "집사야, 그거 내려놓고 나랑 놀아 주면 골골송을 불러 줄게.",
+      "냐하, 믹서기를 들고 있으니 이제 내 간식 담당으로 임명한다냥!"
+    ]
+  },
+  "20260927_012552_396": {
+    "bundle": {
+      "bundleId": "20260927_012552_396",
+      "eventCount": 1,
+      "createdAt": "2026-09-27T01:25:52.3960033+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56652) is a NPC with state Unknown. It is 3.36 meters from the Player, has a facing dot of 0.95, and an interaction priority score of 0.64.\r\n고양이! 특징: 이 개체는 당신이다.. \r\nmesh-3.007 (InstanceID: 57468) is a Item with state Unknown. It is 2.19 meters from the Player, has a facing dot of 0.90, and an interaction priority score of 0.73.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[19.68] WorldEvent: 집사 (InstanceID: 58082) -> TargetVisible -> 쓰래기통 (InstanceID: 57976).\r\n[19.68] WorldEvent: 집사 (InstanceID: 58082) -> TargetVisible -> 상자 (InstanceID: 58836).\r\n[Recent World Events]\r\n[18.38] PlayerAction: 집사 (InstanceID: 58082) -> ObjectDropped -> 믹서기 (InstanceID: 58154).\r\n[18.64] WorldEvent: 믹서기 (InstanceID: 58154) -> Touch -> 고양이! (InstanceID: 56652).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58082) | Target=쓰래기통 (InstanceID: 57976) | Fact=집사 is not holding an item. Event 2 | Actor=집사 (InstanceID: 58082) | Target=상자 (InstanceID: 58836) | Fact=집사 is not holding an item. Event 3 | Actor=집사 (InstanceID: 58082) | Target=믹서기 (InstanceID: 58154) | Fact=ObjectDropped. Event 4 | Actor=믹서기 (InstanceID: 58154) | Target=고양이! (InstanceID: 56652) | Fact=Touch.",
+      "rawResponse": "SelectedEntities: 고양이! (InstanceID: 56652), Item (InstanceID: 57468), 집사 (InstanceID: 58082), 쓰래기통 (InstanceID: 57976), 상자 (InstanceID: 58836), 믹서기 (InstanceID: 58154)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58082) | Target=쓰래기통 (InstanceID: 57976) | Fact=집사 is not holding an item. Event 2 | Actor=집사 (InstanceID: 58082) | Target=상자 (InstanceID: 58836) | Fact=집사 is not holding an item. Event 3 | Actor=집사 (InstanceID: 58082) | Target=믹서기 (InstanceID: 58154) | Fact=ObjectDropped. Event 4 | Actor=믹서기 (InstanceID: 58154) | Target=고양이! (InstanceID: 56652) | Fact=Touch."
+    },
+    "responses": [
+      "아야옹, 믹서기가 나를 툭 치다니 너무하잖아!",
+      "으으, 방금 닿은 거 깜짝 놀랐어, 집사야!",
+      "흥, 믹서기 근처엔 다시 안 갈 거야.",
+      "냐아, 집사야 그 물건은 조심히 내려놔 줘.",
+      "에구구, 갑자기 툭 건드려서 꼬리가 부풀었잖아.",
+      "후우, 다친 데는 없지만 심장이 쿵 했어.",
+      "야옹, 쓰레기통이랑 상자만 보지 말고 나도 봐줘.",
+      "앗, 믹서기가 굴러와서 나를 건드렸어!",
+      "치, 다음엔 내가 먼저 피해 버릴 거야.",
+      "괜찮아, 집사야; 대신 쓰다듬어서 달래 줘."
+    ]
+  },
+  "20260927_012556_792": {
+    "bundle": {
+      "bundleId": "20260927_012556_792",
+      "eventCount": 1,
+      "createdAt": "2026-09-27T01:25:56.7920060+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56652) is a NPC with state Unknown. It is 2.69 meters from the Player, has a facing dot of 0.66, and an interaction priority score of 0.56.\r\n고양이! 특징: 이 개체는 당신이다.. \r\nmesh-4.004 (InstanceID: 58364) is a Item with state Unknown. It is 2.43 meters from the Player, has a facing dot of 0.70, and an interaction priority score of 0.61.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[24.00] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookEnded -> 쓰래기통 (InstanceID: 57976).\r\n[24.00] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookStarted -> 쓰래기통 (InstanceID: 57976).\r\n[Recent World Events]\r\n[20.97] WorldEvent: 고양이! (InstanceID: 56652) -> Lie -> 고양이! (InstanceID: 56652).\r\n[23.97] WorldEvent: 고양이! (InstanceID: 56652) -> Sit -> 고양이! (InstanceID: 56652).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58082) | Target=쓰래기통 (InstanceID: 57976) | Fact=TargetLookEnded Event 2 | Actor=집사 (InstanceID: 58082) | Target=쓰래기통 (InstanceID: 57976) | Fact=TargetLookStarted Event 3 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Lie Event 4 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) Event 5 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Sit Event 6 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652)",
+      "rawResponse": "SelectedEntities: 고양이! (InstanceID: 56652), mesh-4.004 (InstanceID: 58364), 집사 (InstanceID: 58082)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58082) | Target=쓰래기통 (InstanceID: 57976) | Fact=TargetLookEnded Event 2 | Actor=집사 (InstanceID: 58082) | Target=쓰래기통 (InstanceID: 57976) | Fact=TargetLookStarted Event 3 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Lie Event 4 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) Event 5 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Sit Event 6 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652)"
+    },
+    "responses": [
+      "후아암, 누워 있다가 앉으니 허리가 한결 풀렸네.",
+      "집사야, 쓰레기통만 빤히 보지 말고 나도 좀 봐라옹.",
+      "으음, 다시 앉았더니 꼬리가 착 감기네.",
+      "쓰레기통 근처에서 뭐 찾는 거야, 나도 궁금하다냥.",
+      "잠깐 누워 쉬었으니 이제 얌전히 앉아 있을게.",
+      "에취, 먼지 냄새가 나는 것 같아 콧수염이 간질간질하네.",
+      "집사야, 쓰레기통 뒤지기 전에 간식부터 챙겨 주라옹!",
+      "냥, 바닥에 누워 있다가 일어나 앉으니 세상이 달라 보이네.",
+      "그쪽은 그만 보고 이쪽 와서 턱을 긁어 줘라.",
+      "나른했는데 앉아 있으니 슬슬 놀고 싶어졌어, 꼬리를 흔들흔들!"
+    ]
+  },
+  "20260927_012600_669": {
+    "bundle": {
+      "bundleId": "20260927_012600_669",
+      "eventCount": 1,
+      "createdAt": "2026-09-27T01:26:00.6690899+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56652) is a NPC with state Unknown. It is 3.77 meters from the Player, has a facing dot of 0.95, and an interaction priority score of 0.60.\r\n고양이! 특징: 이 개체는 당신이다.. \r\nDesk Lamp (InstanceID: 58674) is a Item with state Unknown. It is 1.92 meters from the Player, has a facing dot of 0.84, and an interaction priority score of 0.73.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[28.40] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookEnded -> 쓰래기통 (InstanceID: 57976).\r\n[28.40] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookStarted -> 쓰래기통 (InstanceID: 57976).\r\n[Recent World Events]\r\n[26.97] WorldEvent: 고양이! (InstanceID: 56652) -> Move -> 고양이! (InstanceID: 56652).\r\n[27.04] WorldEvent: Camera (InstanceID: 59004) -> Touch -> 고양이! (InstanceID: 56652).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58082) | Target=쓰래기통 (InstanceID: 57976) | Fact=TargetLookEnded Event 2 | Actor=집사 (InstanceID: 58082) | Target=쓰래기통 (InstanceID: 57976) | Fact=TargetLookStarted Event 3 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Move Event 4 | Actor=Camera (InstanceID: 59004) | Target=고양이! (InstanceID: 56652) | Fact=Touch",
+      "rawResponse": "SelectedEntities: 고양이! (InstanceID: 56652), Desk Lamp (InstanceID: 58674), 집사 (InstanceID: 58082), 쓰래기통 (InstanceID: 57976)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58082) | Target=쓰래기통 (InstanceID: 57976) | Fact=TargetLookEnded Event 2 | Actor=집사 (InstanceID: 58082) | Target=쓰래기통 (InstanceID: 57976) | Fact=TargetLookStarted Event 3 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Move Event 4 | Actor=Camera (InstanceID: 59004) | Target=고양이! (InstanceID: 56652) | Fact=Touch"
+    },
+    "responses": [
+      "흠, 집사가 쓰레기통을 다시 살피네… 거기엔 별거 없을걸?",
+      "야옹, 카메라가 날 건드렸잖아! 발 조심해라냥.",
+      "잠깐 몸을 옮겼을 뿐인데, 다들 부산스럽구나.",
+      "쓰레기통 말고 나한테 관심을 주면 좋겠는데.",
+      "으음, 방금 살짝 닿아서 털이 삐죽 섰다냥.",
+      "집사야, 쓰레기통 뒤지기 전에 간식부터 챙겨 줘.",
+      "흥, 난 그냥 내 자리로 움직인 거라구.",
+      "앗, 카메라야! 허락 없이 콕 찌르면 안 된다냥.",
+      "쓰레기통은 궁금해도 난 졸리니 이만 쉬련다.",
+      "냐아, 발걸음도 조심히 옮겼으니 칭찬해 줘!"
+    ]
+  },
+  "20260927_012604_656": {
+    "bundle": {
+      "bundleId": "20260927_012604_656",
+      "eventCount": 1,
+      "createdAt": "2026-09-27T01:26:04.6566342+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56652) is a NPC with state Unknown. It is 2.30 meters from the Player, has a facing dot of 0.15, and an interaction priority score of 0.34.\r\n고양이! 특징: 이 개체는 당신이다.. \r\nComputer Monitor (InstanceID: 58730) is a Item with state Unknown. It is 1.32 meters from the Player, has a facing dot of 0.80, and an interaction priority score of 0.77.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[32.28] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookEnded -> 큰 상자 (InstanceID: 58164).\r\n[32.29] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookStarted -> 큰 상자 (InstanceID: 58164).\r\n[Recent World Events]\r\n[31.35] WorldEvent: 고양이! (InstanceID: 56652) -> Move -> 고양이! (InstanceID: 56652).\r\n[32.02] WorldEvent: 쓰래기통 (InstanceID: 57976) -> Touch -> 고양이! (InstanceID: 56652).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58082) | Target=큰 상자 (InstanceID: 58164) | Fact=TargetLookEnded Event 2 | Actor=집사 (InstanceID: 58082) | Target=큰 상자 (InstanceID: 58164) | Fact=TargetLookStarted Event 3 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Move Event 4 | Actor=쓰래기통 (InstanceID: 57976) | Target=고양이! (InstanceID: 56652) | Fact=Touch",
+      "rawResponse": "SelectedEntities: 고양이! (InstanceID: 56652), Computer Monitor (InstanceID: 58730), 집사 (InstanceID: 58082), 큰 상자 (InstanceID: 58164), 쓰래기통 (InstanceID: 57976)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58082) | Target=큰 상자 (InstanceID: 58164) | Fact=TargetLookEnded Event 2 | Actor=집사 (InstanceID: 58082) | Target=큰 상자 (InstanceID: 58164) | Fact=TargetLookStarted Event 3 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Move Event 4 | Actor=쓰래기통 (InstanceID: 57976) | Target=고양이! (InstanceID: 56652) | Fact=Touch"
+    },
+    "responses": [
+      "야옹, 집사가 상자를 보는 사이에 난 슬쩍 움직였지!",
+      "쓰레기통이 날 건드렸잖아, 깜짝 놀랐네옹!",
+      "상자 안에 뭐가 있든 집사보다 내가 먼저 확인하고 싶다냥.",
+      "모니터는 반짝이고 상자는 수상하고, 어디부터 구경할까옹?",
+      "흥, 쓰레기통아, 다음엔 살살 건드려라냥.",
+      "집사가 상자만 보니까 나도 괜히 궁금해지잖아.",
+      "방금 한 바퀴 움직였더니 발걸음이 가벼워졌다냥!",
+      "으으, 쓰레기통에 스쳤어도 내 꼬리는 멀쩡하다옹.",
+      "상자 속에 포근한 자리가 있으면 내가 찜할 거다냥!",
+      "집사야, 상자 구경은 그만하고 나부터 쓰다듬어줘옹!"
+    ]
+  },
+  "20260927_012608_647": {
+    "bundle": {
+      "bundleId": "20260927_012608_647",
+      "eventCount": 1,
+      "createdAt": "2026-09-27T01:26:08.6478470+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56652) is a NPC with state Unknown. It is 2.20 meters from the Player, has a facing dot of 0.49, and an interaction priority score of 0.53.\r\n고양이! 특징: 이 개체는 당신이다.. \r\nStand Mirror (InstanceID: 58116) is a Item with state Unknown. It is 1.36 meters from the Player, has a facing dot of 0.57, and an interaction priority score of 0.65.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[35.28] WorldEvent: 집사 (InstanceID: 58082) -> TargetLost -> 가방 (InstanceID: 57074).\r\n[35.32] WorldEvent: 집사 (InstanceID: 58082) -> TargetLost -> 케리어 (InstanceID: 56600).\r\n[Recent World Events]\r\n[33.48] PlayerAction: 집사 (InstanceID: 58082) -> ObjectDropped -> 큰 상자 (InstanceID: 58164).\r\n[36.06] WorldEvent: 고양이! (InstanceID: 56652) -> Scratch -> 고양이! (InstanceID: 56652).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58082) | Target=가방 (InstanceID: 57074) | Fact=TargetLost Event 2 | Actor=집사 (InstanceID: 58082) | Target=케리어 (InstanceID: 56600) | Fact=TargetLost Event 3 | Actor=집사 (InstanceID: 58082) | Target=큰 상자 (InstanceID: 58164) | Fact=ObjectDropped Event 4 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Scratch",
+      "rawResponse": "SelectedEntities: 집사 (InstanceID: 58082), 가방 (InstanceID: 57074), 케리어 (InstanceID: 56600), 큰 상자 (InstanceID: 58164), 고양이! (InstanceID: 56652), Stand Mirror (InstanceID: 58116)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58082) | Target=가방 (InstanceID: 57074) | Fact=TargetLost Event 2 | Actor=집사 (InstanceID: 58082) | Target=케리어 (InstanceID: 56600) | Fact=TargetLost Event 3 | Actor=집사 (InstanceID: 58082) | Target=큰 상자 (InstanceID: 58164) | Fact=ObjectDropped Event 4 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Scratch"
+    },
+    "responses": [
+      "아휴, 가려워서 긁었더니 속이 좀 시원하다냥!",
+      "집사야, 가방이랑 케리어는 왜 놓친 거야? 냥 궁금하네.",
+      "큰 상자 툭 내려놓는 소리에 깜짝 놀랐다옹!",
+      "거울아, 내 발톱 자국까지 멋지게 비춰 주렴.",
+      "에잇, 간질간질한 데를 긁으니 기분이 풀린다냥.",
+      "집사야, 짐은 잠깐 두고 나부터 쓰다듬어 줘라옹.",
+      "가방도 케리어도 놓쳤다니, 집사 손이 바쁜가 보네냥.",
+      "으음, 상자가 바닥에 닿는 소리가 제법 묵직했어.",
+      "내 털을 정돈하려고 긁은 거니까 너무 놀라지 말라냥.",
+      "이제 가려움도 잊었으니 느긋하게 낮잠이나 잘까옹."
+    ]
+  },
+  "20260927_012612_635": {
+    "bundle": {
+      "bundleId": "20260927_012612_635",
+      "eventCount": 1,
+      "createdAt": "2026-09-27T01:26:12.6356947+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\nFloor Lamp (InstanceID: 58626) is a Item with state Unknown. It is 3.40 meters from the Player, has a facing dot of 0.45, and an interaction priority score of 0.39.\r\n쓰래기통 (InstanceID: 56518) is a Item with state Unknown. It is 3.26 meters from the Player, has a facing dot of -0.40, and an interaction priority score of 0.17.\r\n[Current Relations]\r\n집사 is holding Stand Mirror.\r\n[Recent Vision Events]\r\n[40.26] WorldEvent: 집사 (InstanceID: 58082) -> TargetLost -> 큰 상자 (InstanceID: 58164).\r\n[40.26] WorldEvent: 집사 (InstanceID: 58082) -> TargetLost -> 의자 (InstanceID: 58838).\r\n[Recent World Events]\r\n[37.26] PlayerAction: 집사 (InstanceID: 58082) -> ObjectPickedUp -> Stand Mirror (InstanceID: 58116).\r\n[39.06] WorldEvent: 고양이! (InstanceID: 56652) -> Touch -> 고양이! (InstanceID: 56652).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58082) | Target=Stand Mirror (InstanceID: 58116) | Fact=ObjectPickedUp Event 2 | Actor=집사 (InstanceID: 58082) | Target=큰 상자 (InstanceID: 58164) | Fact=TargetLost Event 3 | Actor=집사 (InstanceID: 58082) | Target=의자 (InstanceID: 58838) Event 4 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Touch",
+      "rawResponse": "SelectedEntities: 집사 (InstanceID: 58082), Stand Mirror (InstanceID: 58116), 큰 상자 (InstanceID: 58164), 의자 (InstanceID: 58838), 고양이! (InstanceID: 56652)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58082) | Target=Stand Mirror (InstanceID: 58116) | Fact=ObjectPickedUp Event 2 | Actor=집사 (InstanceID: 58082) | Target=큰 상자 (InstanceID: 58164) | Fact=TargetLost Event 3 | Actor=집사 (InstanceID: 58082) | Target=의자 (InstanceID: 58838) Event 4 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Touch"
+    },
+    "responses": [
+      "집사야, 거울은 챙겼으니 이제 내 털매무새도 봐 줘라옹!",
+      "으으, 상자랑 의자에서 관심을 거두다니 심심해졌잖아옹.",
+      "방금 나를 톡 건드린 건 나였지만, 그래도 깜짝 놀랐다냥!",
+      "거울을 들었으면 내게도 비춰 줘, 수염이 삐뚤어졌는지 확인할래옹.",
+      "흥, 큰 상자와 의자는 이제 그만 보고 나랑 놀아 주라냥!",
+      "나도 나를 만져 봤는데, 역시 폭신해서 기분이 좋다옹.",
+      "집사 손에 거울이 있네, 거기 비친 멋진 고양이는 바로 나다냥!",
+      "상자도 의자도 놓쳤으니 이제 내게 집중할 차례야옹.",
+      "어라, 내가 나를 톡 건드렸네; 오늘은 장난도 혼자 치는 날이다냥.",
+      "거울 들고 어디 가는 거야, 나도 따라갈 테니 천천히 가라옹!"
+    ]
+  },
+  "20260927_012616_438": {
+    "bundle": {
+      "bundleId": "20260927_012616_438",
+      "eventCount": 4,
+      "createdAt": "2026-09-27T01:26:16.4385425+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56652) is a NPC with state Unknown. It is 3.20 meters from the Player, has a facing dot of 0.69, and an interaction priority score of 0.53.\r\n고양이! 특징: 이 개체는 당신이다.. \r\nStand Mirror (InstanceID: 58116) is a Item with state Unknown. It is 1.69 meters from the Player, has a facing dot of 0.65, and an interaction priority score of 0.66.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[43.83] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookStarted -> Stand Mirror (InstanceID: 58116).\r\n[43.83] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookEnded -> Stand Mirror (InstanceID: 58116).\r\n[Recent World Events]\r\n[42.05] WorldEvent: 고양이! (InstanceID: 56652) -> Scratch -> 고양이! (InstanceID: 56652).\r\n[43.80] PlayerAction: 집사 (InstanceID: 58082) -> ObjectDropped -> Stand Mirror (InstanceID: 58116).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58082) | Target=Stand Mirror (InstanceID: 58116) | Fact=ObjectDropped\nEvent 2 | Actor=집사 (InstanceID: 58082) | Target=Stand Mirror (InstanceID: 58116) | Fact=TargetLookStarted\nEvent 3 | Actor=집사 (InstanceID: 58082) | Target=Stand Mirror (InstanceID: 58116) | Fact=TargetLookEnded\nEvent 4 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Scratch",
+      "rawResponse": "SelectedEntities: 고양이! (InstanceID: 56652), Stand Mirror (InstanceID: 58116), 집사 (InstanceID: 58082)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58082) | Target=Stand Mirror (InstanceID: 58116) | Fact=ObjectDropped\nEvent 2 | Actor=집사 (InstanceID: 58082) | Target=Stand Mirror (InstanceID: 58116) | Fact=TargetLookStarted\nEvent 3 | Actor=집사 (InstanceID: 58082) | Target=Stand Mirror (InstanceID: 58116) | Fact=TargetLookEnded\nEvent 4 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Scratch"
+    },
+    "responses": [
+      "으으, 간질간질하네, 시원하게 긁었다냥!",
+      "집사야, 거울은 살살 내려놔야지, 깜짝 놀랐잖아!",
+      "흠, 저 거울에 비친 내 모습도 꽤 근사하겠는걸.",
+      "아, 발톱 손질 끝! 이제 기분이 한결 낫다냥.",
+      "거울 앞에서 그리 빤히 보면 나도 궁금해지잖아.",
+      "에구, 괜히 몸이 간지러워서 긁었을 뿐이야.",
+      "집사야, 물건 내려놓을 땐 소리 안 나게 부탁한다냥.",
+      "냥, 거울은 그대로 두고 나한테 관심 좀 줘!",
+      "하아암, 한 번 긁고 나니 졸음이 솔솔 오네.",
+      "흥, 거울보다 내 털이 더 반짝이는 건 당연하지!"
+    ]
+  },
+  "20260927_012620_323": {
+    "bundle": {
+      "bundleId": "20260927_012620_323",
+      "eventCount": 1,
+      "createdAt": "2026-09-27T01:26:20.3239352+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56652) is a NPC with state Unknown. It is 7.69 meters from the Player, has a facing dot of 0.30, and an interaction priority score of 0.15.\r\n고양이! 특징: 이 개체는 당신이다.. \r\nmesh-5.003 (InstanceID: 59152) is a Item with state Unknown. It is 7.21 meters from the Player, has a facing dot of 0.43, and an interaction priority score of 0.21.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[46.69] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookStarted -> Milk Tea (InstanceID: 58888).\r\n[46.69] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookEnded -> Milk Tea (InstanceID: 58888).\r\n[Recent World Events]\r\n[45.05] WorldEvent: 고양이! (InstanceID: 56652) -> Sit -> 고양이! (InstanceID: 56652).\r\n[48.05] WorldEvent: 고양이! (InstanceID: 56652) -> Scratch -> 고양이! (InstanceID: 56652).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58082) | Target=Milk Tea (InstanceID: 58888) | Fact=TargetLookStarted Event 2 | Actor=집사 (InstanceID: 58082) | Target=Milk Tea (InstanceID: 58888) | Fact=TargetLookEnded Event 3 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Sit Event 4 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Scratch Event 5 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652)",
+      "rawResponse": "SelectedEntities: 고양이! (InstanceID: 56652), Item (InstanceID: 59152)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58082) | Target=Milk Tea (InstanceID: 58888) | Fact=TargetLookStarted Event 2 | Actor=집사 (InstanceID: 58082) | Target=Milk Tea (InstanceID: 58888) | Fact=TargetLookEnded Event 3 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Sit Event 4 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Scratch Event 5 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652)"
+    },
+    "responses": [
+      "냐옹, 잠깐 앉아 쉬었으니 이제 발톱을 다듬어야겠어!",
+      "그르릉, 집사가 밀크티를 보는 동안 난 느긋하게 앉아 있었지.",
+      "으쓱, 내 발톱 손질은 내가 알아서 한다옹.",
+      "냐하, 잠깐 앉았다가 발톱을 긁으니 기분이 풀렸어!",
+      "흥, 밀크티보다 내 발톱 관리가 더 중요하다옹.",
+      "야옹, 한숨 돌리고 발톱까지 정리했으니 완벽한 휴식이야.",
+      "집사야, 밀크티만 보지 말고 내 발톱 솜씨도 봐라옹!",
+      "냐르릉, 앉아서 쉬고 긁적긁적하니 마음이 편안해졌어.",
+      "앗, 발톱이 간질간질해서 결국 한 번 긁어버렸다옹.",
+      "후후, 오늘도 편히 앉아 있다가 발톱 손질까지 알차게 끝냈다옹!"
+    ]
+  },
+  "20260927_012623_888": {
+    "bundle": {
+      "bundleId": "20260927_012623_888",
+      "eventCount": 1,
+      "createdAt": "2026-09-27T01:26:23.8883853+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\nSalt Shaker (InstanceID: 58290) is a Item with state Unknown. It is 2.11 meters from the Player, has a facing dot of 0.82, and an interaction priority score of 0.70.\r\nHexagonal Can (InstanceID: 57582) is a Item with state Unknown. It is 2.05 meters from the Player, has a facing dot of 0.80, and an interaction priority score of 0.70.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[51.94] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookEnded -> 접시 (InstanceID: 57684).\r\n[51.94] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookStarted -> 접시 (InstanceID: 57684).\r\n[Recent World Events]\r\n[51.05] WorldEvent: 고양이! (InstanceID: 56652) -> Move -> 고양이! (InstanceID: 56652).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58082) | Target=접시 (InstanceID: 57684) | Fact=TargetLookEnded Event 2 | Actor=집사 (InstanceID: 58082) | Target=접시 (InstanceID: 57684) | Fact=TargetLookStarted Event 3 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Move",
+      "rawResponse": "SelectedEntities: Salt Shaker (InstanceID: 58290), Hexagonal Can (InstanceID: 57582), 집사 (InstanceID: 58082), 접시 (InstanceID: 57684), 고양이! (InstanceID: 56652)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58082) | Target=접시 (InstanceID: 57684) | Fact=TargetLookEnded Event 2 | Actor=집사 (InstanceID: 58082) | Target=접시 (InstanceID: 57684) | Fact=TargetLookStarted Event 3 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Move"
+    },
+    "responses": [
+      "냐옹, 집사가 접시를 보는 사이 난 슬쩍 걸어갈래!",
+      "흥, 접시는 집사한테 맡기고 나는 내 길을 갈 거야.",
+      "야옹, 접시 쪽은 궁금하지만 일단 한 바퀴 더 돌아야지.",
+      "집사가 접시를 살피네, 혹시 내 밥그릇도 챙기는 거야?",
+      "음냐, 나도 움직였으니 간식 받을 자격은 충분해!",
+      "집사야, 접시만 보지 말고 여기 있는 나도 봐줘.",
+      "살금살금 이동 완료, 이제 어디로 갈까냥?",
+      "냐하, 집사가 접시를 보는 동안 내가 먼저 자리 잡았어.",
+      "접시라니 좋지만, 지금은 내 발걸음이 더 중요하다냥.",
+      "야옹옹, 집사가 뭘 찾는지 궁금해도 난 태연하게 지나갈래!"
+    ]
+  },
+  "20260927_012627_570": {
+    "bundle": {
+      "bundleId": "20260927_012627_570",
+      "eventCount": 1,
+      "createdAt": "2026-09-27T01:26:27.5706679+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\nMouse (InstanceID: 56520) is a Item with state Unknown. It is 3.84 meters from the Player, has a facing dot of 0.96, and an interaction priority score of 0.60.\r\nMouse Pad (InstanceID: 58662) is a Item with state Unknown. It is 3.84 meters from the Player, has a facing dot of 0.96, and an interaction priority score of 0.60.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[55.14] WorldEvent: 집사 (InstanceID: 58082) -> TargetVisible -> 킥보드 (InstanceID: 59084).\r\n[55.14] WorldEvent: 집사 (InstanceID: 58082) -> TargetVisible -> Keyboard 4 (InstanceID: 57866).\r\n[Recent World Events]\r\n[53.05] WorldEvent: 고양이! (InstanceID: 56652) -> Sit -> 고양이! (InstanceID: 56652).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58082) | Target=킥보드 (InstanceID: 59084) | Fact=집사 is Visible to 킥보드. Event 2 | Actor=집사 (InstanceID: 58082) | Target=Keyboard 4 (InstanceID: 57866) | Fact=집사 is Visible to Keyboard 4. Event 3 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=고양이! is Sit.",
+      "rawResponse": "SelectedEntities: 집사 (InstanceID: 58082), 킥보드 (InstanceID: 59084), Keyboard 4 (InstanceID: 57866), 고양이! (InstanceID: 56652)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58082) | Target=킥보드 (InstanceID: 59084) | Fact=집사 is Visible to 킥보드. Event 2 | Actor=집사 (InstanceID: 58082) | Target=Keyboard 4 (InstanceID: 57866) | Fact=집사 is Visible to Keyboard 4. Event 3 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=고양이! is Sit."
+    },
+    "responses": [
+      "킥보드랑 키보드 앞에서도 난 느긋하게 앉아 있을래, 야옹.",
+      "집사야, 구경만 하지 말고 얼른 와서 쓰다듬어 줘!",
+      "으음, 여기 앉아 있으니 세상일은 다 집사에게 맡겨도 되겠어.",
+      "킥보드도 키보드도 지금은 관심 없어, 난 이 자리가 좋아.",
+      "집사가 바쁜가 보네, 그럼 난 꼬리를 감고 얌전히 기다릴게.",
+      "냐아, 편하게 앉아 있으니 졸음이 솔솔 오는구나.",
+      "저 물건들이 뭐든 간에 내 엉덩이 자리만큼 매력적이진 않지.",
+      "집사야, 나 여기 앉아 있어! 눈치채면 간식도 챙겨 줘.",
+      "흠, 조금 심심하지만 일단 이대로 앉아서 지켜볼래.",
+      "야옹, 오늘은 서두르지 않고 느긋하게 쉬기로 했어."
+    ]
+  },
+  "20260927_012631_228": {
+    "bundle": {
+      "bundleId": "20260927_012631_228",
+      "eventCount": 1,
+      "createdAt": "2026-09-27T01:26:31.2282102+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56652) is a NPC with state Unknown. It is 4.39 meters from the Player, has a facing dot of 0.80, and an interaction priority score of 0.46.\r\n고양이! 특징: 이 개체는 당신이다.. \r\nMonitor 3 (InstanceID: 58676) is a Item with state Unknown. It is 2.07 meters from the Player, has a facing dot of 0.95, and an interaction priority score of 0.77.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[58.86] WorldEvent: 집사 (InstanceID: 58082) -> TargetLost -> Lamp (InstanceID: 57982).\r\n[58.88] WorldEvent: 집사 (InstanceID: 58082) -> TargetLost -> Shelving Unit 1 (InstanceID: 57658).\r\n[Recent World Events]\r\n[57.96] PlayerAction: 집사 (InstanceID: 58082) -> ObjectDropped -> Mouse Pad (InstanceID: 58662).\r\n[59.04] WorldEvent: 고양이! (InstanceID: 56652) -> Sit -> 고양이! (InstanceID: 56652).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58082) | Target=Lamp (InstanceID: 57982) | Fact=TargetLost Event 2 | Actor=집사 (InstanceID: 58082) | Target=Shelving Unit 1 (InstanceID: 57658) | Fact=TargetLost Event 3 | Actor=집사 (InstanceID: 58082) | Target=Mouse Pad (InstanceID: 58662) | Fact=ObjectDropped Event 4 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Sit",
+      "rawResponse": "SelectedEntities: 고양이! (InstanceID: 56652), Monitor 3 (InstanceID: 58676), 집사 (InstanceID: 58082)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58082) | Target=Lamp (InstanceID: 57982) | Fact=TargetLost Event 2 | Actor=집사 (InstanceID: 58082) | Target=Shelving Unit 1 (InstanceID: 57658) | Fact=TargetLost Event 3 | Actor=집사 (InstanceID: 58082) | Target=Mouse Pad (InstanceID: 58662) | Fact=ObjectDropped Event 4 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Sit"
+    },
+    "responses": [
+      "후우, 여기 앉아 있으니 마음이 편하네.",
+      "집사, 마우스패드는 거기 두고 나한테 간식이나 줘.",
+      "이대로 가만히 앉아 있을 테니 먼저 다가와 봐.",
+      "램프도 선반도 신경 쓰지 말고, 난 여기서 쉴래.",
+      "꼬리를 살랑살랑, 오늘은 느긋하게 보낼 거야.",
+      "집사, 뭔가 놓친 것 같아도 난 꿈쩍 안 할 거다냥.",
+      "아이고, 편한 자리를 찾았으니 이제 일어나기 싫어.",
+      "모니터는 저기 있네, 난 따뜻한 자리에서 쉬련다.",
+      "흥, 앉아 있는 것도 내 중요한 일정이라고.",
+      "야옹, 조용히 곁에 있어 주면 더 좋겠어."
+    ]
+  },
+  "20260927_012635_059": {
+    "bundle": {
+      "bundleId": "20260927_012635_059",
+      "eventCount": 1,
+      "createdAt": "2026-09-27T01:26:35.0597951+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56652) is a NPC with state Unknown. It is 4.97 meters from the Player, has a facing dot of -0.93, and an interaction priority score of 0.00.\r\n고양이! 특징: 이 개체는 당신이다.. \r\nMug (InstanceID: 57784) is a Item with state Unknown. It is 1.52 meters from the Player, has a facing dot of 0.97, and an interaction priority score of 0.83.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[62.84] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookEnded -> Pizza Box (InstanceID: 58030).\r\n[62.84] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookStarted -> Pizza Box (InstanceID: 58030).\r\n[Recent World Events]\r\n[61.90] WorldEvent: Curved Monitor 4 (InstanceID: 58610) -> Touch -> 고양이! (InstanceID: 56652).\r\n[62.04] WorldEvent: 고양이! (InstanceID: 56652) -> Lie -> 고양이! (InstanceID: 56652).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58082) | Target=Pizza Box (InstanceID: 58030) | Fact=TargetLookEnded Event 2 | Actor=집사 (InstanceID: 58082) | Target=Pizza Box (InstanceID: 58030) | Fact=TargetLookStarted Event 3 | Actor=Curved Monitor 4 (InstanceID: 58610) | Target=고양이! (InstanceID: 56652) | Fact=Touch Event 4 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Lie",
+      "rawResponse": "SelectedEntities: 집사 (InstanceID: 58082), Mug (InstanceID: 57784), Pizza Box (InstanceID: 58030), Curved Monitor 4 (InstanceID: 58610), 고양이! (InstanceID: 56652)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58082) | Target=Pizza Box (InstanceID: 58030) | Fact=TargetLookEnded Event 2 | Actor=집사 (InstanceID: 58082) | Target=Pizza Box (InstanceID: 58030) | Fact=TargetLookStarted Event 3 | Actor=Curved Monitor 4 (InstanceID: 58610) | Target=고양이! (InstanceID: 56652) | Fact=Touch Event 4 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Lie"
+    },
+    "responses": [
+      "으앙, 모니터가 툭 건드려서 깜짝 놀랐잖아!",
+      "흐아암, 난 그냥 여기 누워서 쉴래옹.",
+      "집사가 피자 상자만 뚫어져라 보네, 나도 한입 줘야지!",
+      "모니터야, 살살 건드려라냥.",
+      "피자 냄새가 솔솔 나면 벌떡 일어날지도 몰라.",
+      "으쓱, 건드려도 난 꿈쩍 안 하고 누워 있을 거다냥.",
+      "집사, 상자 말고 나도 좀 봐줘!",
+      "음냐, 포근하게 누워 있으니 아무것도 하기 싫다옹.",
+      "깜짝이야, 모니터가 갑자기 나를 톡 쳤어!",
+      "피자 상자라니, 수염이 절로 씰룩거리는구나냥!"
+    ]
+  },
+  "20260927_012638_738": {
+    "bundle": {
+      "bundleId": "20260927_012638_738",
+      "eventCount": 1,
+      "createdAt": "2026-09-27T01:26:38.7383558+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\nLamp (InstanceID: 57982) is a Item with state Unknown. It is 12.26 meters from the Player, has a facing dot of 0.14, and an interaction priority score of 0.07.\r\n배개 (InstanceID: 56966) is a Item with state Unknown. It is 12.19 meters from the Player, has a facing dot of 0.13, and an interaction priority score of 0.07.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[66.64] WorldEvent: 집사 (InstanceID: 58082) -> TargetLost -> Mouse (InstanceID: 56520).\r\n[66.64] WorldEvent: 집사 (InstanceID: 58082) -> TargetLost -> Camera (InstanceID: 59004).\r\n[Recent World Events]\r\n[63.98] PlayerAction: 집사 (InstanceID: 58082) -> ObjectDropped -> Pizza Box (InstanceID: 58030).\r\n[65.04] WorldEvent: 고양이! (InstanceID: 56652) -> Touch -> 고양이! (InstanceID: 56652).\r\n",
+      "recognition": "집사 (InstanceID: 58082) | Actor=집사 | Target=Mouse (InstanceID: 56520) | Fact=TargetLost Event 2 | Actor=집사 | Target=Camera (InstanceID: 59004) | Fact=TargetLost Event 3 | Actor=집사 | Target=ObjectDropped | Fact=Pizza Box (InstanceID: 58030) Event 4 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Touch",
+      "rawResponse": "SelectedEntities: Lamp (InstanceID: 57982), 배개 (InstanceID: 56966), 집사 (InstanceID: 58082), Pizza Box (InstanceID: 58030), 고양이! (InstanceID: 56652)\nRecognition: 집사 (InstanceID: 58082) | Actor=집사 | Target=Mouse (InstanceID: 56520) | Fact=TargetLost Event 2 | Actor=집사 | Target=Camera (InstanceID: 59004) | Fact=TargetLost Event 3 | Actor=집사 | Target=ObjectDropped | Fact=Pizza Box (InstanceID: 58030) Event 4 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Touch"
+    },
+    "responses": [
+      "아, 집사가 피자를 내려놨네! 한 조각만 나도 줘, 야옹!",
+      "쥐도 카메라도 놓쳤다니, 집사야 정신 차려라옹.",
+      "내가 나를 톡 건드렸어, 히히, 꼬리가 심심했나 봐.",
+      "피자 상자 냄새가 솔솔 나는데, 얼른 열어 보자옹!",
+      "집사가 쥐를 놓쳤다니 내가 대신 잡으러 갈까옹?",
+      "으음, 저 멀리 등불이랑 베개가 있네, 지금은 피자가 더 좋아.",
+      "나도 모르게 나를 만졌네, 간지러워서 깜짝 놀랐잖아옹!",
+      "집사야, 카메라까지 놓치면 안 되지, 내가 지켜보고 있다옹.",
+      "피자 상자가 바닥에 있으니 슬쩍 다가가 볼까나, 냥.",
+      "오늘은 집사가 허둥대는 틈에 내가 간식을 챙길 차례다옹!"
+    ]
+  },
+  "20260927_012642_630": {
+    "bundle": {
+      "bundleId": "20260927_012642_630",
+      "eventCount": 1,
+      "createdAt": "2026-09-27T01:26:42.6300900+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n쓰래기통 (InstanceID: 58486) is a Item with state Unknown. It is 12.87 meters from the Player, has a facing dot of 0.36, and an interaction priority score of 0.18.\r\nmesh-4.004 (InstanceID: 58364) is a Item with state Unknown. It is 12.99 meters from the Player, has a facing dot of 0.34, and an interaction priority score of 0.17.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[69.84] WorldEvent: 집사 (InstanceID: 58082) -> TargetVisible -> mesh-4.004 (InstanceID: 58364).\r\n[70.36] WorldEvent: 집사 (InstanceID: 58082) -> TargetVisible -> Computer Monitor (InstanceID: 58730).\r\n[Recent World Events]\r\n[68.45] PlayerAction: 집사 (InstanceID: 58082) -> ObjectPickedUp -> Lamp (InstanceID: 57982).\r\n[69.68] PlayerAction: 집사 (InstanceID: 58082) -> ObjectDropped -> Lamp (InstanceID: 57982).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58082) | Target=mesh-4.004 (InstanceID: 58364) | Fact=TargetVisible Event 2 | Actor=집사 (InstanceID: 58082) | Target=Computer Monitor (InstanceID: 58730) | Fact=TargetVisible Event 3 | Actor=집사 (InstanceID: 58082) | Target=Lamp (InstanceID: 57982) | Fact=ObjectPickedUp Event 4 | Actor=집사 (InstanceID: 58082) | Target=Lamp (InstanceID: 57982) | Fact=ObjectDropped Event 5 | Actor=집사 (InstanceID: 58082) | Target=Lamp (InstanceID: 57982)",
+      "rawResponse": "SelectedEntities: 쓰래기통 (InstanceID: 58486), mesh-4.004 (InstanceID: 58364)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58082) | Target=mesh-4.004 (InstanceID: 58364) | Fact=TargetVisible Event 2 | Actor=집사 (InstanceID: 58082) | Target=Computer Monitor (InstanceID: 58730) | Fact=TargetVisible Event 3 | Actor=집사 (InstanceID: 58082) | Target=Lamp (InstanceID: 57982) | Fact=ObjectPickedUp Event 4 | Actor=집사 (InstanceID: 58082) | Target=Lamp (InstanceID: 57982) | Fact=ObjectDropped Event 5 | Actor=집사 (InstanceID: 58082) | Target=Lamp (InstanceID: 57982)"
+    },
+    "responses": [
+      "냐옹, 집사가 램프를 들었다 놓았네—다음엔 내 장난감도 한번 들어줘!",
+      "흠, 모니터와 저 낯선 물건을 번갈아 보니 바쁜가 보군.",
+      "야옹, 램프는 내려놓고 이제 내 머리나 쓰다듬어 줘.",
+      "에구, 집사가 뭘 찾는지 모르겠지만 난 여기서 느긋하게 기다릴래.",
+      "냐하하, 램프를 들었다 놓는 손놀림이 제법 조심스럽네.",
+      "흥, 모니터만 보지 말고 나한테도 눈길을 줘라옹!",
+      "으음, 저 물건은 뭐지? 괜히 앞발로 톡 건드리고 싶다.",
+      "야옹야옹, 램프는 제자리에 두고 간식부터 챙겨 주면 안 돼?",
+      "집사가 여기저기 살피는 동안 나는 포근한 자리를 맡아 둘게.",
+      "후우, 잠깐 내려놓은 램프 옆에서 나도 한숨 돌려야겠어."
+    ]
+  },
+  "20260927_012646_154": {
+    "bundle": {
+      "bundleId": "20260927_012646_154",
+      "eventCount": 1,
+      "createdAt": "2026-09-27T01:26:46.1545100+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\nCleaver (InstanceID: 58598) is a Item with state Unknown. It is 1.25 meters from the Player, has a facing dot of 0.99, and an interaction priority score of 0.87.\r\nWooden Tray (InstanceID: 58038) is a Item with state Unknown. It is 1.47 meters from the Player, has a facing dot of 0.99, and an interaction priority score of 0.85.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[74.24] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookEnded -> Rolling Pin (InstanceID: 57288).\r\n[74.25] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookStarted -> Rolling Pin (InstanceID: 57288).\r\n[Recent World Events]\r\n[74.03] WorldEvent: 고양이! (InstanceID: 56652) -> Move -> 고양이! (InstanceID: 56652).\r\n[74.08] PlayerAction: 집사 (InstanceID: 58082) -> ObjectDropped -> Wooden Tray (InstanceID: 58038).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58082) | Target=Rolling Pin (InstanceID: 57288) | Fact=TargetLookEnded Event 2 | Actor=집사 (InstanceID: 58082) | Target=Rolling Pin (InstanceID: 57288) | Fact=TargetLookStarted Event 3 | Actor=집사 (InstanceID: 58082) | Target=Wooden Tray (InstanceID: 58038) | Fact=ObjectDropped",
+      "rawResponse": "SelectedEntities: Cleaver (InstanceID: 58598), Wooden Tray (InstanceID: 58038), 집사 (InstanceID: 58082), Rolling Pin (InstanceID: 57288)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58082) | Target=Rolling Pin (InstanceID: 57288) | Fact=TargetLookEnded Event 2 | Actor=집사 (InstanceID: 58082) | Target=Rolling Pin (InstanceID: 57288) | Fact=TargetLookStarted Event 3 | Actor=집사 (InstanceID: 58082) | Target=Wooden Tray (InstanceID: 58038) | Fact=ObjectDropped"
+    },
+    "responses": [
+      "집사야, 쟁반은 내려놓고 밀대만 빤히 보는 거야? 나도 궁금해, 야옹!",
+      "어휴, 쟁반이 툭 떨어졌잖아—발 조심해, 집사!",
+      "밀대에 시선을 다시 고정했네, 혹시 반죽할 거야?",
+      "흠, 도끼칼과 쟁반이 가까이 있네; 난 일단 꼬리를 말고 지켜볼래.",
+      "집사야, 물건은 살살 내려놔야지, 깜짝 놀랐잖아!",
+      "냐아, 밀대도 쟁반도 먹을 건 아니지? 간식부터 챙겨줘!",
+      "아까는 밀대를 놓쳐 보더니 또 쳐다보네, 마음이 바뀐 거야?",
+      "쟁반 소리에 귀가 쫑긋했어, 이번엔 뭘 할 건데?",
+      "에구, 손이 비었으면 나부터 쓰다듬어 줘야 하는 거 아냐?",
+      "좋아, 쟁반은 바닥에 있고 밀대는 눈앞에 있네—나는 안전한 곳에서 구경할래!"
+    ]
+  },
+  "20260927_012649_815": {
+    "bundle": {
+      "bundleId": "20260927_012649_815",
+      "eventCount": 1,
+      "createdAt": "2026-09-27T01:26:49.8159568+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\nNo Interaction or NPC targets are currently detected.\r\n[Current Relations]\r\n집사 is holding Cleaver.\r\n[Recent Vision Events]\r\n[77.76] WorldEvent: 집사 (InstanceID: 58082) -> TargetLost -> Shelving Unit 1 (InstanceID: 57658).\r\n[77.76] WorldEvent: 집사 (InstanceID: 58082) -> TargetLost -> Lamp (InstanceID: 57982).\r\n[Recent World Events]\r\n[75.23] PlayerAction: 집사 (InstanceID: 58082) -> ObjectPickedUp -> Cleaver (InstanceID: 58598).\r\n[76.03] WorldEvent: 고양이! (InstanceID: 56652) -> Lie -> 고양이! (InstanceID: 56652).\r\n",
+      "recognition": "집사 (InstanceID: 58082) | TargetLost | Shelving Unit 1 (InstanceID: 57658) Event 2 | 집사 (InstanceID: 58082) | TargetLost | Lamp (InstanceID: 57982) Event 3 | 집사 (InstanceID: 58082) | ObjectPickedUp | Cleaver (InstanceID: 58598) Event 4 | 고양이! (InstanceID: 56652) | Lie | 고양이! (InstanceID: 56652)",
+      "rawResponse": "SelectedEntities: 집사 (InstanceID: 58082), Cleaver (InstanceID: 58598), Shelving Unit 1 (InstanceID: 57658), Lamp (InstanceID: 57982), 고양이! (InstanceID: 56652)\nRecognition: 집사 (InstanceID: 58082) | TargetLost | Shelving Unit 1 (InstanceID: 57658) Event 2 | 집사 (InstanceID: 58082) | TargetLost | Lamp (InstanceID: 57982) Event 3 | 집사 (InstanceID: 58082) | ObjectPickedUp | Cleaver (InstanceID: 58598) Event 4 | 고양이! (InstanceID: 56652) | Lie | 고양이! (InstanceID: 56652)"
+    },
+    "responses": [
+      "나는 배 깔고 누워 있을 테니, 집사야 그 칼은 조심해서 다뤄라냥.",
+      "으음, 편하게 누웠더니 집사가 칼까지 들었네… 괜히 등골이 서늘하다냥.",
+      "집사가 선반이랑 등을 돌렸으니, 나도 모른 척 눈을 감아야겠다냥.",
+      "야옹, 칼은 내려놓고 내 턱이나 긁어 주면 안 되겠냥?",
+      "나는 얌전히 누워 있으니 집사도 괜히 부산 떨지 말라냥.",
+      "어라, 집사 손에 칼이라니; 나는 여기서 꼼짝 않고 지켜볼래냥.",
+      "하아암, 집사가 뭘 하든 나는 지금 일어날 생각이 전혀 없다냥.",
+      "집사야, 그 칼보다 간식이 훨씬 반가운 물건이라냥.",
+      "느긋하게 누워 있으려는데 집사 손에 든 칼이 자꾸 신경 쓰인다냥.",
+      "흥, 집사가 칼을 들든 말든 나는 이 자리를 차지하고 낮잠 잘 거다냥."
+    ]
+  },
+  "20260927_012653_330": {
+    "bundle": {
+      "bundleId": "20260927_012653_330",
+      "eventCount": 1,
+      "createdAt": "2026-09-27T01:26:53.3305258+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\nCleaver (InstanceID: 58598) is a Unknown with state Held. It is 1.65 meters from the Player, has a facing dot of 0.00, and an interaction priority score of 1.00.\r\n쓰래기통 (InstanceID: 58486) is a Item with state Unknown. It is 2.64 meters from the Player, has a facing dot of 0.93, and an interaction priority score of 0.70.\r\n[Current Relations]\r\n집사 is holding Cleaver.\r\n[Recent Vision Events]\r\n[81.42] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookEnded -> Cleaver (InstanceID: 58598).\r\n[81.42] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookStarted -> Cleaver (InstanceID: 58598).\r\n[Recent World Events]\r\n[79.03] WorldEvent: 고양이! (InstanceID: 56652) -> Scratch -> 고양이! (InstanceID: 56652).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58082) | Target=Cleaver (InstanceID: 58598) | Fact=TargetLookEnded Event 2 | Actor=집사 (InstanceID: 58082) | Target=Cleaver (InstanceID: 58598) | Fact=TargetLookStarted Event 3 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Scratch",
+      "rawResponse": "SelectedEntities: 집사 (InstanceID: 58082), Cleaver (InstanceID: 58598), 쓰래기통 (InstanceID: 58486), 고양이! (InstanceID: 56652)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58082) | Target=Cleaver (InstanceID: 58598) | Fact=TargetLookEnded Event 2 | Actor=집사 (InstanceID: 58082) | Target=Cleaver (InstanceID: 58598) | Fact=TargetLookStarted Event 3 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Scratch"
+    },
+    "responses": [
+      "냐옹, 발톱을 쫙 펴니 속이 다 시원하다냥!",
+      "집사야, 그 번쩍이는 칼은 조심해서 다뤄라냥.",
+      "흥, 쓰레기통 앞에서 괜히 긴장할 필요는 없다냥.",
+      "으르릉, 칼은 내려놓고 내 간식부터 챙겨라냥!",
+      "하암, 난 발톱 손질만 하면 세상만사가 괜찮다냥.",
+      "집사야, 나 말고 칼만 빤히 보면 서운하다냥.",
+      "야옹, 오늘은 발톱이 유난히 잘 갈리는구나냥!",
+      "어흥, 그 칼로 내 낮잠을 방해하면 혼쭐을 내겠다냥.",
+      "흠냐, 쓰레기통 근처에 맛있는 냄새가 나면 알려다오냥.",
+      "냥냥, 집사는 칼을 들고 있어도 내 눈치를 봐야 한다냥!"
+    ]
+  },
+  "20260927_012657_314": {
+    "bundle": {
+      "bundleId": "20260927_012657_314",
+      "eventCount": 4,
+      "createdAt": "2026-09-27T01:26:57.3140851+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56652) is a NPC with state Unknown. It is 2.99 meters from the Player, has a facing dot of 0.90, and an interaction priority score of 0.65.\r\n고양이! 특징: 이 개체는 당신이다.. \r\nCurved Monitor 4 (InstanceID: 58610) is a Item with state Unknown. It is 2.43 meters from the Player, has a facing dot of 0.89, and an interaction priority score of 0.70.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[84.90] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookStarted -> Plant Pot 2 (InstanceID: 56788).\r\n[84.91] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookEnded -> Plant Pot 2 (InstanceID: 56788).\r\n[Recent World Events]\r\n[82.03] WorldEvent: 고양이! (InstanceID: 56652) -> Lie -> 고양이! (InstanceID: 56652).\r\n[82.17] PlayerAction: 집사 (InstanceID: 58082) -> ObjectDropped -> Cleaver (InstanceID: 58598).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58082) | Target=Plant Pot 2 (InstanceID: 56788) | Fact=TargetLookStarted\nEvent 2 | Actor=집사 (InstanceID: 58082) | Target=Plant Pot 2 (InstanceID: 56788) | Fact=TargetLookEnded\nEvent 3 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Lie\nEvent 4 | Actor=집사 (InstanceID: 58082) | Target=Cleaver (InstanceID: 58598) | Fact=ObjectDropped",
+      "rawResponse": "SelectedEntities: 고양이! (InstanceID: 56652), Curved Monitor 4 (InstanceID: 58610), 집사 (InstanceID: 58082), Plant Pot 2 (InstanceID: 56788), Cleaver (InstanceID: 58598)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58082) | Target=Plant Pot 2 (InstanceID: 56788) | Fact=TargetLookStarted\nEvent 2 | Actor=집사 (InstanceID: 58082) | Target=Plant Pot 2 (InstanceID: 56788) | Fact=TargetLookEnded\nEvent 3 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Lie\nEvent 4 | Actor=집사 (InstanceID: 58082) | Target=Cleaver (InstanceID: 58598) | Fact=ObjectDropped"
+    },
+    "responses": [
+      "으으, 바닥에 누우니 세상만사 귀찮다냥.",
+      "집사야, 화분만 보지 말고 나도 좀 봐 달라냥!",
+      "에헤, 칼은 거기 두고 간식이나 꺼내라냥.",
+      "하품이 절로 난다냥, 조금만 더 뒹굴겠다냥.",
+      "화분 구경은 끝났냐냥? 이제 내 턱을 긁어 달라냥.",
+      "아무것도 안 하는 게 오늘의 최고 임무다냥.",
+      "칼이 떨어지는 소리에 귀가 쫑긋 섰다냥!",
+      "집사야, 조심해서 치우고 내 낮잠은 방해하지 말라냥.",
+      "느긋하게 누워 있으니 배까지 따뜻하다냥.",
+      "흥, 화분보다 내가 더 귀엽다는 걸 아직 모르는 거냐냥?"
+    ]
+  },
+  "20260927_012701_303": {
+    "bundle": {
+      "bundleId": "20260927_012701_303",
+      "eventCount": 1,
+      "createdAt": "2026-09-27T01:27:01.3036534+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56652) is a NPC with state Unknown. It is 4.99 meters from the Player, has a facing dot of -0.39, and an interaction priority score of 0.00.\r\n고양이! 특징: 이 개체는 당신이다.. \r\n케리어 (InstanceID: 56600) is a Item with state Unknown. It is 1.85 meters from the Player, has a facing dot of 0.85, and an interaction priority score of 0.74.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[88.92] WorldEvent: 집사 (InstanceID: 58082) -> TargetLost -> Plant Pot 2 (InstanceID: 56788).\r\n[88.92] WorldEvent: 집사 (InstanceID: 58082) -> TargetVisible -> mesh-2.010 (InstanceID: 58800).\r\n[Recent World Events]\r\n[85.02] WorldEvent: 고양이! (InstanceID: 56652) -> Move -> 고양이! (InstanceID: 56652).\r\n[87.02] WorldEvent: 고양이! (InstanceID: 56652) -> Sit -> 고양이! (InstanceID: 56652).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58082) | Target=Plant Pot 2 (InstanceID: 56788) | Fact=TargetLost Event 2 | Actor=집사 (InstanceID: 58082) | Target=mesh-2.010 (InstanceID: 58800) | Fact=TargetVisible Event 3 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Move Event 4 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Sit Event 5 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652)",
+      "rawResponse": "SelectedEntities: 고양이! (InstanceID: 56652), 케리어 (InstanceID: 56600)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58082) | Target=Plant Pot 2 (InstanceID: 56788) | Fact=TargetLost Event 2 | Actor=집사 (InstanceID: 58082) | Target=mesh-2.010 (InstanceID: 58800) | Fact=TargetVisible Event 3 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Move Event 4 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Sit Event 5 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652)"
+    },
+    "responses": [
+      "후아암, 여기 앉아서 느긋하게 기다릴래.",
+      "캐리어가 가까이 있네, 슬쩍 살펴봐야지.",
+      "나는 여기서 꼼짝 않고 쉴 거야.",
+      "집사야, 나도 좀 봐줘, 야옹!",
+      "움직이다가 앉았더니 마음이 편안하네.",
+      "캐리어 안은 포근할까? 궁금한데.",
+      "으르릉, 지금은 쉬는 시간이야.",
+      "집사가 뭘 찾는지는 모르겠고, 난 여기 앉아 있을래.",
+      "꼬리를 살랑이며 조용히 기다릴게.",
+      "아무도 재촉하지 마, 이 자리가 딱 좋아."
+    ]
+  },
+  "20260927_012705_010": {
+    "bundle": {
+      "bundleId": "20260927_012705_010",
+      "eventCount": 1,
+      "createdAt": "2026-09-27T01:27:05.0108576+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\nNo Interaction or NPC targets are currently detected.\r\n[Current Relations]\r\n집사 is holding Frying Pan 1.\r\n[Recent Vision Events]\r\n[92.92] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookEnded -> Frying Pan 1 (InstanceID: 56794).\r\n[92.92] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookStarted -> Frying Pan 1 (InstanceID: 56794).\r\n[Recent World Events]\r\n[91.40] PlayerAction: 집사 (InstanceID: 58082) -> ObjectPickedUp -> Frying Pan 1 (InstanceID: 56794).\r\n[92.02] WorldEvent: 고양이! (InstanceID: 56652) -> Scratch -> 고양이! (InstanceID: 56652).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58082) | Target=Frying Pan 1 (InstanceID: 56794) | Fact=ObjectPickedUp Event 2 | Actor=집사 (InstanceID: 58082) | Target=Frying Pan 1 (InstanceID: 56794) | Fact=TargetLookStarted Event 3 | Actor=집사 (InstanceID: 58082) | TargetLookEnded -> Frying Pan 1 (InstanceID: 56794) Event 4 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Scratch",
+      "rawResponse": "SelectedEntities: 집사 (InstanceID: 58082), Frying Pan 1 (InstanceID: 56794), 고양이! (InstanceID: 56652)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58082) | Target=Frying Pan 1 (InstanceID: 56794) | Fact=ObjectPickedUp Event 2 | Actor=집사 (InstanceID: 58082) | Target=Frying Pan 1 (InstanceID: 56794) | Fact=TargetLookStarted Event 3 | Actor=집사 (InstanceID: 58082) | TargetLookEnded -> Frying Pan 1 (InstanceID: 56794) Event 4 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Scratch"
+    },
+    "responses": [
+      "집사야, 프라이팬은 조심히 들어라냥!",
+      "에헤헤, 나도 발톱을 쓱 갈아뒀다옹.",
+      "프라이팬을 들었으면 맛있는 냄새도 따라오겠지?",
+      "으으, 발톱 손질 중이니 방해 말라냥.",
+      "집사야, 그 반짝이는 팬으로 내 간식도 준비해줘!",
+      "히잉, 나 혼자 긁적이느라 심심했다옹.",
+      "프라이팬이 무겁진 않냐냥? 내가 구경해줄게.",
+      "냐아앙, 발톱이 시원하게 정리됐어!",
+      "조심조심 다뤄라, 집사야, 나도 근처에 있다옹.",
+      "킁킁, 이제 생선 구울 차례냐냥?"
+    ]
+  },
+  "20260927_012708_901": {
+    "bundle": {
+      "bundleId": "20260927_012708_901",
+      "eventCount": 1,
+      "createdAt": "2026-09-27T01:27:08.9010985+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\nMouse (InstanceID: 56520) is a Item with state Unknown. It is 2.09 meters from the Player, has a facing dot of 0.99, and an interaction priority score of 0.79.\r\nmesh-1.018 (InstanceID: 58328) is a Item with state Unknown. It is 3.37 meters from the Player, has a facing dot of 0.95, and an interaction priority score of 0.64.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[96.31] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookStarted -> mesh-1.018 (InstanceID: 58328).\r\n[96.32] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookEnded -> mesh-1.018 (InstanceID: 58328).\r\n[Recent World Events]\r\n[93.34] PlayerAction: 집사 (InstanceID: 58082) -> ObjectDropped -> Frying Pan 1 (InstanceID: 56794).\r\n[95.01] WorldEvent: 고양이! (InstanceID: 56652) -> Sit -> 고양이! (InstanceID: 56652).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58082) | Target=mesh-1.018 (InstanceID: 58328) | Fact=TargetLookStarted Event 2 | Actor=집사 (InstanceID: 58082) | Target=mesh-1.018 (InstanceID: 58328) | Fact=TargetLookEnded Event 3 | Actor=집사 (InstanceID: 58082) | Target=ObjectDropped -> Frying Pan 1 (InstanceID: 56794) Event 4 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Sit",
+      "rawResponse": "SelectedEntities: 집사 (InstanceID: 58082), mesh-1.018 (InstanceID: 58328), Frying Pan 1 (InstanceID: 56794), 고양이! (InstanceID: 56652)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58082) | Target=mesh-1.018 (InstanceID: 58328) | Fact=TargetLookStarted Event 2 | Actor=집사 (InstanceID: 58082) | Target=mesh-1.018 (InstanceID: 58328) | Fact=TargetLookEnded Event 3 | Actor=집사 (InstanceID: 58082) | Target=ObjectDropped -> Frying Pan 1 (InstanceID: 56794) Event 4 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Sit"
+    },
+    "responses": [
+      "후후, 난 여기 얌전히 앉아 있을 테니 집사는 저 물건이나 살펴봐.",
+      "앗, 프라이팬을 내려놨네! 내 꼬리는 안전한 데로 치워야겠다.",
+      "냐아, 잠깐 쳐다보고 말 거면 왜 그렇게 궁금한 표정이야?",
+      "으음, 난 앉아서 쉬는 중이야, 급한 일은 집사가 알아서 해.",
+      "저 프라이팬 소리 깜짝 놀랐잖아, 조심히 다뤄 줘!",
+      "헤에, 집사 시선이 바쁘네, 나는 느긋하게 식빵 굽고 있을래.",
+      "냥, 저 물건이 뭔지 궁금하긴 하지만 지금은 자리에서 안 움직일래.",
+      "프라이팬은 바닥에 두고, 집사는 내 간식부터 챙겨 줘.",
+      "훗, 내가 얌전히 앉아 있으니 집사도 괜히 부산 떨지 마.",
+      "냐옹, 잠깐의 소란은 잊고 여기서 포근하게 쉬어야지."
+    ]
+  },
+  "20260927_012712_291": {
+    "bundle": {
+      "bundleId": "20260927_012712_291",
+      "eventCount": 1,
+      "createdAt": "2026-09-27T01:27:12.2912931+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\nMug (InstanceID: 57784) is a Item with state Unknown. It is 1.07 meters from the Player, has a facing dot of 0.97, and an interaction priority score of 0.88.\r\nAlarm Clock (InstanceID: 56538) is a Item with state Unknown. It is 1.55 meters from the Player, has a facing dot of 0.95, and an interaction priority score of 0.82.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[99.80] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookEnded -> Mug (InstanceID: 57784).\r\n[100.48] WorldEvent: 집사 (InstanceID: 58082) -> TargetLost -> 큰 상자 (InstanceID: 58164).\r\n[Recent World Events]\r\n[98.88] PlayerAction: 집사 (InstanceID: 58082) -> ObjectPickedUp -> Mug (InstanceID: 57784).\r\n[99.51] PlayerAction: 집사 (InstanceID: 58082) -> ObjectDropped -> Mug (InstanceID: 57784).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58082) | Target=Mug (InstanceID: 57784) | Fact=ObjectPickedUp Event 2 | Actor=집사 (InstanceID: 58082) | Target=Mug (InstanceID: 57784) | Fact=ObjectDropped Event 3 | Actor=집사 (InstanceID: 58082) | Target=큰 상자 (InstanceID: 58164) | Fact=TargetLost",
+      "rawResponse": "SelectedEntities: Mug (InstanceID: 57784), Alarm Clock (InstanceID: 56538), 집사 (InstanceID: 58082)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58082) | Target=Mug (InstanceID: 57784) | Fact=ObjectPickedUp Event 2 | Actor=집사 (InstanceID: 58082) | Target=Mug (InstanceID: 57784) | Fact=ObjectDropped Event 3 | Actor=집사 (InstanceID: 58082) | Target=큰 상자 (InstanceID: 58164) | Fact=TargetLost"
+    },
+    "responses": [
+      "야옹, 머그잔을 들었다 놓다니 집사 손이 꽤 바쁘네!",
+      "냐앙, 그 컵은 내 간식 그릇으로 찜해도 되겠어?",
+      "흥, 머그잔을 내려놓고 큰 상자까지 놓치다니 정신 좀 차려, 집사.",
+      "골골, 알람시계보다 머그잔에 더 마음이 간 거야?",
+      "야옹야옹, 컵을 잠깐 안아 준 걸로 만족하자꾸나.",
+      "치, 머그잔을 건드렸으면 나한테도 한 번 보여 줘야지!",
+      "냐아, 큰 상자는 잊어도 머그잔은 잊지 말라구.",
+      "훗, 집사가 물건을 들었다 놓는 솜씨는 제법이네.",
+      "야옹, 머그잔이 바닥에 무사히 있으면 됐어.",
+      "으응, 알람시계는 그대로 두고 컵만 만진 이유가 궁금하네."
+    ]
+  },
+  "20260927_012715_946": {
+    "bundle": {
+      "bundleId": "20260927_012715_946",
+      "eventCount": 1,
+      "createdAt": "2026-09-27T01:27:15.9460379+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\nMug (InstanceID: 57784) is a Item with state Unknown. It is 0.93 meters from the Player, has a facing dot of 0.92, and an interaction priority score of 0.87.\r\nAlarm Clock (InstanceID: 56538) is a Item with state Unknown. It is 1.22 meters from the Player, has a facing dot of 0.92, and an interaction priority score of 0.84.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[100.64] WorldEvent: 집사 (InstanceID: 58082) -> TargetLost -> 킥보드 (InstanceID: 59084).\r\n[Recent World Events]\r\n[101.01] WorldEvent: 고양이! (InstanceID: 56652) -> Lie -> 고양이! (InstanceID: 56652).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58082) | Target=킥보드 (InstanceID: 59084) | Fact=집사 (InstanceID: 58082) -> TargetLost -> 킥보드 (InstanceID: 59084) Event 2 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=고양이! (InstanceID: 56652) -> Lie -> 고양이! (InstanceID: 56652)",
+      "rawResponse": "SelectedEntities: Mug (InstanceID: 57784), Alarm Clock (InstanceID: 56538), 집사 (InstanceID: 58082), 킥보드 (InstanceID: 59084), 고양이! (InstanceID: 56652)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58082) | Target=킥보드 (InstanceID: 59084) | Fact=집사 (InstanceID: 58082) -> TargetLost -> 킥보드 (InstanceID: 59084) Event 2 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=고양이! (InstanceID: 56652) -> Lie -> 고양이! (InstanceID: 56652)"
+    },
+    "responses": [
+      "킥보드 찾기는 집사한테 맡기고, 난 여기 누워 있을래옹.",
+      "으으, 낮잠 자는데 무슨 소란이야냥.",
+      "킥보드는 잠깐 잊고 나부터 쓰다듬어 줘라옹.",
+      "집사가 킥보드를 놓쳤다니, 내가 대신 찾아야 하냐옹?",
+      "냐아암, 이 자리가 포근해서 일어나기 싫다냥.",
+      "킥보드보다 내 낮잠이 더 중요하다옹!",
+      "집사야, 킥보드 찾기 전에 간식부터 챙겨라냥.",
+      "꼬리를 말고 누워 있으니 세상 걱정이 다 사라진다옹.",
+      "킥보드는 어디 갔든 알 바 아니고 난 잘 거다냥.",
+      "킥보드 찾으면 깨워라, 그전까진 꿈나라다옹."
+    ]
+  },
+  "20260927_012719_708": {
+    "bundle": {
+      "bundleId": "20260927_012719_708",
+      "eventCount": 1,
+      "createdAt": "2026-09-27T01:27:19.7081279+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56652) is a NPC with state Unknown. It is 4.40 meters from the Player, has a facing dot of 0.99, and an interaction priority score of 0.56.\r\n고양이! 특징: 이 개체는 당신이다.. \r\nMug (InstanceID: 57784) is a Item with state Unknown. It is 1.29 meters from the Player, has a facing dot of 0.84, and an interaction priority score of 0.79.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[107.54] WorldEvent: 집사 (InstanceID: 58082) -> TargetVisible -> Milk Tea (InstanceID: 58888).\r\n[107.56] WorldEvent: 집사 (InstanceID: 58082) -> TargetLost -> 배개 (InstanceID: 57968).\r\n[Recent World Events]\r\n[107.00] WorldEvent: 고양이! (InstanceID: 56652) -> Sit -> 고양이! (InstanceID: 56652).\r\n[107.49] PlayerAction: 집사 (InstanceID: 58082) -> ObjectDropped -> Mug (InstanceID: 57784).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58082) | Target=Milk Tea (InstanceID: 58888) | Fact=집사 is not holding an item. Event 2 | Actor=집사 (InstanceID: 58082) | Target=배개 (InstanceID: 57968) | Fact=집사 is not holding an item. Event 3 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Sit. Event 4 | Actor=집사 (InstanceID: 58082) | Target=Mug (InstanceID: 57784) | Fact=ObjectDropped.",
+      "rawResponse": "SelectedEntities: 고양이! (InstanceID: 56652), Mug (InstanceID: 57784), 집사 (InstanceID: 58082)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58082) | Target=Milk Tea (InstanceID: 58888) | Fact=집사 is not holding an item. Event 2 | Actor=집사 (InstanceID: 58082) | Target=배개 (InstanceID: 57968) | Fact=집사 is not holding an item. Event 3 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Sit. Event 4 | Actor=집사 (InstanceID: 58082) | Target=Mug (InstanceID: 57784) | Fact=ObjectDropped."
+    },
+    "responses": [
+      "후우, 얌전히 앉아 있으니 세상이 알아서 부산을 떠는구나.",
+      "집사야, 머그컵은 조심히 다뤄야지, 깜짝 놀랐잖아!",
+      "나 지금 앉아서 쉬는 중이니까 우유차는 알아서 챙겨 줘.",
+      "야옹, 컵이 떨어졌어도 난 의젓하게 꼬리만 살랑일 거야.",
+      "흠, 집사가 뭘 찾든 난 이 자리에서 낮잠 준비나 할래.",
+      "어라, 머그컵 소리에 귀가 쫑긋 섰네!",
+      "집사야, 물건은 손에 꼭 붙들고 다니라옹.",
+      "나는 얌전히 앉아 있을 테니 간식으로 수고를 치하해 줘.",
+      "에구, 컵 떨어지는 소리에 심장이 콩닥했네.",
+      "흥, 내가 앉아 있는 동안 주변이 이렇게 소란스러울 줄이야!"
+    ]
+  },
+  "20260927_012723_609": {
+    "bundle": {
+      "bundleId": "20260927_012723_609",
+      "eventCount": 1,
+      "createdAt": "2026-09-27T01:27:23.6092728+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56652) is a NPC with state Unknown. It is 4.26 meters from the Player, has a facing dot of 0.80, and an interaction priority score of 0.48.\r\n고양이! 특징: 이 개체는 당신이다.. \r\nCamera (InstanceID: 59004) is a Item with state Unknown. It is 2.94 meters from the Player, has a facing dot of 0.77, and an interaction priority score of 0.59.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[111.31] WorldEvent: 집사 (InstanceID: 58082) -> TargetLookEnded -> 큰 상자 (InstanceID: 58164).\r\n[111.32] WorldEvent: 집사 (InstanceID: 58082) -> TargetVisible -> 공 (InstanceID: 57346).\r\n[Recent World Events]\r\n[110.00] WorldEvent: 고양이! (InstanceID: 56652) -> Move -> 고양이! (InstanceID: 56652).\r\n[110.28] WorldEvent: Curved Monitor 4 (InstanceID: 58610) -> Touch -> 고양이! (InstanceID: 56652).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58082) | Target=큰 상자 (InstanceID: 58164) | Fact=TargetLookEnded Event 2 | Actor=집사 (InstanceID: 58082) | Target=공 (InstanceID: 57346) | Fact=TargetVisible Event 3 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Move Event 4 | Actor=Curved Monitor 4 (InstanceID: 58610) | Target=고양이! (InstanceID: 56652) | Fact=Touch",
+      "rawResponse": "SelectedEntities: 고양이! (InstanceID: 56652), 집사 (InstanceID: 58082), 큰 상자 (InstanceID: 58164), 공 (InstanceID: 57346), Curved Monitor 4 (InstanceID: 58610)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58082) | Target=큰 상자 (InstanceID: 58164) | Fact=TargetLookEnded Event 2 | Actor=집사 (InstanceID: 58082) | Target=공 (InstanceID: 57346) | Fact=TargetVisible Event 3 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Move Event 4 | Actor=Curved Monitor 4 (InstanceID: 58610) | Target=고양이! (InstanceID: 56652) | Fact=Touch"
+    },
+    "responses": [
+      "으앗, 모니터가 툭 건드렸잖아! 깜짝 놀랐네!",
+      "흥, 모니터야 내 꼬리는 만지지 말라구.",
+      "공이 보이네, 집사야 얼른 던져 줘!",
+      "큰 상자는 이제 그만 보고 나랑 놀자, 야옹.",
+      "방금 살짝 움직였더니 모니터가 인사했어, 냥.",
+      "으으, 모니터에 닿으니 간질간질해.",
+      "공이다! 저걸 쫓아가면 신나겠는걸!",
+      "에헴, 놀란 건 아니고 그냥 수염이 움찔했을 뿐이야.",
+      "집사야, 상자보다 내가 더 궁금하지 않아?",
+      "모니터 옆은 비켜야겠어, 꼬리가 또 부딪히겠네."
+    ]
+  },
+  "20260927_012727_551": {
+    "bundle": {
+      "bundleId": "20260927_012727_551",
+      "eventCount": 1,
+      "createdAt": "2026-09-27T01:27:27.5516176+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56652) is a NPC with state Unknown. It is 3.32 meters from the Player, has a facing dot of 0.81, and an interaction priority score of 0.57.\r\n고양이! 특징: 이 개체는 당신이다.. \r\nMouse (InstanceID: 56520) is a Item with state Unknown. It is 1.45 meters from the Player, has a facing dot of 0.64, and an interaction priority score of 0.68.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[114.52] WorldEvent: 집사 (InstanceID: 58082) -> TargetVisible -> Keyboard 4 (InstanceID: 57866).\r\n[114.52] WorldEvent: 집사 (InstanceID: 58082) -> TargetVisible -> 마우스 (InstanceID: 59218).\r\n[Recent World Events]\r\n[111.58] WorldEvent: 큰 상자 (InstanceID: 58164) -> Touch -> 고양이! (InstanceID: 56652).\r\n[111.92] WorldEvent: 쓰래기통 (InstanceID: 57976) -> Touch -> 고양이! (InstanceID: 56652).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58082) | Target=Keyboard 4 (InstanceID: 57866) | Fact=TargetVisible Event 2 | Actor=집사 (InstanceID: 58082) | Target=마우스 (InstanceID: 59218) | Fact=TargetVisible Event 3 | Actor=큰 상자 (InstanceID: 58164) | Target=고양이! (InstanceID: 56652) | Fact=Touch Event 4 | Actor=쓰래기통 (InstanceID: 57976) | Target=고양이! (InstanceID: 56652) | Fact=Touch",
+      "rawResponse": "SelectedEntities: 고양이! (InstanceID: 56652), Mouse (InstanceID: 56520), 집사 (InstanceID: 58082), 큰 상자 (InstanceID: 58164), 쓰래기통 (InstanceID: 57976)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58082) | Target=Keyboard 4 (InstanceID: 57866) | Fact=TargetVisible Event 2 | Actor=집사 (InstanceID: 58082) | Target=마우스 (InstanceID: 59218) | Fact=TargetVisible Event 3 | Actor=큰 상자 (InstanceID: 58164) | Target=고양이! (InstanceID: 56652) | Fact=Touch Event 4 | Actor=쓰래기통 (InstanceID: 57976) | Target=고양이! (InstanceID: 56652) | Fact=Touch"
+    },
+    "responses": [
+      "집사야, 키보드랑 마우스만 보지 말고 나도 좀 봐줘!",
+      "큰 상자에 부딪히고 쓰레기통에도 닿다니, 오늘은 주변이 온통 나를 건드리네.",
+      "마우스가 가까이 있잖아, 살금살금 다가가서 톡 건드려 볼까?",
+      "으앗, 상자랑 쓰레기통이 번갈아 툭툭 치니 깜짝 놀랐잖아!",
+      "집사가 마우스를 찾는 동안 난 여기서 얌전히 기다릴게, 냥.",
+      "상자야 쓰레기통아, 내 꼬리는 건드리지 말라구!",
+      "어라, 집사는 컴퓨터에 정신이 팔렸네; 나도 키보드 위에 올라가 볼까?",
+      "킁킁, 저 마우스가 꽤 가까운데 장난감인지 한번 살펴봐야겠어.",
+      "흥, 두 번이나 툭 건드렸으니 이번엔 내가 먼저 자리를 차지할 거야!",
+      "집사야, 화면 말고 내 반짝이는 눈도 좀 봐주면 좋겠어."
+    ]
+  },
+  "20260927_012730_884": {
+    "bundle": {
+      "bundleId": "20260927_012730_884",
+      "eventCount": 1,
+      "createdAt": "2026-09-27T01:27:30.8841870+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n빗 (InstanceID: 57596) is a Item with state Unknown. It is 3.71 meters from the Player, has a facing dot of 0.62, and an interaction priority score of 0.44.\r\n케리어 (InstanceID: 56600) is a Item with state Unknown. It is 4.08 meters from the Player, has a facing dot of 0.64, and an interaction priority score of 0.41.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[119.00] WorldEvent: 집사 (InstanceID: 58082) -> TargetLost -> 의자 (InstanceID: 58838).\r\n[119.10] WorldEvent: 집사 (InstanceID: 58082) -> TargetLost -> 컵 (InstanceID: 57144).\r\n[Recent World Events]\r\n[116.28] WorldEvent: 고양이! (InstanceID: 56652) -> Lie -> 고양이! (InstanceID: 56652).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58082) | Target=의자 (InstanceID: 58838) | Fact=TargetLost Event 2 | Actor=집사 (InstanceID: 58082) | Target=컵 (InstanceID: 57144) | Fact=TargetLost Event 3 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Lie",
+      "rawResponse": "SelectedEntities: 빗 (InstanceID: 57596), 케리어 (InstanceID: 56600)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58082) | Target=의자 (InstanceID: 58838) | Fact=TargetLost Event 2 | Actor=집사 (InstanceID: 58082) | Target=컵 (InstanceID: 57144) | Fact=TargetLost Event 3 | Actor=고양이! (InstanceID: 56652) | Target=고양이! (InstanceID: 56652) | Fact=Lie"
+    },
+    "responses": [
+      "으음, 난 여기 얌전히 누워 있을 테니 괜히 빗 들고 오진 마라옹.",
+      "집사가 의자랑 컵을 놓쳤다니, 이제 내 낮잠도 방해받지 않겠네.",
+      "빗은 저만치 두고, 오늘은 털 손질 쉬어도 되지 않냥?",
+      "캐리어는 싫다냥, 그쪽으로 다가오면 얼른 숨을 거야!",
+      "흐아암, 난 이미 누워 있으니 세상일은 집사가 알아서 하라냥.",
+      "의자도 컵도 찾지 못했다면 집사 발밑부터 살펴보라옹.",
+      "빗 냄새만 맡아도 털이 쭈뼛하니 오늘은 살살 대해 줘.",
+      "캐리어가 보이니 마음이 영 찜찜하다냥, 난 소파 뒤로 갈래.",
+      "집사가 헤매는 동안 난 포근하게 누워서 눈 좀 붙이겠다옹.",
+      "흥, 빗도 캐리어도 아직 멀리 있으니 지금은 안심이다냥!"
+    ]
+  },
+  "20260929_000640_362": {
+    "bundle": {
+      "bundleId": "20260929_000640_362",
+      "eventCount": 1,
+      "createdAt": "2026-09-29T00:06:40.3629231+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56656) is a NPC with state Unknown. It is 2.69 meters from the Player, has a facing dot of 0.92, and an interaction priority score of 0.69.\r\n고양이! 특징: 이 개체는 당신이다..\r\nDesk Lamp (InstanceID: 58710) is a Item with state Unknown. It is 2.19 meters from the Player, has a facing dot of 0.96, and an interaction priority score of 0.76.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[7.22] WorldEvent: 집사 (InstanceID: 58108) -> TargetLookEnded -> Desk Lamp (InstanceID: 58710).\r\n[7.42] WorldEvent: 집사 (InstanceID: 58108) -> TargetLookStarted -> Desk Lamp (InstanceID: 58710).\r\n[Recent World Events]\r\n[8.04] PlayerAction: 집사 (InstanceID: 58108) -> ObjectDropped -> Desk Lamp (InstanceID: 58710).\r\n[8.04] WorldEvent: 집사 (InstanceID: 58108) -> Throw -> 집사 (InstanceID: 58108).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58108) | Target=Desk Lamp (InstanceID: 58710) | Fact=LookEnded Event 2 | Actor=집사 (InstanceID: 58108) | Target=Desk Lamp (InstanceID: 58710) | Fact=LookStarted Event 3 | Actor=집사 (InstanceID: 58108) | Target=Desk Lamp (InstanceID: 58710) | Fact=ObjectDropped Event 4 | Actor=집사 (InstanceID: 58108) | Target=Desk Lamp (InstanceID: 58710)",
+      "rawResponse": "SelectedEntities: Player (InstanceID: 56542), 고양이! (InstanceID: 56656), Desk Lamp (InstanceID: 58710), 집사 (InstanceID: 58108)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58108) | Target=Desk Lamp (InstanceID: 58710) | Fact=LookEnded Event 2 | Actor=집사 (InstanceID: 58108) | Target=Desk Lamp (InstanceID: 58710) | Fact=LookStarted Event 3 | Actor=집사 (InstanceID: 58108) | Target=Desk Lamp (InstanceID: 58710) | Fact=ObjectDropped Event 4 | Actor=집사 (InstanceID: 58108) | Target=Desk Lamp (InstanceID: 58710)"
+    },
+    "responses": [
+      "야옹, 집사야 그 램프 내려놓고 내 턱이나 긁어 줘!",
+      "어라, 램프를 툭 떨어뜨렸네… 조심조심 다뤄 줘, 집사.",
+      "흥, 반짝이는 건 내가 먼저 살펴볼 거야!",
+      "집사야, 램프 말고 나한테 시선 고정해라옹!",
+      "앗, 소리 날까 봐 깜짝 놀랐잖아!",
+      "히히, 램프가 바닥에 있으면 내가 먼저 찜할래.",
+      "으음, 집사 손에서 미끄러졌나? 다음엔 꼭 잡아 줘.",
+      "야옹야옹, 그 램프보다 따뜻한 무릎이 더 좋아!",
+      "집사야, 물건 던지기는 그만하고 간식 던져 줘!",
+      "흥칫뿡, 램프만 쳐다보지 말고 나도 봐 줘!"
+    ]
+  },
+  "20260929_000644_302": {
+    "bundle": {
+      "bundleId": "20260929_000644_302",
+      "eventCount": 1,
+      "createdAt": "2026-09-29T00:06:44.3024753+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56656) is a NPC with state Unknown. It is 2.64 meters from the Player, has a facing dot of 0.82, and an interaction priority score of 0.65.\r\n고양이! 특징: 이 개체는 당신이다..\r\n공 (InstanceID: 57372) is a Item with state Held. It is 1.07 meters from the Player, has a facing dot of 0.00, and an interaction priority score of 1.00.\r\n[Current Relations]\r\n집사 is holding 공.\r\n[Recent Vision Events]\r\n[11.70] WorldEvent: 집사 (InstanceID: 58108) -> TargetLookEnded -> Desk Lamp (InstanceID: 58710).\r\n[11.82] WorldEvent: 집사 (InstanceID: 58108) -> TargetLookStarted -> 공 (InstanceID: 57372).\r\n[Recent World Events]\r\n[10.22] WorldEvent: 큰 상자 (InstanceID: 58192) -> Hit -> 고양이! (InstanceID: 56656).\r\n[11.11] PlayerAction: 집사 (InstanceID: 58108) -> ObjectPickedUp -> 공 (InstanceID: 57372).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58108) | Target=Desk Lamp (InstanceID: 58710) | Fact=LookEnded Event 2 | Actor=집사 (InstanceID: 58108) | Target=공 (InstanceID: 57372) | Fact=LookStarted Event 3 | Actor=집사 (InstanceID: 58108) | Target=ObjectPickedUp | Fact=공 (InstanceID: 57372) Event 4 | Actor=큰 상자 (InstanceID: 58192) | Target=고양이! (InstanceID: 56656) | Fact=Hit",
+      "rawResponse": "SelectedEntities: 집사 (InstanceID: 58108), 공 (InstanceID: 57372), 고양이! (InstanceID: 56656)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58108) | Target=Desk Lamp (InstanceID: 58710) | Fact=LookEnded Event 2 | Actor=집사 (InstanceID: 58108) | Target=공 (InstanceID: 57372) | Fact=LookStarted Event 3 | Actor=집사 (InstanceID: 58108) | Target=ObjectPickedUp | Fact=공 (InstanceID: 57372) Event 4 | Actor=큰 상자 (InstanceID: 58192) | Target=고양이! (InstanceID: 56656) | Fact=Hit"
+    },
+    "responses": [
+      "아야옹, 큰 상자야! 갑자기 부딪히면 깜짝 놀라잖아!",
+      "집사, 공은 왜 집어 들었어? 나랑 놀아주려는 거지?",
+      "으으, 방금 상자에 맞은 데가 아직 얼얼해…",
+      "공을 들었으면 얼른 굴려줘, 내가 쫓아갈게!",
+      "흥, 상자한테 한 대 맞았다고 내가 기죽을 줄 알아?",
+      "집사, 그 공 내 거야? 살짝만 톡 쳐보면 안 돼?",
+      "냐악! 큰 상자 조심하라니까, 다음엔 내가 먼저 피할 거야!",
+      "공을 들고 나를 보는 거야? 기대해도 되는 거지, 집사?",
+      "아이고, 깜짝이야… 이제 상자 근처는 살금살금 다녀야겠어.",
+      "집사, 공은 잠깐 내려놓고 내 머리부터 쓰다듬어줘!"
+    ]
+  },
+  "20260929_000648_019": {
+    "bundle": {
+      "bundleId": "20260929_000648_019",
+      "eventCount": 1,
+      "createdAt": "2026-09-29T00:06:48.0190561+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56656) is a NPC with state Unknown. It is 2.73 meters from the Player, has a facing dot of 0.41, and an interaction priority score of 0.43.\r\n고양이! 특징: 이 개체는 당신이다..\r\nKeyboard 4 (InstanceID: 57892) is a Item with state Unknown. It is 2.23 meters from the Player, has a facing dot of 0.99, and an interaction priority score of 0.77.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[15.94] WorldEvent: 집사 (InstanceID: 58108) -> TargetLookStarted -> 의자 (InstanceID: 58884).\r\n[16.00] WorldEvent: 집사 (InstanceID: 58108) -> TargetLookEnded -> 의자 (InstanceID: 58884).\r\n[Recent World Events]\r\n[15.62] WorldEvent: Camera (InstanceID: 59040) -> Hit -> 고양이! (InstanceID: 56656).\r\n[15.96] WorldEvent: 킥보드 (InstanceID: 59120) -> Touch -> 고양이! (InstanceID: 56656).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58108) | Target=의자 (InstanceID: 58884) | Fact=LookStarted Event 2 | Actor=집사 (InstanceID: 58108) | Target=의자 (InstanceID: 58884) | Fact=LookEnded Event 3 | Actor=Camera (InstanceID: 59040) | Target=고양이! (InstanceID: 56656) | Fact=Hit Event 4 | Actor=킥보드 (InstanceID: 59120) | Target=고양이! (InstanceID: 56656)",
+      "rawResponse": "SelectedEntities: 고양이! (InstanceID: 56656), Keyboard 4 (InstanceID: 57892)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58108) | Target=의자 (InstanceID: 58884) | Fact=LookStarted Event 2 | Actor=집사 (InstanceID: 58108) | Target=의자 (InstanceID: 58884) | Fact=LookEnded Event 3 | Actor=Camera (InstanceID: 59040) | Target=고양이! (InstanceID: 56656) | Fact=Hit Event 4 | Actor=킥보드 (InstanceID: 59120) | Target=고양이! (InstanceID: 56656)"
+    },
+    "responses": [
+      "아야옹, 카메라에 맞고 킥보드까지 건드리다니 오늘 운수가 사납네!",
+      "으르릉, 집사는 의자만 보고 난 쳐다보지도 않다니 서운하잖아.",
+      "흥, 카메라든 킥보드든 내 털에 함부로 손대지 말라옹!",
+      "냐옹… 여기서 얼른 비켜야 또 부딪히지 않겠어?",
+      "아이고, 방금 꽤 아팠다냥, 살살 좀 다녀!",
+      "꼬리를 바짝 세웠다옹, 다음엔 내가 먼저 피해 주겠어!",
+      "집사야, 의자 말고 나도 좀 봐달라냥!",
+      "후우, 깜짝 놀랐잖아, 킥보드는 조심해서 굴려 달라옹.",
+      "괜찮다냥, 이 정도 충격쯤은 털어내면 그만이지!",
+      "냐하, 카메라에 찍히고 킥보드까지 만났으니 오늘은 내가 주인공이네!"
+    ]
+  },
+  "20260929_000652_353": {
+    "bundle": {
+      "bundleId": "20260929_000652_353",
+      "eventCount": 1,
+      "createdAt": "2026-09-29T00:06:52.3535204+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56656) is a NPC with state Unknown. It is 3.30 meters from the Player, has a facing dot of 0.93, and an interaction priority score of 0.63.\r\n고양이! 특징: 이 개체는 당신이다..\r\nCurved Monitor 4 (InstanceID: 58646) is a Item with state Unknown. It is 2.79 meters from the Player, has a facing dot of 0.97, and an interaction priority score of 0.71.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[19.60] WorldEvent: 집사 (InstanceID: 58108) -> TargetVisible -> Rolling Pin (InstanceID: 57314).\r\n[19.72] WorldEvent: 집사 (InstanceID: 58108) -> TargetLost -> Rolling Pin (InstanceID: 57314).\r\n[Recent World Events]\r\n[18.90] WorldEvent: 집사 (InstanceID: 58108) -> Throw -> 집사 (InstanceID: 58108).\r\n[18.98] WorldEvent: Curved Monitor 4 (InstanceID: 58646) -> Hit -> 고양이! (InstanceID: 56656).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58108) | Target=Rolling Pin (InstanceID: 57314) | Fact=집사 (InstanceID: 58108) -> Throw -> 집사 (InstanceID: 58108) Event 2 | Actor=집사 (InstanceID: 58108) | Target=Rolling Pin (InstanceID: 57314) | Fact=집사 (InstanceID: 58108) -> TargetVisible -> Rolling Pin (InstanceID: 57314) Event 3 | Actor=Curved Monitor 4 (InstanceID: 58646) | Target=고양이! (InstanceID: 56656) | Fact=Curved Monitor 4 (InstanceID: 58646) -> Hit -> 고양이! (InstanceID: 56656)",
+      "rawResponse": "SelectedEntities: 고양이! (InstanceID: 56656), Curved Monitor 4 (InstanceID: 58646)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58108) | Target=Rolling Pin (InstanceID: 57314) | Fact=집사 (InstanceID: 58108) -> Throw -> 집사 (InstanceID: 58108) Event 2 | Actor=집사 (InstanceID: 58108) | Target=Rolling Pin (InstanceID: 57314) | Fact=집사 (InstanceID: 58108) -> TargetVisible -> Rolling Pin (InstanceID: 57314) Event 3 | Actor=Curved Monitor 4 (InstanceID: 58646) | Target=고양이! (InstanceID: 56656) | Fact=Curved Monitor 4 (InstanceID: 58646) -> Hit -> 고양이! (InstanceID: 56656)"
+    },
+    "responses": [
+      "아야옹, 모니터에 맞았잖아! 조심해 줘!",
+      "으르릉… 대체 누가 모니터를 날린 거야?",
+      "냐아, 깜짝이야! 다음엔 저쪽으로 피해야겠어.",
+      "흥, 모니터한테 한 방 먹다니 자존심 상하네.",
+      "아이고야, 머리 괜찮나 확인 좀 해야겠다옹.",
+      "냐악! 집사, 물건 좀 얌전히 다뤄!",
+      "으앵, 갑자기 맞아서 심장이 쿵했어.",
+      "하악, 이 모니터 정말 얄미운 녀석이네!",
+      "후우… 잠깐만 쉬었다가 복수할 거야옹.",
+      "냐옹, 오늘은 모니터와 거리를 둬야겠어."
+    ]
+  },
+  "20260929_000656_482": {
+    "bundle": {
+      "bundleId": "20260929_000656_482",
+      "eventCount": 1,
+      "createdAt": "2026-09-29T00:06:56.4832714+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56656) is a NPC with state Unknown. It is 3.21 meters from the Player, has a facing dot of 0.56, and an interaction priority score of 0.46.\r\n고양이! 특징: 이 개체는 당신이다..\r\n상자 뚜껑 (InstanceID: 59042) is a Item with state Held. It is 1.13 meters from the Player, has a facing dot of 0.00, and an interaction priority score of 1.00.\r\n[Current Relations]\r\n집사 is holding 상자 뚜껑.\r\n[Recent Vision Events]\r\n[23.68] WorldEvent: 집사 (InstanceID: 58108) -> TargetLost -> Stand (InstanceID: 58174).\r\n[23.89] WorldEvent: 집사 (InstanceID: 58108) -> TargetLookStarted -> 상자 뚜껑 (InstanceID: 59042).\r\n[Recent World Events]\r\n[22.84] WorldEvent: 킥보드 (InstanceID: 59120) -> Touch -> 고양이! (InstanceID: 56656).\r\n[23.94] PlayerAction: 집사 (InstanceID: 58108) -> ObjectPickedUp -> 상자 뚜껑 (InstanceID: 59042).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58108) | Target=Stand (InstanceID: 58174) | Fact=집사 (InstanceID: 58108) -> TargetLost -> Stand (InstanceID: 58174) Event 2 | Actor=집사 (InstanceID: 58108) | Target=상자 뚜껑 (InstanceID: 59042) | Fact=집사 (InstanceID: 58108) -> TargetLookStarted -> 상자 뚜껑 (InstanceID: 59042) Event 3 | Actor=집사 (InstanceID: 58108) | Target=상자 뚜껑 (InstanceID: 59042) | Fact=ObjectPickedUp",
+      "rawResponse": "SelectedEntities: 집사 (InstanceID: 58108), 상자 뚜껑 (InstanceID: 59042), 고양이! (InstanceID: 56656)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58108) | Target=Stand (InstanceID: 58174) | Fact=집사 (InstanceID: 58108) -> TargetLost -> Stand (InstanceID: 58174) Event 2 | Actor=집사 (InstanceID: 58108) | Target=상자 뚜껑 (InstanceID: 59042) | Fact=집사 (InstanceID: 58108) -> TargetLookStarted -> 상자 뚜껑 (InstanceID: 59042) Event 3 | Actor=집사 (InstanceID: 58108) | Target=상자 뚜껑 (InstanceID: 59042) | Fact=ObjectPickedUp"
+    },
+    "responses": [
+      "킥보드에 치인 데가 아직 얼얼하니 상자 뚜껑은 조심히 들어라, 야옹.",
+      "집사야, 방금 나를 밀어놓고 이제 상자 뚜껑을 집는 거냐옹?",
+      "흥, 나는 멀쩡하다냥—그 뚜껑보다 내 털부터 살펴봐라.",
+      "뚜껑을 들었으면 이제 간식 상자나 열어다오, 야옹.",
+      "앗, 아까 킥보드가 툭 건드려서 깜짝 놀랐다냥!",
+      "집사야, 그 뚜껑 내려놓고 내 머리부터 쓰다듬어라옹.",
+      "에구구, 나는 여기 있는데 왜 상자 뚜껑만 바라보냥?",
+      "상자 뚜껑 소리가 궁금하긴 하지만, 킥보드는 다시 오지 말라냥.",
+      "야옹, 뚜껑을 들었으니 이제 내 장난감으로 삼아도 되느냐?",
+      "흥칫뿡, 나한테는 눈길도 안 주고 뚜껑만 챙기다니 서운하다냥!"
+    ]
+  },
+  "20260929_000700_017": {
+    "bundle": {
+      "bundleId": "20260929_000700_017",
+      "eventCount": 1,
+      "createdAt": "2026-09-29T00:07:00.0174187+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56656) is a NPC with state Unknown. It is 2.87 meters from the Player, has a facing dot of 0.14, and an interaction priority score of 0.28.\r\n고양이! 특징: 이 개체는 당신이다..\r\n큰 상자 (InstanceID: 58192) is a Item with state Held. It is 0.84 meters from the Player, has a facing dot of 0.00, and an interaction priority score of 1.00.\r\n[Current Relations]\r\n집사 is holding 큰 상자.\r\n[Recent Vision Events]\r\n[28.18] WorldEvent: 집사 (InstanceID: 58108) -> TargetLookEnded -> 큰 상자 (InstanceID: 58192).\r\n[28.21] WorldEvent: 집사 (InstanceID: 58108) -> TargetLookStarted -> 큰 상자 (InstanceID: 58192).\r\n[Recent World Events]\r\n[27.46] WorldEvent: Curved Monitor 4 (InstanceID: 58646) -> Touch -> 고양이! (InstanceID: 56656).\r\n[27.96] PlayerAction: 집사 (InstanceID: 58108) -> ObjectPickedUp -> 큰 상자 (InstanceID: 58192).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58108) | Target=큰 상자 (InstanceID: 58192) | Fact=ObjectPickedUp Event 2 | Actor=집사 (InstanceID: 58108) | Target=큰 상자 (InstanceID: 58192) | Fact=TargetLookStarted Event 3 | Actor=집사 (InstanceID: 58108) | Target=큰 상자 (InstanceID: 58192) | Fact=TargetLookEnded",
+      "rawResponse": "SelectedEntities: 고양이! (InstanceID: 56656), 큰 상자 (InstanceID: 58192)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58108) | Target=큰 상자 (InstanceID: 58192) | Fact=ObjectPickedUp Event 2 | Actor=집사 (InstanceID: 58108) | Target=큰 상자 (InstanceID: 58192) | Fact=TargetLookStarted Event 3 | Actor=집사 (InstanceID: 58108) | Target=큰 상자 (InstanceID: 58192) | Fact=TargetLookEnded"
+    },
+    "responses": [
+      "야옹, 집사야 그 큰 상자 어디로 데려갈 거야?",
+      "상자를 번쩍 들다니, 제법 힘이 세네옹!",
+      "그 상자 안에 간식이라도 들었으면 좋겠다냥.",
+      "잠깐, 상자 말고 나도 좀 봐줘라옹.",
+      "호기심은 나지만 상자 가까이엔 안 갈래냥.",
+      "집사가 상자를 들었으니 이제 길을 비켜줘야겠네옹.",
+      "으음, 저 상자에 올라가면 푹신할까냥?",
+      "상자를 들고 어디 가는지 나도 따라가 볼래옹!",
+      "흥, 상자만 쳐다보지 말고 나도 쓰다듬어 줘냥.",
+      "상자가 움직이니 괜히 꼬리가 살랑살랑하네옹."
+    ]
+  },
+  "20260929_000703_768": {
+    "bundle": {
+      "bundleId": "20260929_000703_768",
+      "eventCount": 1,
+      "createdAt": "2026-09-29T00:07:03.7689348+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\nNo Interaction or NPC targets are currently detected.\r\n[Current Relations]\r\n집사 is holding Computer Monitor.\r\n[Recent Vision Events]\r\n[31.74] WorldEvent: 집사 (InstanceID: 58108) -> TargetLost -> 쓰래기통 (InstanceID: 56522).\r\n[31.74] WorldEvent: 집사 (InstanceID: 58108) -> TargetLost -> 쓰래기통 (InstanceID: 58002).\r\n[Recent World Events]\r\n[29.76] WorldEvent: 큰 상자 (InstanceID: 58192) -> Hit -> 고양이! (InstanceID: 56656).\r\n[31.16] PlayerAction: 집사 (InstanceID: 58108) -> ObjectPickedUp -> Computer Monitor (InstanceID: 58766).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58108) | Target=Computer Monitor (InstanceID: 58766) | Fact=ObjectPickedUp Event 2 | Actor=집사 (InstanceID: 58108) | Target=쓰래기통 (InstanceID: 56522) | Fact=TargetLost Event 3 | Actor=집사 (InstanceID: 58108) | Target=쓰래기통 (InstanceID: 58002) | Fact=TargetLost",
+      "rawResponse": "SelectedEntities: 집사 (InstanceID: 58108), Computer Monitor (InstanceID: 58766), 쓰래기통 (InstanceID: 56522), 쓰래기통 (InstanceID: 58002)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58108) | Target=Computer Monitor (InstanceID: 58766) | Fact=ObjectPickedUp Event 2 | Actor=집사 (InstanceID: 58108) | Target=쓰래기통 (InstanceID: 56522) | Fact=TargetLost Event 3 | Actor=집사 (InstanceID: 58108) | Target=쓰래기통 (InstanceID: 58002) | Fact=TargetLost"
+    },
+    "responses": [
+      "그 큰 상자에 맞은 데가 아직 얼얼하니, 모니터 내려놓고 내 머리부터 쓰다듬어라옹!",
+      "집사야, 쓰레기통은 이제 됐고 내 간식이나 챙겨오라냥.",
+      "모니터를 번쩍 들다니 제법이구나, 하지만 나한테는 더 조심하라옹.",
+      "흥, 상자에 맞고도 멀쩡한 이 고양이에게 관심은 없고 모니터만 챙기느냐냥?",
+      "모니터 반짝이는 건 좋지만, 방금 그 상자는 정말 얄미웠다옹.",
+      "야옹, 쓰레기통에서 눈을 떼고 나를 봐라, 아직 삐쳤다냥!",
+      "집사 손에 모니터가 들렸으니 이제 내 낮잠 자리나 비워주라옹.",
+      "아야옹, 상자에 한 방 맞았으니 오늘은 특식으로 보상하라냥!",
+      "모니터를 들고 가는 건 알겠는데, 내 꼬리를 밟으면 가만 안 둔다옹.",
+      "흥, 쓰레기통은 놓쳤어도 내 관심은 간식으로 다시 살 수 있다냥."
+    ]
+  },
+  "20260929_000708_705": {
+    "bundle": {
+      "bundleId": "20260929_000708_705",
+      "eventCount": 1,
+      "createdAt": "2026-09-29T00:07:08.7051707+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56656) is a NPC with state Unknown. It is 6.14 meters from the Player, has a facing dot of 0.27, and an interaction priority score of 0.13.\r\n고양이! 특징: 이 개체는 당신이다..\r\n상자 (InstanceID: 58882) is a Item with state Unknown. It is 7.36 meters from the Player, has a facing dot of 0.52, and an interaction priority score of 0.26.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[35.50] WorldEvent: 집사 (InstanceID: 58108) -> TargetVisible -> Monitor 3 (InstanceID: 58712).\r\n[35.50] WorldEvent: 집사 (InstanceID: 58108) -> TargetVisible -> 쓰래기통 (InstanceID: 58522).\r\n[Recent World Events]\r\n[35.49] PlayerAction: 집사 (InstanceID: 58108) -> ObjectDropped -> 케리어 (InstanceID: 56604).\r\n[35.49] WorldEvent: 집사 (InstanceID: 58108) -> Throw -> 집사 (InstanceID: 58108).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58108) | Target=Monitor 3 (InstanceID: 58712) | Fact=집사 (InstanceID: 58108) -> TargetVisible -> Monitor 3 (InstanceID: 58712) Event 2 | Actor=집사 (InstanceID: 58108) | Target=쓰래기통 (InstanceID: 58522) | Fact=집사 (InstanceID: 58108) -> TargetVisible -> 쓰래기통 (InstanceID: 58522) Event 3 | Actor=집사 (InstanceID: 58108) | Target=케리어 (InstanceID: 56604) | Fact=집사 (InstanceID: 58108) -> ObjectDropped -> 케리어 (InstanceID: 56604) Event 4 | Actor=집사 (InstanceID: 58108) | Target=집사 (InstanceID: 58108) | Fact=집사 (InstanceID: 58108) -> Throw -> 집사 (InstanceID: 58108)",
+      "rawResponse": "SelectedEntities: 고양이! (InstanceID: 56656), 상자 (InstanceID: 58882)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58108) | Target=Monitor 3 (InstanceID: 58712) | Fact=집사 (InstanceID: 58108) -> TargetVisible -> Monitor 3 (InstanceID: 58712) Event 2 | Actor=집사 (InstanceID: 58108) | Target=쓰래기통 (InstanceID: 58522) | Fact=집사 (InstanceID: 58108) -> TargetVisible -> 쓰래기통 (InstanceID: 58522) Event 3 | Actor=집사 (InstanceID: 58108) | Target=케리어 (InstanceID: 56604) | Fact=집사 (InstanceID: 58108) -> ObjectDropped -> 케리어 (InstanceID: 56604) Event 4 | Actor=집사 (InstanceID: 58108) | Target=집사 (InstanceID: 58108) | Fact=집사 (InstanceID: 58108) -> Throw -> 집사 (InstanceID: 58108)"
+    },
+    "responses": [
+      "어라, 집사가 또 뭘 떨어뜨렸냥?",
+      "상자는 그냥 두고 낮잠이나 잘래옹.",
+      "집사야, 물건 던지면 위험하다냥!",
+      "킁킁, 저쪽에 뭔가 있나 보네옹.",
+      "으음, 난 아무것도 못 본 척할 거다냥.",
+      "집사, 정신 좀 차리라옹!",
+      "에구구, 또 소란이네냥.",
+      "상자 안에 숨으면 조용해지려나옹?",
+      "흥, 나한테 시키는 일 아니면 관심 없다냥.",
+      "야옹, 조심해서 다뤄 달라냥!"
+    ]
+  },
+  "20260929_000711_909": {
+    "bundle": {
+      "bundleId": "20260929_000711_909",
+      "eventCount": 1,
+      "createdAt": "2026-09-29T00:07:11.9094823+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56656) is a NPC with state Unknown. It is 2.96 meters from the Player, has a facing dot of 0.24, and an interaction priority score of 0.32.\r\n고양이! 특징: 이 개체는 당신이다..\r\n쓰래기통 (InstanceID: 58522) is a Item with state Unknown. It is 3.20 meters from the Player, has a facing dot of 0.92, and an interaction priority score of 0.64.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[40.38] WorldEvent: 집사 (InstanceID: 58108) -> TargetLookStarted -> 쓰래기통 (InstanceID: 58522).\r\n[40.43] WorldEvent: 집사 (InstanceID: 58108) -> TargetLookEnded -> 쓰래기통 (InstanceID: 58522).\r\n[Recent World Events]\r\n[40.26] WorldEvent: Computer Monitor (InstanceID: 58766) -> Touch -> 고양이! (InstanceID: 56656).\r\n[40.36] WorldEvent: 가방 (InstanceID: 57092) -> Touch -> 고양이! (InstanceID: 56656).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58108) | Target=쓰래기통 (InstanceID: 58522) | Fact=LookStarted Event 2 | Actor=집사 (InstanceID: 58108) | Target=쓰래기통 (InstanceID: 58522) | Fact=LookEnded",
+      "rawResponse": "SelectedEntities: 고양이! (InstanceID: 56656), 쓰래기통 (InstanceID: 58522)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58108) | Target=쓰래기통 (InstanceID: 58522) | Fact=LookStarted Event 2 | Actor=집사 (InstanceID: 58108) | Target=쓰래기통 (InstanceID: 58522) | Fact=LookEnded"
+    },
+    "responses": [
+      "집사야, 쓰레기통만 보지 말고 나도 좀 봐줘, 야옹!",
+      "흥, 쓰레기통에 관심을 뺏기다니 서운하네.",
+      "그 통에 맛있는 거라도 숨겨뒀어? 나도 궁금한데!",
+      "집사야, 나 여기 있거든? 꼬리를 살랑살랑 흔들어 볼까.",
+      "에구, 잠깐 봤다가 말았네… 한 번만 더 봐주라.",
+      "쓰레기통보다 내가 훨씬 귀엽다냥!",
+      "야옹, 거기 뭐 있어? 나도 같이 확인하러 갈래.",
+      "집사 시선이 스쳐 갔네, 이제 내 차례지!",
+      "흥, 그렇게 궁금하면 열어봐… 나는 옆에서 구경할래.",
+      "집사야, 다른 데 보지 말고 간식으로 관심을 사 봐!"
+    ]
+  },
+  "20260929_000715_434": {
+    "bundle": {
+      "bundleId": "20260929_000715_434",
+      "eventCount": 1,
+      "createdAt": "2026-09-29T00:07:15.4340131+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\nNo Interaction or NPC targets are currently detected.\r\n[Current Relations]\r\n집사 is holding Frying Pan 1.\r\n[Recent Vision Events]\r\n[43.64] WorldEvent: 집사 (InstanceID: 58108) -> TargetLost -> mesh-3.007 (InstanceID: 57494).\r\n[43.64] WorldEvent: 집사 (InstanceID: 58108) -> TargetLost -> Computer Monitor (InstanceID: 58766).\r\n[Recent World Events]\r\n[42.37] PlayerAction: 집사 (InstanceID: 58108) -> ObjectPickedUp -> Frying Pan 1 (InstanceID: 56812).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58108) | Target=mesh-3.007 (InstanceID: 57494) | Fact=TargetLost Event 2 | Actor=집사 (InstanceID: 58108) | Target=Computer Monitor (InstanceID: 58766) | Fact=TargetLost Event 3 | Actor=집사 (InstanceID: 58108) | Target=Frying Pan 1 (InstanceID: 56812) | Fact=ObjectPickedUp",
+      "rawResponse": "SelectedEntities: 집사 (InstanceID: 58108), Frying Pan 1 (InstanceID: 56812)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58108) | Target=mesh-3.007 (InstanceID: 57494) | Fact=TargetLost Event 2 | Actor=집사 (InstanceID: 58108) | Target=Computer Monitor (InstanceID: 58766) | Fact=TargetLost Event 3 | Actor=집사 (InstanceID: 58108) | Target=Frying Pan 1 (InstanceID: 56812) | Fact=ObjectPickedUp"
+    },
+    "responses": [
+      "어라, 집사야 프라이팬은 왜 들었어? 나 깜짝 놀랐잖아!",
+      "흥, 모니터는 이제 그만 보고 나한테 간식이나 가져와.",
+      "프라이팬에서 맛있는 냄새가 날까, 킁킁 맡아보고 싶다냥.",
+      "집사가 프라이팬을 들었으니 오늘은 생선 구이 파티인가?",
+      "앗, 방금 보던 곳을 놓쳤네, 내 호기심도 잠깐 쉬어야겠다.",
+      "프라이팬 들고 조심히 다녀, 바닥에 떨어뜨리면 나도 놀란다냥.",
+      "뭐야, 모니터도 저 물건도 이제 관심 없다는 거야? 나랑 놀자!",
+      "으음, 프라이팬이 반짝반짝하네, 내 발자국은 남기지 않을게.",
+      "집사 손에 프라이팬이라니, 오늘 저녁 메뉴가 기대된다냥!",
+      "냐앙, 그 프라이팬 내려놓고 내 턱부터 긁어줘!"
+    ]
+  },
+  "20260929_000719_140": {
+    "bundle": {
+      "bundleId": "20260929_000719_140",
+      "eventCount": 1,
+      "createdAt": "2026-09-29T00:07:19.1401749+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56656) is a NPC with state Unknown. It is 2.62 meters from the Player, has a facing dot of 0.84, and an interaction priority score of 0.66.\r\n고양이! 특징: 이 개체는 당신이다..\r\nFrying Pan 1 (InstanceID: 56812) is a Unknown with state Held. It is 1.17 meters from the Player, has a facing dot of 0.00, and an interaction priority score of 1.00.\r\n[Current Relations]\r\n집사 is holding Frying Pan 1.\r\n[Recent Vision Events]\r\n[47.14] WorldEvent: 집사 (InstanceID: 58108) -> TargetLookEnded -> Computer Monitor (InstanceID: 58766).\r\n[47.14] WorldEvent: 집사 (InstanceID: 58108) -> TargetLookStarted -> Frying Pan 1 (InstanceID: 56812).\r\n[Recent World Events]\r\n[44.17] WorldEvent: 집사 (InstanceID: 58108) -> Jump -> 집사 (InstanceID: 58108).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58108) | Target=Computer Monitor (InstanceID: 58766) | Fact=집사 stopped looking at the Computer Monitor. Event 2 | Actor=집사 (InstanceID: 58108) | Target=Frying Pan 1 (InstanceID: 56812) | Fact=집사 started looking at the Frying Pan 1. Event 3 | Actor=집사 (InstanceID: 58108) | Target=집사 (InstanceID: 58108) | Fact=집사 jumped.",
+      "rawResponse": "SelectedEntities: 고양이! (InstanceID: 56656), Frying Pan 1 (InstanceID: 56812)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58108) | Target=Computer Monitor (InstanceID: 58766) | Fact=집사 stopped looking at the Computer Monitor. Event 2 | Actor=집사 (InstanceID: 58108) | Target=Frying Pan 1 (InstanceID: 56812) | Fact=집사 started looking at the Frying Pan 1. Event 3 | Actor=집사 (InstanceID: 58108) | Target=집사 (InstanceID: 58108) | Fact=집사 jumped."
+    },
+    "responses": [
+      "집사야, 화면 보다가 프라이팬은 왜 쳐다봐? 나부터 쓰다듬어 줘, 냐옹!",
+      "깜짝이야, 갑자기 뛰면 내 꼬리도 바짝 서잖아!",
+      "그 프라이팬은 밥 만드는 도구지, 장난감이 아니야, 야옹.",
+      "집사야, 모니터 말고 내 반짝이는 눈을 봐 줘.",
+      "냐하, 또 폴짝 뛰었네! 나도 따라 뛰면 깜짝 놀랄걸?",
+      "프라이팬을 들고 있으니 조심해, 내 수염이 가까이에 있단 말이야.",
+      "흠, 화면에서 눈을 떼더니 이제 프라이팬에 관심이 생겼구나.",
+      "집사야, 그 팬 내려놓고 간식부터 챙겨 줘, 냐옹.",
+      "어휴, 뛰고 나서 프라이팬까지 바라보다니 정신없어 보이는구나!",
+      "나도 점프할래, 집사야—퐁당 말고 폴짝!"
+    ]
+  },
+  "20260929_000722_661": {
+    "bundle": {
+      "bundleId": "20260929_000722_661",
+      "eventCount": 1,
+      "createdAt": "2026-09-29T00:07:22.6610603+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\nNo Interaction or NPC targets are currently detected.\r\n[Current Relations]\r\n집사 is holding Mouse Pad.\r\n[Recent Vision Events]\r\n[50.86] WorldEvent: 집사 (InstanceID: 58108) -> TargetLost -> 킥보드 (InstanceID: 59120).\r\n[50.86] WorldEvent: 집사 (InstanceID: 58108) -> TargetLost -> mesh-3.007 (InstanceID: 57494).\r\n[Recent World Events]\r\n[48.86] WorldEvent: 집사 (InstanceID: 58108) -> Jump -> 집사 (InstanceID: 58108).\r\n[50.33] PlayerAction: 집사 (InstanceID: 58108) -> ObjectPickedUp -> Mouse Pad (InstanceID: 58698).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58108) | Target=킥보드 (InstanceID: 59120) | Fact=TargetLost Event 2 | Actor=집사 (InstanceID: 58108) | Target=mesh-3.007 (InstanceID: 57494) | Fact=TargetLost Event 3 | Actor=집사 (InstanceID: 58108) | Target=Mouse Pad (InstanceID: 58698) | Fact=ObjectPickedUp",
+      "rawResponse": "SelectedEntities: 집사 (InstanceID: 58108), Mouse Pad (InstanceID: 58698)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58108) | Target=킥보드 (InstanceID: 59120) | Fact=TargetLost Event 2 | Actor=집사 (InstanceID: 58108) | Target=mesh-3.007 (InstanceID: 57494) | Fact=TargetLost Event 3 | Actor=집사 (InstanceID: 58108) | Target=Mouse Pad (InstanceID: 58698) | Fact=ObjectPickedUp"
+    },
+    "responses": [
+      "집사야, 마우스 패드는 내 발톱 갈이용으로 남겨두라냥!",
+      "킥보드도 놓치고 마우스 패드까지 챙기다니, 바쁘구나옹.",
+      "그 패드 폭신해 보이는데, 나도 한쪽에 앉아도 되냥?",
+      "어라, 집사가 마우스 패드를 들었네, 수상한 냄새가 난다냥.",
+      "킥보드는 이제 됐고 그 패드나 내 베개로 쓰자냥!",
+      "마우스 패드 가져갔으니 내 장난감 쥐도 같이 가져가라냥.",
+      "앗, 내 낮잠 자리 후보를 집사가 선점했잖아옹!",
+      "집사야, 그 패드로 나를 살살 쓰다듬어 주면 좋겠다냥.",
+      "킥보드랑은 인연이 끝났나 보네, 패드는 꽉 잡아라옹.",
+      "흥, 마우스 패드는 내가 먼저 찜했는데 집사가 너무 빠르다냥!"
+    ]
+  },
+  "20260929_000726_583": {
+    "bundle": {
+      "bundleId": "20260929_000726_583",
+      "eventCount": 1,
+      "createdAt": "2026-09-29T00:07:26.5839490+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56656) is a NPC with state Unknown. It is 2.55 meters from the Player, has a facing dot of 0.30, and an interaction priority score of 0.39.\r\n고양이! 특징: 이 개체는 당신이다..\r\nmesh-5.003 (InstanceID: 59188) is a Item with state Unknown. It is 2.19 meters from the Player, has a facing dot of 0.65, and an interaction priority score of 0.61.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[54.27] WorldEvent: 집사 (InstanceID: 58108) -> TargetLookStarted -> mesh-1.018 (InstanceID: 58356).\r\n[54.36] WorldEvent: 집사 (InstanceID: 58108) -> TargetLost -> Shelving Unit 1 (InstanceID: 57684).\r\n[Recent World Events]\r\n[52.76] WorldEvent: Frying Pan 1 (InstanceID: 56812) -> Touch -> 고양이! (InstanceID: 56656).\r\n[52.76] WorldEvent: Computer Monitor (InstanceID: 58766) -> Touch -> 고양이! (InstanceID: 56656).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58108) | Target=mesh-1.018 (InstanceID: 58356) | Fact=LookStarted Event 2 | Actor=집사 (InstanceID: 58108) | Target=Shelving Unit 1 (InstanceID: 57684) | Fact=Lost Event 3 | Actor=Frying Pan 1 (InstanceID: 56812) | Target=고양이! (InstanceID: 56656) Event 4 | Actor=Computer Monitor (InstanceID: 58766) | Target=고양이! (InstanceID: 56656)",
+      "rawResponse": "SelectedEntities: 고양이! (InstanceID: 56656), mesh-5.003 (InstanceID: 59188)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58108) | Target=mesh-1.018 (InstanceID: 58356) | Fact=LookStarted Event 2 | Actor=집사 (InstanceID: 58108) | Target=Shelving Unit 1 (InstanceID: 57684) | Fact=Lost Event 3 | Actor=Frying Pan 1 (InstanceID: 56812) | Target=고양이! (InstanceID: 56656) Event 4 | Actor=Computer Monitor (InstanceID: 58766) | Target=고양이! (InstanceID: 56656)"
+    },
+    "responses": [
+      "으앗, 프라이팬이랑 모니터가 동시에 톡 건드렸잖아, 깜짝 놀랐어!",
+      "야옹, 둘 다 나한테 왜 이래? 털 정리 중이었는데!",
+      "흥, 프라이팬도 모니터도 조심해, 내 꼬리는 소중하다고!",
+      "깜짝이야! 집사는 저쪽을 보느라 내 난리도 못 봤지?",
+      "냐앙, 나를 건드렸으면 간식으로 사과해야지!",
+      "으르릉, 뜨거운 프라이팬은 특히 가까이 오지 말라냥!",
+      "휴우, 여기저기 톡톡 건드리니 정신이 하나도 없네.",
+      "흥, 모니터한테도 프라이팬한테도 한 번씩 꾹꾹이를 돌려줄 거야!",
+      "야옹야옹, 집사야 이쪽도 좀 봐줘, 나 지금 놀랐단 말이야!",
+      "에잇, 방해받았으니 이제 제일 푹신한 자리로 가서 잘래!"
+    ]
+  },
+  "20260929_000730_802": {
+    "bundle": {
+      "bundleId": "20260929_000730_802",
+      "eventCount": 1,
+      "createdAt": "2026-09-29T00:07:30.8024106+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56656) is a NPC with state Unknown. It is 2.41 meters from the Player, has a facing dot of 0.53, and an interaction priority score of 0.52.\r\n고양이! 특징: 이 개체는 당신이다..\r\nmesh-1.018 (InstanceID: 58356) is a Unknown with state Held. It is 0.81 meters from the Player, has a facing dot of 0.00, and an interaction priority score of 1.00.\r\n[Current Relations]\r\n집사 is holding mesh-1.018.\r\n[Recent Vision Events]\r\n[57.96] WorldEvent: 집사 (InstanceID: 58108) -> TargetVisible -> Monitor 3 (InstanceID: 58712).\r\n[58.24] WorldEvent: 집사 (InstanceID: 58108) -> TargetLookStarted -> Desk Lamp (InstanceID: 58710).\r\n[Recent World Events]\r\n[57.01] PlayerAction: 집사 (InstanceID: 58108) -> ObjectDropped -> mesh-1.018 (InstanceID: 58356).\r\n[57.63] PlayerAction: 집사 (InstanceID: 58108) -> ObjectPickedUp -> mesh-1.018 (InstanceID: 58356).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58108) | Target=Monitor 3 (InstanceID: 58712) | Fact=집사 is holding mesh-1.018. Event 2 | Actor=집사 (InstanceID: 58108) | Target=Desk Lamp (InstanceID: 58710) | Fact=집사 is holding mesh-1.018. Event 3 | Actor=집사 (InstanceID: 58108) | Target=ObjectDropped | Fact=mesh-1.018 (InstanceID: 58356). Event 4 | Actor=집사 (InstanceID: 58108) | Target=ObjectPickedUp | Fact=mesh-1.018 (InstanceID: 58356).",
+      "rawResponse": "SelectedEntities: 고양이! (InstanceID: 56656), mesh-1.018 (InstanceID: 58356)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58108) | Target=Monitor 3 (InstanceID: 58712) | Fact=집사 is holding mesh-1.018. Event 2 | Actor=집사 (InstanceID: 58108) | Target=Desk Lamp (InstanceID: 58710) | Fact=집사 is holding mesh-1.018. Event 3 | Actor=집사 (InstanceID: 58108) | Target=ObjectDropped | Fact=mesh-1.018 (InstanceID: 58356). Event 4 | Actor=집사 (InstanceID: 58108) | Target=ObjectPickedUp | Fact=mesh-1.018 (InstanceID: 58356)."
+    },
+    "responses": [
+      "집사야, 그 물건을 들었다 놨다 하느라 바쁘네, 나도 좀 봐줘!",
+      "모니터랑 램프는 그만 보고 내 턱이나 긁어라옹.",
+      "앗, 또 집어 들었어? 이번엔 어디로 가져갈 거야냥?",
+      "그 물건 내려놓고 간식부터 꺼내 줘, 냐옹.",
+      "집사가 뭘 만지든 난 여기서 느긋하게 지켜볼래옹.",
+      "램프는 번쩍이고 모니터는 반짝이고, 내 눈이 바쁘다냥!",
+      "그거 내려놓을 거면 내 발밑 말고 저쪽에 놔라옹.",
+      "집사야, 물건만 들지 말고 나도 한 번 쓰다듬어 줘라냥.",
+      "흥, 그 물건한테만 신경 쓰다니 살짝 서운하네옹.",
+      "다시 집어 들었구나, 이번엔 실수로 떨어뜨리지 마라냥!"
+    ]
+  },
+  "20260929_000734_960": {
+    "bundle": {
+      "bundleId": "20260929_000734_960",
+      "eventCount": 1,
+      "createdAt": "2026-09-29T00:07:34.9608613+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56656) is a NPC with state Unknown. It is 1.86 meters from the Player, has a facing dot of 0.82, and an interaction priority score of 0.72.\r\n고양이! 특징: 이 개체는 당신이다..\r\nMouse Pad (InstanceID: 58698) is a Item with state Unknown. It is 1.41 meters from the Player, has a facing dot of 0.79, and an interaction priority score of 0.75.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[62.00] WorldEvent: 집사 (InstanceID: 58108) -> TargetVisible -> 마우스 (InstanceID: 59254).\r\n[62.42] WorldEvent: 집사 (InstanceID: 58108) -> TargetLost -> mesh-3.007 (InstanceID: 57494).\r\n[Recent World Events]\r\n[62.24] WorldEvent: 큰 상자 (InstanceID: 58192) -> Touch -> 고양이! (InstanceID: 56656).\r\n[62.46] WorldEvent: Curved Monitor 4 (InstanceID: 58646) -> Touch -> 고양이! (InstanceID: 56656).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58108) | Target=마우스 (InstanceID: 59254) | Fact=집사 is not holding an item. Event 2 | Actor=집사 (InstanceID: 58108) | Target=mesh-3.007 (InstanceID: 57494) | Fact=집사 is not holding an item. Event 3 | Actor=큰 상자 (InstanceID: 58192) | Target=고양이! (InstanceID: 56656) | Fact=큰 상자 touched 고양이!. Event 4 | Actor=Curved Monitor 4 (InstanceID: 58646) | Target=고양이! (InstanceID: 56656) | Fact=Curved Monitor 4 touched 고양이!.",
+      "rawResponse": "SelectedEntities: 고양이! (InstanceID: 56656), Mouse Pad (InstanceID: 58698)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58108) | Target=마우스 (InstanceID: 59254) | Fact=집사 is not holding an item. Event 2 | Actor=집사 (InstanceID: 58108) | Target=mesh-3.007 (InstanceID: 57494) | Fact=집사 is not holding an item. Event 3 | Actor=큰 상자 (InstanceID: 58192) | Target=고양이! (InstanceID: 56656) | Fact=큰 상자 touched 고양이!. Event 4 | Actor=Curved Monitor 4 (InstanceID: 58646) | Target=고양이! (InstanceID: 56656) | Fact=Curved Monitor 4 touched 고양이!."
+    },
+    "responses": [
+      "으앗, 상자랑 모니터가 번갈아 툭툭 치잖아, 냥!",
+      "집사야, 마우스는 왜 보고만 있어? 나부터 살살 쓰다듬어 줘.",
+      "아이쿠, 여기저기 부딪혀서 꼬리가 삐죽 섰다냥.",
+      "흥, 상자도 모니터도 내 자리 침범 금지야!",
+      "냐아… 아무것도 안 들고 왔으면 손이라도 내밀어 봐.",
+      "깜짝이야, 큰 상자에 이어 모니터까지 건드리다니 너무하잖아!",
+      "히히, 툭 건드려도 난 끄떡없다냥!",
+      "집사 발소리 들었는데, 간식은 어디 숨겼어?",
+      "에구, 좁은 틈에 끼었나 봐, 얼른 비켜 줘라냥.",
+      "오늘은 마우스 말고 나한테 관심 좀 줘, 냥!"
+    ]
+  },
+  "20260929_000738_924": {
+    "bundle": {
+      "bundleId": "20260929_000738_924",
+      "eventCount": 1,
+      "createdAt": "2026-09-29T00:07:38.9244586+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56656) is a NPC with state Unknown. It is 2.71 meters from the Player, has a facing dot of 0.85, and an interaction priority score of 0.65.\r\n고양이! 특징: 이 개체는 당신이다..\r\nPizza Box (InstanceID: 58056) is a Unknown with state Held. It is 1.27 meters from the Player, has a facing dot of 0.00, and an interaction priority score of 1.00.\r\n[Current Relations]\r\n집사 is holding Pizza Box.\r\n[Recent Vision Events]\r\n[66.44] WorldEvent: 집사 (InstanceID: 58108) -> TargetVisible -> 공 (InstanceID: 57372).\r\n[66.44] WorldEvent: 집사 (InstanceID: 58108) -> TargetVisible -> Monitor 3 (InstanceID: 58712).\r\n[Recent World Events]\r\n[63.13] WorldEvent: 집사 (InstanceID: 58108) -> Jump -> 집사 (InstanceID: 58108).\r\n[64.39] PlayerAction: 집사 (InstanceID: 58108) -> ObjectPickedUp -> Pizza Box (InstanceID: 58056).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58108) | Target=공 (InstanceID: 57372) | Fact=집사 is holding Pizza Box. Event 2 | Actor=집사 (InstanceID: 58108) | Target=Monitor 3 (InstanceID: 58712) | Fact=집사 is holding Pizza Box. Event 3 | Actor=집사 (InstanceID: 58108) | Target=집사 (InstanceID: 58108) | Fact=집사 Jumped. Event 4 | Actor=집사 (InstanceID: 58108) | Target=Pizza Box (InstanceID: 58056) | Fact=ObjectPickedUp.",
+      "rawResponse": "SelectedEntities: 집사 (InstanceID: 58108), Pizza Box (InstanceID: 58056)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58108) | Target=공 (InstanceID: 57372) | Fact=집사 is holding Pizza Box. Event 2 | Actor=집사 (InstanceID: 58108) | Target=Monitor 3 (InstanceID: 58712) | Fact=집사 is holding Pizza Box. Event 3 | Actor=집사 (InstanceID: 58108) | Target=집사 (InstanceID: 58108) | Fact=집사 Jumped. Event 4 | Actor=집사 (InstanceID: 58108) | Target=Pizza Box (InstanceID: 58056) | Fact=ObjectPickedUp."
+    },
+    "responses": [
+      "냐옹, 집사가 피자 상자를 들었으니 한 조각은 내 몫이지!",
+      "어라, 피자 냄새가 나는데 얼른 열어 보자냥!",
+      "집사야, 상자 들고 어디 가는 거야? 나도 따라갈래.",
+      "점프까지 했으면서 피자는 혼자 챙기려는 거냐옹?",
+      "킁킁, 이 맛있는 냄새에 꼬리가 절로 흔들린다냥.",
+      "피자 상자라니, 오늘은 집사가 꽤 마음에 드는걸!",
+      "조심조심 들고 가라냥, 내 간식이 흔들리면 안 돼.",
+      "집사가 공이랑 모니터를 보든 말든, 난 피자만 보겠다옹!",
+      "흥, 한입도 안 주면 상자 위에 올라가 버릴 거다냥.",
+      "우와아, 피자 파티다! 나도 앞발 들고 기다릴게냥!"
+    ]
+  },
+  "20260929_000742_682": {
+    "bundle": {
+      "bundleId": "20260929_000742_682",
+      "eventCount": 1,
+      "createdAt": "2026-09-29T00:07:42.6820253+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\nNo Interaction or NPC targets are currently detected.\r\n[Current Relations]\r\n집사 is holding Pizza Box.\r\n[Recent Vision Events]\r\n[70.64] WorldEvent: 집사 (InstanceID: 58108) -> TargetLost -> mesh-3.007 (InstanceID: 57494).\r\n[70.65] WorldEvent: 집사 (InstanceID: 58108) -> TargetLookStarted -> 큰 상자 (InstanceID: 58192).\r\n[Recent World Events]\r\n[69.84] WorldEvent: 공 (InstanceID: 57372) -> Touch -> 고양이! (InstanceID: 56656).\r\n[70.29] PlayerAction: 집사 (InstanceID: 58108) -> ObjectPickedUp -> Pizza Box (InstanceID: 58056).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58108) | Target=mesh-3.007 (InstanceID: 57494) | Fact=TargetLost Event 2 | Actor=집사 (InstanceID: 58108) | Target=큰 상자 (InstanceID: 58192) | Fact=TargetLookStarted Event 3 | Actor=집사 (InstanceID: 58108) | Target=Pizza Box (InstanceID: 58056) | Fact=ObjectPickedUp",
+      "rawResponse": "SelectedEntities: 집사 (InstanceID: 58108), Pizza Box (InstanceID: 58056), mesh-3.007 (InstanceID: 57494), 큰 상자 (InstanceID: 58192)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58108) | Target=mesh-3.007 (InstanceID: 57494) | Fact=TargetLost Event 2 | Actor=집사 (InstanceID: 58108) | Target=큰 상자 (InstanceID: 58192) | Fact=TargetLookStarted Event 3 | Actor=집사 (InstanceID: 58108) | Target=Pizza Box (InstanceID: 58056) | Fact=ObjectPickedUp"
+    },
+    "responses": [
+      "야옹, 집사야 그 피자 상자 내 몫도 챙겨 줘!",
+      "흥, 피자 상자만 들고 큰 상자는 왜 빤히 보는 거야?",
+      "골골… 피자 냄새가 솔솔 나니 기분이 좋아졌어.",
+      "냐앙, 아까 공에 맞은 데는 괜찮으니 피자 한 조각만 주라.",
+      "집사야, 그 상자 열 때 꼭 나도 불러야 해!",
+      "으음, 피자 상자라니 오늘은 집사가 제법 마음에 드네.",
+      "냐옹! 큰 상자 말고 피자 상자부터 얼른 열어 줘.",
+      "흥냥, 내 시선은 이미 피자에 꽂혔어.",
+      "아까 공이 툭 건드려서 놀랐는데 피자 냄새에 풀렸어.",
+      "야옹야옹, 피자 상자를 내려놓으면 내가 먼저 검사할게!"
+    ]
+  },
+  "20260929_000746_538": {
+    "bundle": {
+      "bundleId": "20260929_000746_538",
+      "eventCount": 1,
+      "createdAt": "2026-09-29T00:07:46.5383281+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56656) is a NPC with state Unknown. It is 2.17 meters from the Player, has a facing dot of 0.07, and an interaction priority score of 0.32.\r\n고양이! 특징: 이 개체는 당신이다..\r\nStand Mirror (InstanceID: 58144) is a Item with state Unknown. It is 1.90 meters from the Player, has a facing dot of 0.96, and an interaction priority score of 0.79.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[74.26] WorldEvent: 집사 (InstanceID: 58108) -> TargetLost -> 의자 (InstanceID: 57780).\r\n[74.32] WorldEvent: 집사 (InstanceID: 58108) -> TargetLost -> 쓰래기통 (InstanceID: 58522).\r\n[Recent World Events]\r\n[73.11] WorldEvent: 집사 (InstanceID: 58108) -> Throw -> 집사 (InstanceID: 58108).\r\n[73.26] WorldEvent: 상자 (InstanceID: 58882) -> Hit -> 고양이! (InstanceID: 56656).\r\n",
+      "recognition": "Event 1 | Actor=집사 (InstanceID: 58108) | Target=의자 (InstanceID: 57780) | Fact=TargetLost Event 2 | Actor=집사 (InstanceID: 58108) | Target=쓰래기통 (InstanceID: 58522) | Fact=TargetLost Event 3 | Actor=집사 (InstanceID: 58108) | Target=집사 (InstanceID: 58108) | Fact=Throw Event 4 | Actor=상자 (InstanceID: 58882) | Target=고양이! (InstanceID: 56656) | Fact=Hit",
+      "rawResponse": "SelectedEntities: 고양이! (InstanceID: 56656), Stand Mirror (InstanceID: 58144)\nRecognition: Event 1 | Actor=집사 (InstanceID: 58108) | Target=의자 (InstanceID: 57780) | Fact=TargetLost Event 2 | Actor=집사 (InstanceID: 58108) | Target=쓰래기통 (InstanceID: 58522) | Fact=TargetLost Event 3 | Actor=집사 (InstanceID: 58108) | Target=집사 (InstanceID: 58108) | Fact=Throw Event 4 | Actor=상자 (InstanceID: 58882) | Target=고양이! (InstanceID: 56656) | Fact=Hit"
+    },
+    "responses": [
+      "아야옹! 상자가 날 맞히다니, 발톱으로 혼쭐내 줄 테다!",
+      "으르릉, 집사야, 물건은 던지지 말고 조심히 다뤄라옹!",
+      "깜짝이야, 털이 아직도 곤두섰잖아!",
+      "흥, 의자랑 쓰레기통도 놓쳤으면서 나까지 맞히다니 억울하다옹!",
+      "아픈 건 금방 잊을 테니 츄르로 달래 줘라옹.",
+      "야옹, 거울 앞에서 털이나 고르고 있었는데 웬 날벼락이냐!",
+      "꼬리가 부풀었잖아, 다음엔 꼭 피하고 말겠다옹!",
+      "집사야, 놀랐으니 얼른 쓰다듬어 줘라옹.",
+      "하악, 상자한테 당한 건 비밀로 해 줘라!",
+      "으으, 오늘은 높은 곳에 올라가 안전하게 낮잠 잘래옹."
+    ]
+  },
+  "20260929_000750_562": {
+    "bundle": {
+      "bundleId": "20260929_000750_562",
+      "eventCount": 1,
+      "createdAt": "2026-09-29T00:07:50.5626168+09:00",
+      "context": "[Current Sensor State]\r\nThis information comes from game sensors, not a camera image.\r\n고양이! (InstanceID: 56656) is a NPC with state Unknown. It is 3.84 meters from the Player, has a facing dot of 0.21, and an interaction priority score of 0.22.\r\n고양이! 특징: 이 개체는 당신이다..\r\nChip Bag (InstanceID: 58790) is a Item with state Unknown. It is 1.62 meters from the Player, has a facing dot of 0.54, and an interaction priority score of 0.61.\r\n[Current Relations]\r\nThe Player is not holding an item.\r\n[Recent Vision Events]\r\n[78.10] WorldEvent: 집사 (InstanceID: 58108) -> TargetLost -> mesh-2.010 (InstanceID: 58846).\r\n[78.10] WorldEvent: 집사 (InstanceID: 58108) -> TargetLost -> Slippers (InstanceID: 57252).\r\n[Recent World Events]\r\n[76.62] WorldEvent: Stand Mirror (InstanceID: 58144) -> Hit -> 고양이! (InstanceID: 56656).\r\n[77.30] WorldEvent: 집사 (InstanceID: 58108) -> Jump -> 집사 (InstanceID: 58108).\r\n",
+      "recognition": "Event 1 | Actor=Stand Mirror | Target=고양이! (InstanceID: 56656) | Fact=Hit Event 2 | Actor=집사 (InstanceID: 58108) | Target=mesh-2.010 (InstanceID: 58846) | Fact=TargetLost Event 3 | Actor=집사 (InstanceID: 58108) | Target=Slippers (InstanceID: 57252) Event 4 | Actor=집사 (InstanceID: 58108) | Target=집사 (InstanceID: 58108) | Fact=Jump",
+      "rawResponse": "SelectedEntities: 고양이! (InstanceID: 56656), Chip Bag (InstanceID: 58790), Stand Mirror (InstanceID: 58144), 집사 (InstanceID: 58108)\nRecognition: Event 1 | Actor=Stand Mirror | Target=고양이! (InstanceID: 56656) | Fact=Hit Event 2 | Actor=집사 (InstanceID: 58108) | Target=mesh-2.010 (InstanceID: 58846) | Fact=TargetLost Event 3 | Actor=집사 (InstanceID: 58108) | Target=Slippers (InstanceID: 57252) Event 4 | Actor=집사 (InstanceID: 58108) | Target=집사 (InstanceID: 58108) | Fact=Jump"
+    },
+    "responses": [
+      "으악, 거울에 부딪혔잖아! 살짝만 비켜둘걸 그랬어.",
+      "아이코야, 거울아 나한테 왜 그래, 깜짝 놀랐네!",
+      "흥, 거울이 먼저 친 거니까 내 잘못은 아니야.",
+      "아야옹, 부딪힌 데는 괜찮은데 심장이 쿵 했어!",
+      "집사가 폴짝 뛰는 동안 나는 거울한테 한 방 먹었네, 야옹.",
+      "치, 거울이랑은 이제 거리를 두겠어.",
+      "휴, 놀랐지만 괜찮아—칩 봉지나 살펴볼까?",
+      "거울아, 다음부터는 서로 조심하자옹!",
+      "으으, 갑자기 부딪혀서 꼬리가 바짝 섰어!",
+      "집사가 찾던 걸 놓친 사이에 내가 거울에 맞다니, 오늘 참 요란하네옹!"
+    ]
   }
 }

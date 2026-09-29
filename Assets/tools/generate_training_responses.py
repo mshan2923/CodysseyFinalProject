@@ -1,6 +1,7 @@
 import argparse
 import json
 import os
+import re
 import tempfile
 import time
 from pathlib import Path
@@ -149,6 +150,13 @@ def save_pretty_json(path: Path, data: dict):
             os.remove(temporary_name)
 
 
+def event_key(bundle: dict) -> str | None:
+    recognition = bundle.get("recognition")
+    if not isinstance(recognition, str) or not recognition.strip():
+        return None
+    return re.sub(r"\s+", " ", recognition).strip()
+
+
 def main():
     parser = argparse.ArgumentParser(description="OpenAI API로 이벤트 묶음별 반응을 생성합니다.")
     parser.add_argument("--input", required=True, type=Path, help="Unity가 생성한 JSONL TXT 파일")
@@ -177,10 +185,25 @@ def main():
                 raise ValueError("기존 출력 JSON의 최상위 값은 객체여야 합니다.")
             results.update(existing)
 
+    event_sources = {}
+    for existing_bundle_id, existing_result in results.items():
+        if isinstance(existing_result, dict):
+            existing_event_key = event_key(existing_result.get("bundle", {}))
+            if existing_event_key and existing_event_key not in event_sources:
+                event_sources[existing_event_key] = str(existing_bundle_id)
+
     for index, bundle in enumerate(read_jsonl(args.input), start=1):
         bundle_id = str(bundle.get("bundleId", f"bundle-{index}"))
         if bundle_id in results:
             print(f"[{index}] 건너뜀: {bundle_id}")
+            continue
+
+        current_event_key = event_key(bundle)
+        if current_event_key and current_event_key in event_sources:
+            print(
+                f"[{index}] 건너뜀: 중복 이벤트 {bundle_id} "
+                f"(기존 bundleId: {event_sources[current_event_key]})"
+            )
             continue
 
         print(f"[{index}] 처리 중: {bundle_id}")
@@ -197,6 +220,8 @@ def main():
             )
             responses = parse_response_array(content, args.count)
             results[bundle_id] = {"bundle": bundle, "responses": responses}
+            if current_event_key:
+                event_sources[current_event_key] = bundle_id
             print(f"[{index}] 완료: {len(responses)}개 반응")
         except Exception as error:
             results[bundle_id] = {
@@ -204,6 +229,8 @@ def main():
                 "responses": [],
                 "error": str(error),
             }
+            if current_event_key:
+                event_sources[current_event_key] = bundle_id
             print(f"[{index}] 실패: {error}")
 
         save_pretty_json(args.output, results)

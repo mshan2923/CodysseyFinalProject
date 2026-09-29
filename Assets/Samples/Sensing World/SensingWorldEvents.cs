@@ -13,11 +13,12 @@ namespace SensingWorld
         ObjectDropped,
         Touch,
         Hit,
+        Throw,
         Scratch,
         Jump,
         Sit,
         Lie,
-        Moew,
+        Meow,
         TargetLookStarted,
         TargetLookEnded,
         Move,
@@ -25,10 +26,6 @@ namespace SensingWorld
         // TODO: NPC Health 시스템이 추가되면 실제 HP 변경 지점에서 발행한다.
         // HP 감소 원인을 공격으로 해석하지 않고, 이전 값과 현재 값을 사실로 기록한다.
         HPChanged
-    }
-        public enum CatEventState
-    {
-        Idle, Touch, Scratch,  Sit, Lie, Meow, Move
     }
 
     public enum SensingWorldEventCategory
@@ -95,7 +92,7 @@ namespace SensingWorld
                 return fallback;
 
             SensingWorldEntity entity = entityObject.GetComponent<SensingWorldEntity>();
-            if (entity != null && !string.IsNullOrWhiteSpace(entity.DisplayName))
+            if (entity != null && !string.IsNullOrWhiteSpace(entity.DisplayName) && !string.Equals(entity.DisplayName, "Object"))
                 return entity.DisplayName;
 
             return entityObject.name;

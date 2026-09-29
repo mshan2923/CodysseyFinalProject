@@ -1,7 +1,7 @@
 using Unity.Behavior;
 using UnityEngine;
 
-public class TestPlayerPrompt : MonoBehaviour
+public class InjectNPCPrompt : MonoBehaviour
 {
 
     [SerializeField]

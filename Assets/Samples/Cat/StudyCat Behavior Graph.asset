@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c02bb70996b49eba31d0c206e28da24, type: 3}
   m_Name: StudyCat Behavior Graph Blackboard
   m_EditorClassIdentifier: Unity.Behavior::Unity.Behavior.RuntimeBlackboardAsset
-  VersionTimestamp: 639260167196929800
+  VersionTimestamp: 639260688156236130
   AssetID:
     m_Value0: 8429946708081656364
     m_Value1: 4929792406440363593
@@ -23,6 +23,7 @@ MonoBehaviour:
     - rid: 6453904991753077282
     - rid: 6453904991753077436
     - rid: 6453905128395112548
+    - rid: 6453905160299348054
   m_SharedBlackboardVariableGuids: []
   references:
     version: 2
@@ -70,6 +71,14 @@ MonoBehaviour:
           m_Value1: 11474939991357742953
         Name: Scan
         m_Value: 
+    - rid: 6453905160299348054
+      type: {class: 'BlackboardVariable`1[[System.String, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 5136148748970815412
+          m_Value1: 5585574963252566364
+        Name: NPCPrompt
+        m_Value: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,7 +101,7 @@ MonoBehaviour:
   - rid: 6453905000992079931
   - rid: 6453905128395112769
   - rid: 6453905128395112926
-  m_VersionTimestamp: 639260167198232342
+  m_VersionTimestamp: 639260688157183964
   m_SerializedVersion: 3
   m_DebugInfo: {fileID: 4369715867905022595}
   m_RuntimeGraph: {fileID: 750395920257023565}
@@ -836,8 +845,8 @@ MonoBehaviour:
           rid: 6453904991753077043
         BlackboardGroupReferences: []
         Root:
-          rid: 6453905147205779578
-        m_VersionTimestamp: 639260167198232342
+          rid: 6453905160299348073
+        m_VersionTimestamp: 639260688157183964
     - rid: 6453904991753077043
       type: {class: BlackboardReference, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -848,12 +857,13 @@ MonoBehaviour:
       type: {class: Blackboard, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         m_Variables:
-        - rid: 6453905147205779580
-        - rid: 6453905147205779581
-        - rid: 6453905147205779582
-        - rid: 6453905147205779583
-        - rid: 6453905147205779584
-    - rid: 6453905147205779496
+        - rid: 6453905160299348075
+        - rid: 6453905160299348076
+        - rid: 6453905160299348077
+        - rid: 6453905160299348078
+        - rid: 6453905160299348079
+        - rid: 6453905160299348080
+    - rid: 6453905160299348066
       type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -861,7 +871,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: 
         m_Value: 0.2
-    - rid: 6453905147205779497
+    - rid: 6453905160299348067
       type: {class: 'BlackboardVariable`1[[System.Boolean, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -869,7 +879,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: 
         m_Value: 1
-    - rid: 6453905147205779498
+    - rid: 6453905160299348068
       type: {class: 'BlackboardVariable`1[[System.String, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -877,7 +887,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: 
         m_Value: 
-    - rid: 6453905147205779499
+    - rid: 6453905160299348069
       type: {class: 'BlackboardVariable`1[[System.Boolean, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -885,7 +895,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: 
         m_Value: 1
-    - rid: 6453905147205779513
+    - rid: 6453905160299348070
       type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -893,7 +903,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: 
         m_Value: 2
-    - rid: 6453905147205779514
+    - rid: 6453905160299348071
       type: {class: 'BlackboardVariable`1[[UnityEngine.Vector3, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -901,7 +911,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: 
         m_Value: {x: 0, y: 1, z: 0}
-    - rid: 6453905147205779515
+    - rid: 6453905160299348072
       type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -909,7 +919,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: 
         m_Value: 2
-    - rid: 6453905147205779578
+    - rid: 6453905160299348073
       type: {class: Start, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         ID:
@@ -920,10 +930,10 @@ MonoBehaviour:
         m_Parent:
           rid: -2
         m_Child:
-          rid: 6453905147205779579
+          rid: 6453905160299348074
         Repeat: 1
         AllowMultipleRepeatsPerTick: 0
-    - rid: 6453905147205779579
+    - rid: 6453905160299348074
       type: {class: SequenceComposite, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         ID:
@@ -932,13 +942,13 @@ MonoBehaviour:
         Graph:
           rid: 6453904991753077042
         m_Parent:
-          rid: 6453905147205779578
+          rid: 6453905160299348073
         m_Children:
-        - rid: 6453905147205779585
-        - rid: 6453905147205779586
-        - rid: 6453905147205779587
+        - rid: 6453905160299348081
+        - rid: 6453905160299348082
+        - rid: 6453905160299348083
         m_RegisteredObservers: []
-    - rid: 6453905147205779580
+    - rid: 6453905160299348075
       type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -946,7 +956,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 0}
-    - rid: 6453905147205779581
+    - rid: 6453905160299348076
       type: {class: 'BlackboardVariable`1[[System.String, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -954,7 +964,7 @@ MonoBehaviour:
           m_Value1: 16625975973658502999
         Name: Question
         m_Value: 
-    - rid: 6453905147205779582
+    - rid: 6453905160299348077
       type: {class: 'BlackboardVariable`1[[System.String, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -965,7 +975,7 @@ MonoBehaviour:
           is not a camera image. Use only currently detected targets. Return exactly
           one valid JSON object and no markdown. Schema: {"action":"none|talk|pickup|drop|give|attach","targetInstanceId":0,"itemInstanceId":0,"confidence":0.0,"reason":"..."}.
           Use 0 for no target. Never invent IDs. Do not execute actions.'
-    - rid: 6453905147205779583
+    - rid: 6453905160299348078
       type: {class: 'BlackboardVariable`1[[TMPro.TMP_FontAsset, Unity.TextMeshPro]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -973,7 +983,7 @@ MonoBehaviour:
           m_Value1: 14887430687635756675
         Name: TMP Font Asset
         m_Value: {fileID: 11400000, guid: cdc43fb3b6fb46e48b5b950d0fcf9297, type: 2}
-    - rid: 6453905147205779584
+    - rid: 6453905160299348079
       type: {class: 'BlackboardVariable`1[[System.String, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -981,7 +991,15 @@ MonoBehaviour:
           m_Value1: 11474939991357742953
         Name: Scan
         m_Value: 
-    - rid: 6453905147205779585
+    - rid: 6453905160299348080
+      type: {class: 'BlackboardVariable`1[[System.String, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 5136148748970815412
+          m_Value1: 5585574963252566364
+        Name: NPCPrompt
+        m_Value: 
+    - rid: 6453905160299348081
       type: {class: SensingWorldAction, ns: , asm: Assembly-CSharp}
       data:
         ID:
@@ -990,10 +1008,10 @@ MonoBehaviour:
         Graph:
           rid: 6453904991753077042
         m_Parent:
-          rid: 6453905147205779579
+          rid: 6453905160299348074
         Result:
-          rid: 6453905147205779581
-    - rid: 6453905147205779586
+          rid: 6453905160299348076
+    - rid: 6453905160299348082
       type: {class: LlmChatAction, ns: , asm: Assembly-CSharp}
       data:
         ID:
@@ -1002,22 +1020,22 @@ MonoBehaviour:
         Graph:
           rid: 6453904991753077042
         m_Parent:
-          rid: 6453905147205779579
+          rid: 6453905160299348074
         systemMessage:
-          rid: 6453905147205779582
+          rid: 6453905160299348077
         Message:
-          rid: 6453905147205779581
+          rid: 6453905160299348076
         Reslut:
-          rid: 6453905147205779584
+          rid: 6453905160299348079
         Temperature:
-          rid: 6453905147205779496
+          rid: 6453905160299348066
         requireSelectedEntities:
-          rid: 6453905147205779497
+          rid: 6453905160299348067
         TextTag:
-          rid: 6453905147205779498
+          rid: 6453905160299348068
         SaveData:
-          rid: 6453905147205779499
-    - rid: 6453905147205779587
+          rid: 6453905160299348069
+    - rid: 6453905160299348083
       type: {class: TalkKoreanAction, ns: Unity.Behavior.Example, asm: Assembly-CSharp}
       data:
         ID:
@@ -1026,19 +1044,19 @@ MonoBehaviour:
         Graph:
           rid: 6453904991753077042
         m_Parent:
-          rid: 6453905147205779579
+          rid: 6453905160299348074
         Agent:
-          rid: 6453905147205779580
+          rid: 6453905160299348075
         Sentence:
-          rid: 6453905147205779584
+          rid: 6453905160299348079
         Duration:
-          rid: 6453905147205779513
+          rid: 6453905160299348070
         Font:
-          rid: 6453905147205779583
+          rid: 6453905160299348078
         Offset:
-          rid: 6453905147205779514
+          rid: 6453905160299348071
         Size:
-          rid: 6453905147205779515
+          rid: 6453905160299348072
 --- !u!114 &2786579940599905713
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1060,7 +1078,8 @@ MonoBehaviour:
   - rid: 6453904991753077281
   - rid: 6453904991753077435
   - rid: 6453905128395112547
-  m_VersionTimestamp: 639260167196929800
+  - rid: 6453905160299348053
+  m_VersionTimestamp: 639260688156236130
   m_CommandBuffer:
     m_Commands: []
   m_RuntimeBlackboardAsset: {fileID: -5298118642556781361}
@@ -1117,6 +1136,16 @@ MonoBehaviour:
           m_Value0: 12526633900365193717
           m_Value1: 11474939991357742953
         Name: Scan
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: 
+    - rid: 6453905160299348053
+      type: {class: 'TypedVariableModel`1[[System.String, mscorlib]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 5136148748970815412
+          m_Value1: 5585574963252566364
+        Name: NPCPrompt
         IsExposed: 1
         m_IsShared: 0
         m_Value: 

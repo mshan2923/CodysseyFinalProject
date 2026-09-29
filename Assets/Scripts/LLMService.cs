@@ -17,6 +17,10 @@ public class LLMService : MonoBehaviour
 
     public float temperature = 0.2f;
 
+    [SerializeField]
+    [Min(1)]
+    private int timeoutSeconds = 60;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -90,6 +94,8 @@ public class LLMService : MonoBehaviour
 
         request.downloadHandler =
             new DownloadHandlerBuffer();
+
+        request.timeout = Mathf.Max(1, timeoutSeconds);
 
         request.SetRequestHeader(
             "Content-Type",
