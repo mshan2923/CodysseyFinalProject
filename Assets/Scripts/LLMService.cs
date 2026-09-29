@@ -13,7 +13,10 @@ public class LLMService : MonoBehaviour
     private string ollamaUrl = "http://localhost:11434/api/chat";
 
     [SerializeField]
-    private string model = "codyssey-cat-q4";//"gemma4:e2b";
+    private string model = "codyssey-cat-q4-test1024:latest";
+
+    [SerializeField]
+    private string fallbackModel = "gemma4:e2b";
 
     public float temperature = 0.2f;
 
@@ -56,9 +59,50 @@ public class LLMService : MonoBehaviour
         Action<string> onError,
         float? temperatureOverride)
     {
+        string error = null;
+        yield return SendChatRequest(
+            model, systemPrompt, userMessage, onSuccess,
+            message => error = message, temperatureOverride);
+
+        if (error == null)
+        {
+            yield break;
+        }
+
+        if (!string.IsNullOrWhiteSpace(fallbackModel) && fallbackModel != model)
+        {
+            Debug.LogWarning(
+                $"[LLMService] 모델 '{model}' 실패. '{fallbackModel}'로 재시도합니다.\n{error}");
+
+            string primaryError = error;
+            error = null;
+            yield return SendChatRequest(
+                fallbackModel, systemPrompt, userMessage, onSuccess,
+                message => error = message, temperatureOverride);
+
+            if (error == null)
+            {
+                yield break;
+            }
+
+            error = $"기본 모델 실패:\n{primaryError}\n\n대체 모델 실패:\n{error}";
+        }
+
+        Debug.LogError($"[LLMService]\n{error}");
+        onError?.Invoke(error);
+    }
+
+    private IEnumerator SendChatRequest(
+        string requestedModel,
+        string systemPrompt,
+        string userMessage,
+        Action<string> onSuccess,
+        Action<string> onError,
+        float? temperatureOverride)
+    {
         OllamaChatRequest requestData = new OllamaChatRequest
         {
-            model = model,
+            model = requestedModel,
             stream = false,
             think = false,
             options = new OllamaOptions
@@ -110,9 +154,6 @@ public class LLMService : MonoBehaviour
                 $"Code: {request.responseCode}\n" +
                 $"Error: {request.error}";
 
-            Debug.LogError(
-                $"[LLMService]\n{error}");
-
             onError?.Invoke(error);
             yield break;
         }
@@ -134,22 +175,17 @@ public class LLMService : MonoBehaviour
                 $"응답 JSON 파싱 실패\n{e.Message}\n\n" +
                 responseJson;
 
-            Debug.LogError(
-                $"[LLMService]\n{error}");
-
             onError?.Invoke(error);
             yield break;
         }
 
         if (response == null ||
-            response.message == null)
+            response.message == null ||
+            string.IsNullOrWhiteSpace(response.message.content))
         {
             string error =
-                "Ollama 응답에 message가 없습니다.\n\n" +
+                "Ollama 응답에 message 또는 내용이 없습니다.\n\n" +
                 responseJson;
-
-            Debug.LogError(
-                $"[LLMService]\n{error}");
 
             onError?.Invoke(error);
             yield break;

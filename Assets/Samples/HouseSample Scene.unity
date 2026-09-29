@@ -15938,6 +15938,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LLMService
   ollamaUrl: http://localhost:11434/api/chat
   model: 'codyssey-cat-q4-test1024:latest '
+  fallbackModel: gemma4:e2b
   temperature: 0.2
   timeoutSeconds: 60
 --- !u!4 &921496567
