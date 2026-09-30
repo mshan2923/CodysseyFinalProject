@@ -48,35 +48,63 @@ public class DialogueController : MonoBehaviour
         if (target == null) return;
 
         agent.GetVariable<string>(Variable, out var variable);
-        UpdateText(variable?.Value);   // 위치 계산 전에 크기 확정
+        UpdateText(variable?.Value);   // 위치 계산 전에 패널 크기 확정
 
         Vector3 sp = cam.WorldToScreenPoint(target.position + worldOffset);
 
-        // 카메라 뒤: 좌우/상하 반전 후 테두리로 밀어냄
+        // 카메라 뒤에 있는 경우
         if (sp.z < 0)
         {
-            Vector2 c = new(Screen.width * 0.5f, Screen.height * 0.5f);
-            Vector2 dir = c - (Vector2)sp;
-            if (dir.sqrMagnitude < 0.01f) dir = Vector2.down;
-            sp = c + dir.normalized * 100000f;
+            Vector2 center = new(Screen.width * 0.5f, Screen.height * 0.5f);
+            Vector2 dir = center - (Vector2)sp;
+
+            if (dir.sqrMagnitude < 0.01f)
+                dir = Vector2.down;
+
+            sp = center + dir.normalized * 100000f;
         }
 
-        // 패널이 화면 밖으로 잘리지 않게 패널 반크기만큼 안쪽으로 clamp
-        Vector2 half = panel.rect.size * canvas.scaleFactor * 0.5f;
-        sp.x = Mathf.Clamp(sp.x, half.x, Screen.width - half.x);
-        sp.y = Mathf.Clamp(sp.y, half.y, Screen.height - half.y);
+        // 화면 오프셋 적용
+        sp += (Vector3)screenOffset;
+
+        // 패널의 실제 크기
+        Vector2 size = panel.rect.size * canvas.scaleFactor;
+        Vector2 pivot = panel.pivot;
+
+        // Pivot 위치를 기준으로 필요한 화면 여백 계산
+        float left = size.x * pivot.x;
+        float right = size.x * (1f - pivot.x);
+
+        float bottom = size.y * pivot.y;
+        float top = size.y * (1f - pivot.y);
+
+        // 패널 전체가 화면 안에 들어오도록 Clamp
+        sp.x = Mathf.Clamp(
+            sp.x,
+            left,
+            Screen.width - right
+        );
+
+        sp.y = Mathf.Clamp(
+            sp.y,
+            bottom,
+            Screen.height - top
+        );
 
         if (canvas.renderMode == RenderMode.ScreenSpaceOverlay)
         {
-            panel.position = sp + (Vector3)screenOffset;
+            panel.position = sp;
         }
         else
         {
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                (RectTransform)panel.parent, sp, canvas.worldCamera, out var local);
-            panel.localPosition = local + screenOffset;
-        }
+                (RectTransform)panel.parent,
+                sp,
+                canvas.worldCamera,
+                out var local
+            );
 
-        text.text = variable?.Value;
+            panel.localPosition = local;
+        }
     }
 }

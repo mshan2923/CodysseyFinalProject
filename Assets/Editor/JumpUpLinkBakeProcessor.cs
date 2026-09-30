@@ -17,11 +17,11 @@ public sealed class JumpUpLinkBakeProcessor : EditorWindow
 
     [SerializeField, Min(0.05f)] private float linkSpacing = 1f;
     [SerializeField, Min(0f)] private float edgePadding = 0.1f;
-    [SerializeField, Min(0.01f)] private float startOffset = 1.5f;
-    [SerializeField, Min(0f)] private float landingOffset = 0.25f;
+    [SerializeField, Min(0.01f)] private float startOffset = 0.5f;
+    [SerializeField, Min(0f)] private float landingOffset = 0.05f;
     [SerializeField, Min(0.01f)] private float stepHeight = 0.45f;
     [SerializeField, Min(0.01f)] private float maxJumpHeight = 2.5f;
-    [SerializeField, Min(0f)] private float linkCost = 3f;
+    [SerializeField, Min(0f)] private float linkCost = 1f;
     [SerializeField] private NavMeshSurface navMeshSurface;
     [SerializeField] private LayerMask groundMask = ~0;
     [SerializeField] private int area;
@@ -110,8 +110,9 @@ public sealed class JumpUpLinkBakeProcessor : EditorWindow
         if (clearPreviousLinks)
             ClearGeneratedLinks(root);
 
-        List<BoundaryEdge> boundaries = FindBoundaryEdges(triangulation);
-        List<JumpCandidate> candidates = BuildCandidates(triangulation, boundaries);
+        List<BoundaryEdge> boundaries = FindBoundaryEdges(triangulation, out List<Vector3> vertices);
+        List<BoundaryChain> chains = BuildChains(vertices, boundaries);
+        List<JumpCandidate> candidates = BuildCandidates(chains);
         int generated = CreateLinks(root.transform, candidates, surface.agentTypeID);
 
         EditorSceneManager.MarkSceneDirty(scene);
@@ -119,32 +120,7 @@ public sealed class JumpUpLinkBakeProcessor : EditorWindow
         EditorUtility.DisplayDialog("Jump-Up Links", $"Generated {generated} jump-up link(s).", "OK");
     }
 
-    private List<BoundaryEdge> FindBoundaryEdges(NavMeshTriangulation triangulation)
-    {
-        Dictionary<EdgeKey, BoundaryEdge> edges = new Dictionary<EdgeKey, BoundaryEdge>();
-        int[] indices = triangulation.indices;
 
-        for (int i = 0; i < indices.Length; i += 3)
-        {
-            int a = indices[i];
-            int b = indices[i + 1];
-            int c = indices[i + 2];
-            Vector3 center = (triangulation.vertices[a] + triangulation.vertices[b] + triangulation.vertices[c]) / 3f;
-
-            RegisterEdge(edges, a, b, center);
-            RegisterEdge(edges, b, c, center);
-            RegisterEdge(edges, c, a, center);
-        }
-
-        List<BoundaryEdge> boundaries = new List<BoundaryEdge>();
-        foreach (BoundaryEdge edge in edges.Values)
-        {
-            if (edge.UsageCount == 1)
-                boundaries.Add(edge);
-        }
-
-        return boundaries;
-    }
 
     private static void RegisterEdge(
         Dictionary<EdgeKey, BoundaryEdge> edges,
@@ -163,39 +139,247 @@ public sealed class JumpUpLinkBakeProcessor : EditorWindow
         edges.Add(key, new BoundaryEdge(first, second, triangleCenter));
     }
 
-    private List<JumpCandidate> BuildCandidates(
-        NavMeshTriangulation triangulation,
-        List<BoundaryEdge> boundaries)
+
+    private sealed class BoundaryChain
+    {
+        public readonly List<Vector3> Points = new List<Vector3>();
+        public readonly List<Vector3> Normals = new List<Vector3>(); // 세그먼트당 1개 (Points.Count - 1)
+    }
+
+    private static List<BoundaryEdge> FindBoundaryEdges(NavMeshTriangulation triangulation, out List<Vector3> vertices)
+    {
+        // 중복 정점 weld
+        vertices = new List<Vector3>();
+        Dictionary<Vector3Int, int> weld = new Dictionary<Vector3Int, int>();
+        int[] remap = new int[triangulation.vertices.Length];
+
+        for (int i = 0; i < remap.Length; i++)
+        {
+            Vector3 v = triangulation.vertices[i];
+            Vector3Int key = new Vector3Int(
+                Mathf.RoundToInt(v.x * 100f),
+                Mathf.RoundToInt(v.y * 100f),
+                Mathf.RoundToInt(v.z * 100f));
+
+            if (!weld.TryGetValue(key, out int id))
+            {
+                id = vertices.Count;
+                weld.Add(key, id);
+                vertices.Add(v);
+            }
+
+            remap[i] = id;
+        }
+
+        Dictionary<EdgeKey, BoundaryEdge> edges = new Dictionary<EdgeKey, BoundaryEdge>();
+        int[] indices = triangulation.indices;
+
+        for (int i = 0; i < indices.Length; i += 3)
+        {
+            int a = remap[indices[i]];
+            int b = remap[indices[i + 1]];
+            int c = remap[indices[i + 2]];
+            if (a == b || b == c || c == a)
+                continue;
+
+            Vector3 center = (vertices[a] + vertices[b] + vertices[c]) / 3f;
+            RegisterEdge(edges, a, b, center);
+            RegisterEdge(edges, b, c, center);
+            RegisterEdge(edges, c, a, center);
+        }
+
+        List<BoundaryEdge> boundaries = new List<BoundaryEdge>();
+        foreach (BoundaryEdge edge in edges.Values)
+        {
+            if (edge.UsageCount == 1)
+                boundaries.Add(edge);
+        }
+
+        return boundaries;
+    }
+
+    private static List<BoundaryChain> BuildChains(List<Vector3> vertices, List<BoundaryEdge> edges)
+    {
+        const float minDirectionDot = 0.9f;   // 약 25도 이상 꺾이면 체인 분리
+        const float minNormalDot = 0.7f;
+        const float maxEdgeHeight = 0.1f;
+
+        Vector3[] normals = new Vector3[edges.Count];
+        bool[] valid = new bool[edges.Count];
+        bool[] used = new bool[edges.Count];
+        Dictionary<int, List<int>> adjacency = new Dictionary<int, List<int>>();
+
+        for (int i = 0; i < edges.Count; i++)
+        {
+            BoundaryEdge e = edges[i];
+            Vector3 a = vertices[e.FirstIndex];
+            Vector3 b = vertices[e.SecondIndex];
+            Vector3 d = b - a;
+            Vector3 h = Vector3.ProjectOnPlane(d, Vector3.up);
+
+            if (h.sqrMagnitude < 0.0001f || Mathf.Abs(d.y) > maxEdgeHeight)
+                continue;
+
+            Vector3 tangent = h.normalized;
+            Vector3 normal = new Vector3(-tangent.z, 0f, tangent.x); // 엣지에 수직
+            Vector3 toCenter = Vector3.ProjectOnPlane(e.TriangleCenter - (a + b) * 0.5f, Vector3.up);
+            if (Vector3.Dot(normal, toCenter) < 0f)
+                normal = -normal;
+
+            normals[i] = normal;
+            valid[i] = true;
+            AddAdjacency(e.FirstIndex, i);
+            AddAdjacency(e.SecondIndex, i);
+        }
+
+        List<BoundaryChain> chains = new List<BoundaryChain>();
+
+        for (int i = 0; i < edges.Count; i++)
+        {
+            if (!valid[i] || used[i])
+                continue;
+
+            used[i] = true;
+            BoundaryEdge seed = edges[i];
+            Vector3 seedDir = Vector3.ProjectOnPlane(vertices[seed.SecondIndex] - vertices[seed.FirstIndex], Vector3.up).normalized;
+
+            List<int> forwardVertices = new List<int>();
+            List<Vector3> forwardNormals = new List<Vector3>();
+            List<int> backwardVertices = new List<int>();
+            List<Vector3> backwardNormals = new List<Vector3>();
+
+            Extend(seed.SecondIndex, seedDir, normals[i], forwardVertices, forwardNormals);
+            Extend(seed.FirstIndex, -seedDir, normals[i], backwardVertices, backwardNormals);
+
+            BoundaryChain chain = new BoundaryChain();
+            for (int k = backwardVertices.Count - 1; k >= 0; k--)
+            {
+                chain.Points.Add(vertices[backwardVertices[k]]);
+                chain.Normals.Add(backwardNormals[k]);
+            }
+
+            chain.Points.Add(vertices[seed.FirstIndex]);
+            chain.Normals.Add(normals[i]);
+            chain.Points.Add(vertices[seed.SecondIndex]);
+
+            for (int k = 0; k < forwardVertices.Count; k++)
+            {
+                chain.Points.Add(vertices[forwardVertices[k]]);
+                chain.Normals.Add(forwardNormals[k]);
+            }
+
+            // backward 쪽 법선은 "이 점으로 들어오는 세그먼트" 기준이라 순서를 맞춰야 함
+            chains.Add(FixChainNormals(chain, normals[i], backwardNormals, forwardNormals));
+        }
+
+        return chains;
+
+        void AddAdjacency(int vertex, int edgeIndex)
+        {
+            if (!adjacency.TryGetValue(vertex, out List<int> list))
+            {
+                list = new List<int>();
+                adjacency.Add(vertex, list);
+            }
+
+            list.Add(edgeIndex);
+        }
+
+        void Extend(int vertex, Vector3 direction, Vector3 normal, List<int> outVertices, List<Vector3> outNormals)
+        {
+            while (true)
+            {
+                int best = -1;
+                int bestOther = -1;
+                float bestDot = minDirectionDot;
+                Vector3 bestDir = default;
+
+                foreach (int ei in adjacency[vertex])
+                {
+                    if (used[ei])
+                        continue;
+
+                    BoundaryEdge e = edges[ei];
+                    int other = e.FirstIndex == vertex ? e.SecondIndex : e.FirstIndex;
+                    Vector3 step = vertices[other] - vertices[vertex];
+                    if (Mathf.Abs(step.y) > maxEdgeHeight)
+                        continue;
+
+                    Vector3 dir = Vector3.ProjectOnPlane(step, Vector3.up).normalized;
+                    float dot = Vector3.Dot(dir, direction);
+                    if (dot < bestDot || Vector3.Dot(normals[ei], normal) < minNormalDot)
+                        continue;
+
+                    best = ei;
+                    bestOther = other;
+                    bestDot = dot;
+                    bestDir = dir;
+                }
+
+                if (best < 0)
+                    return;
+
+                used[best] = true;
+                outVertices.Add(bestOther);
+                outNormals.Add(normals[best]);
+                vertex = bestOther;
+                direction = bestDir;
+                normal = normals[best];
+            }
+        }
+    }
+
+    private static BoundaryChain FixChainNormals(
+        BoundaryChain chain,
+        Vector3 seedNormal,
+        List<Vector3> backwardNormals,
+        List<Vector3> forwardNormals)
+    {
+        // Normals 순서: [backward 역순][seed][forward] — 세그먼트 수와 일치
+        chain.Normals.Clear();
+        for (int k = backwardNormals.Count - 1; k >= 0; k--)
+            chain.Normals.Add(backwardNormals[k]);
+        chain.Normals.Add(seedNormal);
+        chain.Normals.AddRange(forwardNormals);
+        return chain;
+    }
+
+    private List<JumpCandidate> BuildCandidates(List<BoundaryChain> chains)
     {
         List<JumpCandidate> candidates = new List<JumpCandidate>();
 
-        foreach (BoundaryEdge boundary in boundaries)
+        foreach (BoundaryChain chain in chains)
         {
-            Vector3 first = triangulation.vertices[boundary.FirstIndex];
-            Vector3 second = triangulation.vertices[boundary.SecondIndex];
-            Vector3 edge = second - first;
-            Vector3 horizontalEdge = Vector3.ProjectOnPlane(edge, Vector3.up);
-
-            if (horizontalEdge.sqrMagnitude < 0.0001f || Mathf.Abs(edge.y) > 0.1f)
+            List<Vector3> points = chain.Points;
+            if (points.Count < 2)
                 continue;
 
-            Vector3 tangent = horizontalEdge.normalized;
-            Vector3 midpoint = (first + second) * 0.5f;
-            Vector3 inward = Vector3.ProjectOnPlane(boundary.TriangleCenter - midpoint, Vector3.up);
-
-            if (inward.sqrMagnitude < 0.0001f)
-                continue;
-
-            inward.Normalize();
-            float edgeLength = horizontalEdge.magnitude;
-            float usableLength = Mathf.Max(0f, edgeLength - edgePadding * 2f);
-            int count = Mathf.Max(1, Mathf.CeilToInt(usableLength / linkSpacing));
-
-            for (int i = 0; i <= count; i++)
+            float[] cumulative = new float[points.Count];
+            for (int i = 1; i < points.Count; i++)
             {
-                float t = count == 0 ? 0.5f : i / (float)count;
-                float alongEdge = Mathf.Lerp(edgePadding, edgeLength - edgePadding, t);
-                Vector3 edgePoint = first + tangent * alongEdge;
+                cumulative[i] = cumulative[i - 1] +
+                                Vector3.ProjectOnPlane(points[i] - points[i - 1], Vector3.up).magnitude;
+            }
+
+            float usableLength = cumulative[points.Count - 1] - edgePadding * 2f;
+            if (usableLength <= 0.01f)
+                continue;
+
+            // 체인 전체를 균등 분할 → 간격/폭 일정
+            int count = Mathf.Max(1, Mathf.CeilToInt(usableLength / linkSpacing));
+            float step = usableLength / count;
+            int segment = 0;
+
+            for (int i = 0; i < count; i++)
+            {
+                float distance = edgePadding + step * (i + 0.5f);
+                while (segment < points.Count - 2 && cumulative[segment + 1] < distance)
+                    segment++;
+
+                float t = Mathf.InverseLerp(cumulative[segment], cumulative[segment + 1], distance);
+                Vector3 edgePoint = Vector3.Lerp(points[segment], points[segment + 1], t);
+                Vector3 inward = chain.Normals[segment];
+
                 Vector3 upper = edgePoint + inward * landingOffset + Vector3.up * 0.05f;
                 Vector3 lowerProbe = edgePoint - inward * startOffset;
 
@@ -206,15 +390,20 @@ public sealed class JumpUpLinkBakeProcessor : EditorWindow
                 if (heightDifference <= stepHeight || heightDifference > maxJumpHeight)
                     continue;
 
-                if (!IsNavMeshPoint(lower, 0.2f) || !IsNavMeshPoint(upper, landingOffset + 0.1f))
+                if (!TryProjectToNavMeshHeight(lower, 0.2f, out Vector3 alignedLower) ||
+                    !TryProjectToNavMeshHeight(upper, landingOffset + 0.1f, out Vector3 alignedUpper))
                     continue;
 
-                candidates.Add(new JumpCandidate(lower, upper));
+                candidates.Add(new JumpCandidate(alignedLower, alignedUpper, step));
             }
         }
 
         return candidates;
     }
+
+
+
+
 
     private bool TryFindLowerFloor(Vector3 probe, float upperY, out Vector3 lower)
     {
@@ -237,11 +426,22 @@ public sealed class JumpUpLinkBakeProcessor : EditorWindow
         return false;
     }
 
-    private static bool IsNavMeshPoint(Vector3 point, float sampleRadius)
+    private static bool TryProjectToNavMeshHeight(Vector3 point, float sampleRadius, out Vector3 alignedPoint)
     {
         float radius = Mathf.Max(0.2f, sampleRadius);
-        return NavMesh.SamplePosition(point, out NavMeshHit hit, radius, NavMesh.AllAreas) &&
-               Vector3.Distance(hit.position, point) <= radius;
+        if (NavMesh.SamplePosition(point, out NavMeshHit hit, radius, NavMesh.AllAreas))
+        {
+            Vector2 horizontalOffset = new Vector2(hit.position.x - point.x, hit.position.z - point.z);
+            float maxHorizontalOffset = Mathf.Min(0.15f, radius * 0.5f);
+            if (horizontalOffset.sqrMagnitude <= maxHorizontalOffset * maxHorizontalOffset)
+            {
+                alignedPoint = new Vector3(point.x, hit.position.y, point.z);
+                return true;
+            }
+        }
+
+        alignedPoint = default;
+        return false;
     }
 
     private int CreateLinks(Transform root, List<JumpCandidate> candidates, int agentTypeId)
@@ -258,12 +458,14 @@ public sealed class JumpUpLinkBakeProcessor : EditorWindow
             GameObject linkObject = new GameObject("JumpUpLink");
             Undo.RegisterCreatedObjectUndo(linkObject, "Create Jump-Up Link");
             linkObject.transform.SetParent(root, false);
+            PlaceLinkTransform(linkObject.transform, candidate.Start, candidate.End);
 
             NavMeshLink link = linkObject.AddComponent<NavMeshLink>();
             link.agentTypeID = agentTypeId;
             link.area = area;
-            link.startPoint = candidate.Start - linkObject.transform.position;
-            link.endPoint = candidate.End - linkObject.transform.position;
+            link.startPoint = linkObject.transform.InverseTransformPoint(candidate.Start);
+            link.endPoint = linkObject.transform.InverseTransformPoint(candidate.End);
+            link.width = candidate.Width;
             link.bidirectional = bidirectional;
             link.costModifier = linkCost > 0f ? Mathf.Max(1f, linkCost) : -1f;
             link.autoUpdate = false;
@@ -273,6 +475,15 @@ public sealed class JumpUpLinkBakeProcessor : EditorWindow
         }
 
         return generated;
+    }
+
+    private static void PlaceLinkTransform(Transform linkTransform, Vector3 start, Vector3 end)
+    {
+        linkTransform.position = (start + end) * 0.5f;
+
+        Vector3 horizontalDirection = Vector3.ProjectOnPlane(end - start, Vector3.up);
+        if (horizontalDirection.sqrMagnitude > 0.0001f)
+            linkTransform.rotation = Quaternion.LookRotation(horizontalDirection.normalized, Vector3.up);
     }
 
     [MenuItem("Tools/NavMesh/Repair Generated Jump-Up Link Agent Types")]
@@ -427,15 +638,18 @@ public sealed class JumpUpLinkBakeProcessor : EditorWindow
         }
     }
 
+
     private readonly struct JumpCandidate
     {
         public readonly Vector3 Start;
         public readonly Vector3 End;
+        public readonly float Width;
 
-        public JumpCandidate(Vector3 start, Vector3 end)
+        public JumpCandidate(Vector3 start, Vector3 end, float width)
         {
             Start = start;
             End = end;
+            Width = width;
         }
     }
 }
