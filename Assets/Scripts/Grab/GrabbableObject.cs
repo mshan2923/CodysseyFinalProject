@@ -10,10 +10,6 @@ namespace SensingWorld
         [Header("SensingWorld Events")]
         [SerializeField] private SensingWorldEventBusHost eventBusHost;
 
-        [Header("Outline")]
-        [SerializeField] private Renderer outlineRenderer;
-        [SerializeField] private int outlineMaterialIndex;
-        [SerializeField] private float outlineVisibleAlpha = 1f;
 
         public float TouchMaxPower = 1f;
 
@@ -21,7 +17,7 @@ namespace SensingWorld
 
         public bool IsHeld { get; private set; }
 
-        private Material outlineMaterial;
+        public Material outlineMaterial;
         private static readonly int ColorProperty = Shader.PropertyToID("_Color");
         private readonly Dictionary<GameObject, int> collisionCounts = new();
 
@@ -30,23 +26,32 @@ namespace SensingWorld
             collisionCounts.Clear();
         }
 
+        private uint outlineBit;
+        public LayerMask layerMask;
+        private Renderer[] renderers;
+
         private void Awake()
         {
             Body = GetComponent<Rigidbody>();
-
             if (eventBusHost == null)
                 eventBusHost = FindFirstObjectByType<SensingWorldEventBusHost>();
 
-            outlineRenderer = GetComponent<MeshRenderer>();
+            outlineBit = RenderingLayerMask.GetMask("Outline");
 
-            if (outlineRenderer != null)
-            {
-                Material[] materials = outlineRenderer.materials;
-                if (outlineMaterialIndex >= 0 && outlineMaterialIndex < materials.Length)
-                    outlineMaterial = materials[outlineMaterialIndex];
-            }
+            Debug.Log($"{outlineBit} - {layerMask.value}");
 
+            renderers = GetComponentsInChildren<Renderer>();
             SetOutlineVisible(false);
+        }
+
+        public void SetOutlineVisible(bool visible)
+        {
+            bool on = visible || IsHeld;
+            foreach (Renderer r in renderers)
+            {
+                if (on) r.renderingLayerMask |= outlineBit;
+                else r.renderingLayerMask &= ~outlineBit;
+            }
         }
 
 
@@ -111,16 +116,5 @@ namespace SensingWorld
             IsHeld = held;
         }
 
-        public void SetOutlineVisible(bool visible)
-        {
-            if (outlineMaterial == null || !outlineMaterial.HasProperty(ColorProperty))
-                return;
-
-                        
-
-            Color color = outlineMaterial.GetColor(ColorProperty);
-            color.a = visible || IsHeld? outlineVisibleAlpha : 0f;
-            outlineMaterial.SetColor(ColorProperty, color);
-        }
     }
 }

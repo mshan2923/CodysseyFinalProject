@@ -396,10 +396,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &32364916
 GameObject:
   m_ObjectHideFlags: 0
@@ -937,10 +938,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &67300526
 GameObject:
   m_ObjectHideFlags: 0
@@ -1313,10 +1315,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &80434943
 GameObject:
   m_ObjectHideFlags: 0
@@ -1749,10 +1752,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &92718026
 GameObject:
   m_ObjectHideFlags: 0
@@ -2072,10 +2076,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 921496565}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 1
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &101262864
 GameObject:
   m_ObjectHideFlags: 0
@@ -3061,10 +3066,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &154306260
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3880,10 +3886,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &182017267
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4813,10 +4820,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &230863776
 GameObject:
   m_ObjectHideFlags: 0
@@ -5437,10 +5445,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &256225873
 GameObject:
   m_ObjectHideFlags: 0
@@ -7112,10 +7121,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &356964339
 GameObject:
   m_ObjectHideFlags: 0
@@ -7953,6 +7963,14 @@ PrefabInstance:
       propertyPath: m_RayTracingMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7665585721476855179, guid: eb6be4324b2c14d4ca634265fc12443e, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665585721476855179, guid: eb6be4324b2c14d4ca634265fc12443e, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: -8598004344228395916, guid: 0122e706f3797e04e99ffe1a4bcfac85, type: 3}
     - target: {fileID: 8169914457376461918, guid: eb6be4324b2c14d4ca634265fc12443e, type: 3}
       propertyPath: m_Name
       value: Waste Bin
@@ -8606,10 +8624,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 1
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &465253882
 GameObject:
   m_ObjectHideFlags: 0
@@ -9670,10 +9689,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &535039398
 GameObject:
   m_ObjectHideFlags: 0
@@ -10356,10 +10376,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &576417307
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10504,10 +10525,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &584081201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10730,10 +10752,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &595903246
 GameObject:
   m_ObjectHideFlags: 0
@@ -11424,10 +11447,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &612770788
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12200,10 +12224,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 1
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &657266407
 GameObject:
   m_ObjectHideFlags: 0
@@ -12727,10 +12752,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &681009207
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13109,10 +13135,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &703853663
 GameObject:
   m_ObjectHideFlags: 0
@@ -13759,10 +13786,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!54 &754185886
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15287,10 +15315,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &885562681
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15435,10 +15464,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 1
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &887314894
 GameObject:
   m_ObjectHideFlags: 0
@@ -15855,10 +15885,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &921496562
 GameObject:
   m_ObjectHideFlags: 0
@@ -16172,10 +16203,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &937084562 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2879630269039232040, guid: 8aeed76f45de0964a81034b64cd1c391, type: 3}
@@ -16237,10 +16269,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &937269304
 GameObject:
   m_ObjectHideFlags: 0
@@ -16377,10 +16410,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &946112467
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16796,10 +16830,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &979089703
 GameObject:
   m_ObjectHideFlags: 0
@@ -17128,10 +17163,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &986848881 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6065992247223410243, guid: eedeeb53da61f22498ab2b1334259f05, type: 3}
@@ -17198,10 +17234,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 1
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &991477489
 GameObject:
   m_ObjectHideFlags: 0
@@ -17486,10 +17523,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1004477495
 GameObject:
   m_ObjectHideFlags: 0
@@ -18392,10 +18430,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1086590902
 GameObject:
   m_ObjectHideFlags: 0
@@ -18807,10 +18846,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &1128653953
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19490,10 +19530,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1180470625 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 63967500266556026, guid: bbecb98d689d33448ad477b24713de4f, type: 3}
@@ -19643,10 +19684,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1186759798 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6827030957300785742, guid: 39fa81be3de0c9d42b75a0f089556be6, type: 3}
@@ -25037,10 +25079,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1240300536 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8383007410561521088, guid: a27b612c8a379fa4da17f9252cd2f957, type: 3}
@@ -25107,10 +25150,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1243990988
 GameObject:
   m_ObjectHideFlags: 0
@@ -26180,10 +26224,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &1309378139
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26574,10 +26619,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1333889093 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2404327349761557510, guid: acb790e18cdbae24c97b6c1e23c7a56d, type: 3}
@@ -26644,10 +26690,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1342580219 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5376369687507064950, guid: c41e44b32e380604d9267ef9205cc103, type: 3}
@@ -26709,10 +26756,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 1
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &1344821380
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26864,10 +26912,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1352099366
 GameObject:
   m_ObjectHideFlags: 0
@@ -27077,10 +27126,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1365094914
 GameObject:
   m_ObjectHideFlags: 0
@@ -27386,10 +27436,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &1382603547
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28222,10 +28273,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!4 &1443820331 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1274650224414269329, guid: ddca1595067badf428c1598900437693, type: 3}
@@ -28564,10 +28616,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!54 &1473281194
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -28817,10 +28870,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1488774519
 GameObject:
   m_ObjectHideFlags: 0
@@ -29082,10 +29136,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!54 &1497292211
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -30233,10 +30288,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1563725748
 GameObject:
   m_ObjectHideFlags: 0
@@ -30509,10 +30565,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 1
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &1591171198 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2216015754413208801, guid: b39443b4d581dcc459c67a35f06080b6, type: 3}
@@ -31326,10 +31383,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1645150504
 GameObject:
   m_ObjectHideFlags: 0
@@ -31721,10 +31779,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &1691545061
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31876,10 +31935,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1710289100
 GameObject:
   m_ObjectHideFlags: 0
@@ -32011,10 +32071,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1716202620
 GameObject:
   m_ObjectHideFlags: 0
@@ -32352,10 +32413,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1741098476
 GameObject:
   m_ObjectHideFlags: 0
@@ -32487,10 +32549,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &1775009364
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32618,10 +32681,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 1
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &1776975938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32651,10 +32715,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1778117783
 GameObject:
   m_ObjectHideFlags: 0
@@ -33329,10 +33394,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1830238141
 GameObject:
   m_ObjectHideFlags: 0
@@ -33887,10 +33953,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!54 &1861731608
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -34717,10 +34784,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1917793474 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7890373442762193109, guid: 5f05dd56701363f41ad235cb91defdfe, type: 3}
@@ -34782,10 +34850,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1921566951
 GameObject:
   m_ObjectHideFlags: 0
@@ -35928,10 +35997,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &2009911794
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36037,10 +36107,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!54 &2016155729
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -36918,10 +36989,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 1
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &2075618760
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37323,10 +37395,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &2089594319
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37860,10 +37933,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 1
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &2101906116 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 405174387085232324, guid: b89df4a57179ad74297b1d974d7c5a7b, type: 3}
@@ -37898,10 +37972,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!54 &2101906123
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -38649,10 +38724,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensingWorld.GrabbableObject
   eventBusHost: {fileID: 0}
-  outlineRenderer: {fileID: 0}
-  outlineMaterialIndex: 0
-  outlineVisibleAlpha: 1
   TouchMaxPower: 1
+  outlineMaterial: {fileID: 2100000, guid: 1a88f29eb6844b348bb038fc84b88e11, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &2139696303 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3158496457282139955, guid: 61bdc2f1dd3ec984081a3ee4aa8071f1, type: 3}
