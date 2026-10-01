@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -36,7 +38,6 @@ public class LLMService : MonoBehaviour
     [SerializeField]
     private string openAiUrl = "https://api.openai.com/v1/chat/completions";
 
-    [SerializeField]
     private string openAiApiKey;
 
     [SerializeField]
@@ -46,7 +47,6 @@ public class LLMService : MonoBehaviour
     [SerializeField]
     private string anthropicUrl = "https://api.anthropic.com/v1/messages";
 
-    [SerializeField]
     private string anthropicApiKey;
 
     [SerializeField]
@@ -71,6 +71,39 @@ public class LLMService : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        LoadApiKeysFromDotEnv();
+    }
+
+    private void LoadApiKeysFromDotEnv()
+    {
+        string projectRoot = Directory.GetParent(Application.dataPath).FullName;
+        string envPath = Path.Combine(projectRoot, ".env");
+        if (!File.Exists(envPath))
+        {
+            Debug.LogWarning($"[LLMService] .env 파일을 찾을 수 없습니다: {envPath}");
+            return;
+        }
+
+        Dictionary<string, string> values = new Dictionary<string, string>();
+        foreach (string rawLine in File.ReadAllLines(envPath))
+        {
+            string line = rawLine.Trim();
+            if (string.IsNullOrEmpty(line) || line.StartsWith("#"))
+                continue;
+
+            int separator = line.IndexOf('=');
+            if (separator <= 0)
+                continue;
+
+            string key = line.Substring(0, separator).Trim();
+            string value = line.Substring(separator + 1).Trim().Trim('"');
+            values[key] = value;
+        }
+
+        if (string.IsNullOrWhiteSpace(openAiApiKey) && values.TryGetValue("OPENAI_API_KEY", out string openAiKey))
+            openAiApiKey = openAiKey;
+        if (string.IsNullOrWhiteSpace(anthropicApiKey) && values.TryGetValue("ANTHROPIC_API_KEY", out string anthropicKey))
+            anthropicApiKey = anthropicKey;
     }
 
     public void Chat(
