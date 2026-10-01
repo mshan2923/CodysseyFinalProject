@@ -6,7 +6,21 @@ using UnityEngine.Networking;
 
 public class LLMService : MonoBehaviour
 {
+    private enum Provider
+    {
+        Ollama,
+        OpenAI,
+        Anthropic
+    }
+
     public static LLMService Instance { get; private set; }
+
+    [Header("Provider")]
+    [SerializeField]
+    private Provider provider = Provider.Ollama;
+
+    [SerializeField]
+    private Provider fallbackProvider = Provider.Ollama;
 
     [Header("Ollama")]
     [SerializeField]
@@ -17,6 +31,29 @@ public class LLMService : MonoBehaviour
 
     [SerializeField]
     private string fallbackModel = "gemma4:e2b";
+
+    [Header("OpenAI / GPT")]
+    [SerializeField]
+    private string openAiUrl = "https://api.openai.com/v1/chat/completions";
+
+    [SerializeField]
+    private string openAiApiKey;
+
+    [SerializeField]
+    private string openAiModel = "gpt-4o-mini";
+
+    [Header("Anthropic / Claude")]
+    [SerializeField]
+    private string anthropicUrl = "https://api.anthropic.com/v1/messages";
+
+    [SerializeField]
+    private string anthropicApiKey;
+
+    [SerializeField]
+    private string anthropicModel = "claude-3-5-haiku-latest";
+
+    [SerializeField]
+    private string anthropicVersion = "2023-06-01";
 
     public float temperature = 0.2f;
 
@@ -61,7 +98,7 @@ public class LLMService : MonoBehaviour
     {
         string error = null;
         yield return SendChatRequest(
-            model, systemPrompt, userMessage, onSuccess,
+            provider, GetModel(provider, false), systemPrompt, userMessage, onSuccess,
             message => error = message, temperatureOverride);
 
         if (error == null)
@@ -69,15 +106,16 @@ public class LLMService : MonoBehaviour
             yield break;
         }
 
-        if (!string.IsNullOrWhiteSpace(fallbackModel) && fallbackModel != model)
+        if (fallbackProvider != provider || GetModel(fallbackProvider, true) != GetModel(provider, false))
         {
             Debug.LogWarning(
-                $"[LLMService] 모델 '{model}' 실패. '{fallbackModel}'로 재시도합니다.\n{error}");
+                $"[LLMService] {provider}/{GetModel(provider, false)} 실패. " +
+                $"{fallbackProvider}/{GetModel(fallbackProvider, true)}로 재시도합니다.\n{error}");
 
             string primaryError = error;
             error = null;
             yield return SendChatRequest(
-                fallbackModel, systemPrompt, userMessage, onSuccess,
+                fallbackProvider, GetModel(fallbackProvider, true), systemPrompt, userMessage, onSuccess,
                 message => error = message, temperatureOverride);
 
             if (error == null)
@@ -93,6 +131,7 @@ public class LLMService : MonoBehaviour
     }
 
     private IEnumerator SendChatRequest(
+        Provider requestProvider,
         string requestedModel,
         string systemPrompt,
         string userMessage,
@@ -100,37 +139,57 @@ public class LLMService : MonoBehaviour
         Action<string> onError,
         float? temperatureOverride)
     {
-        OllamaChatRequest requestData = new OllamaChatRequest
+        string url;
+        string json;
+
+        if (requestProvider == Provider.Ollama)
         {
-            model = requestedModel,
-            stream = false,
-            think = false,
-            options = new OllamaOptions
+            OllamaChatRequest requestData = new OllamaChatRequest
             {
-                temperature = temperatureOverride ?? temperature
-            },
-            messages = new[]
-            {
-                new OllamaMessage
+                model = requestedModel,
+                stream = false,
+                think = false,
+                options = new OllamaOptions { temperature = temperatureOverride ?? temperature },
+                messages = new[]
                 {
-                    role = "system",
-                    content = systemPrompt
-                },
-
-                new OllamaMessage
-                {
-                    role = "user",
-                    content = userMessage
+                    new OllamaMessage { role = "system", content = systemPrompt },
+                    new OllamaMessage { role = "user", content = userMessage }
                 }
-            }
-        };
-
-        string json = JsonUtility.ToJson(requestData);
+            };
+            url = ollamaUrl;
+            json = JsonUtility.ToJson(requestData);
+        }
+        else if (requestProvider == Provider.OpenAI)
+        {
+            OpenAiChatRequest requestData = new OpenAiChatRequest
+            {
+                model = requestedModel,
+                temperature = temperatureOverride ?? temperature,
+                messages = new[]
+                {
+                    new OllamaMessage { role = "system", content = systemPrompt },
+                    new OllamaMessage { role = "user", content = userMessage }
+                }
+            };
+            url = openAiUrl;
+            json = JsonUtility.ToJson(requestData);
+        }
+        else
+        {
+            AnthropicMessageRequest requestData = new AnthropicMessageRequest
+            {
+                model = requestedModel,
+                max_tokens = 4096,
+                temperature = temperatureOverride ?? temperature,
+                system = systemPrompt,
+                messages = new[] { new OllamaMessage { role = "user", content = userMessage } }
+            };
+            url = anthropicUrl;
+            json = JsonUtility.ToJson(requestData);
+        }
 
         using UnityWebRequest request =
-            new UnityWebRequest(
-                ollamaUrl,
-                UnityWebRequest.kHttpVerbPOST);
+            new UnityWebRequest(url, UnityWebRequest.kHttpVerbPOST);
 
         request.uploadHandler =
             new UploadHandlerRaw(
@@ -141,16 +200,21 @@ public class LLMService : MonoBehaviour
 
         request.timeout = Mathf.Max(1, timeoutSeconds);
 
-        request.SetRequestHeader(
-            "Content-Type",
-            "application/json");
+        request.SetRequestHeader("Content-Type", "application/json");
+        if (requestProvider == Provider.OpenAI)
+            request.SetRequestHeader("Authorization", "Bearer " + openAiApiKey);
+        else if (requestProvider == Provider.Anthropic)
+        {
+            request.SetRequestHeader("x-api-key", anthropicApiKey);
+            request.SetRequestHeader("anthropic-version", anthropicVersion);
+        }
 
         yield return request.SendWebRequest();
 
         if (request.result != UnityWebRequest.Result.Success)
         {
             string error =
-                $"Ollama Error\n" +
+                $"{requestProvider} Error\n" +
                 $"Code: {request.responseCode}\n" +
                 $"Error: {request.error}";
 
@@ -158,41 +222,52 @@ public class LLMService : MonoBehaviour
             yield break;
         }
 
-        string responseJson =
-            request.downloadHandler.text;
-
-        OllamaChatResponse response;
+        string responseText = request.downloadHandler.text;
 
         try
         {
-            response =
-                JsonUtility.FromJson<OllamaChatResponse>(
-                    responseJson);
+            string content = ExtractContent(requestProvider, responseText);
+            if (string.IsNullOrWhiteSpace(content))
+                throw new Exception("응답에 내용이 없습니다.");
+            onSuccess?.Invoke(content);
+            yield break;
         }
         catch (Exception e)
         {
             string error =
                 $"응답 JSON 파싱 실패\n{e.Message}\n\n" +
-                responseJson;
+                responseText;
 
             onError?.Invoke(error);
             yield break;
         }
 
-        if (response == null ||
-            response.message == null ||
-            string.IsNullOrWhiteSpace(response.message.content))
+    }
+
+    private string GetModel(Provider selectedProvider, bool isFallback) =>
+        selectedProvider == Provider.Ollama && isFallback ? fallbackModel :
+        selectedProvider == Provider.Ollama ? model :
+        selectedProvider == Provider.OpenAI ? openAiModel : anthropicModel;
+
+    private string ExtractContent(Provider selectedProvider, string json)
+    {
+        if (selectedProvider == Provider.Ollama)
+            return JsonUtility.FromJson<OllamaChatResponse>(json)?.message?.content;
+        if (selectedProvider == Provider.OpenAI)
         {
-            string error =
-                "Ollama 응답에 message 또는 내용이 없습니다.\n\n" +
-                responseJson;
-
-            onError?.Invoke(error);
-            yield break;
+            OpenAiChatResponse openAiResponse =
+                JsonUtility.FromJson<OpenAiChatResponse>(json);
+            return openAiResponse != null &&
+                   openAiResponse.choices != null &&
+                   openAiResponse.choices.Length > 0
+                ? openAiResponse.choices[0].message?.content : null;
         }
-
-        onSuccess?.Invoke(
-            response.message.content);
+        AnthropicResponse anthropicResponse =
+            JsonUtility.FromJson<AnthropicResponse>(json);
+        return anthropicResponse != null &&
+               anthropicResponse.content != null &&
+               anthropicResponse.content.Length > 0
+            ? anthropicResponse.content[0].text : null;
     }
 
     [Serializable]
@@ -216,6 +291,34 @@ public class LLMService : MonoBehaviour
     {
         public OllamaMessage message;
     }
+
+    [Serializable]
+    private class OpenAiChatRequest
+    {
+        public string model;
+        public float temperature;
+        public OllamaMessage[] messages;
+    }
+
+    [Serializable]
+    private class OpenAiChatResponse { public OpenAiChoice[] choices; }
+    [Serializable]
+    private class OpenAiChoice { public OllamaMessage message; }
+
+    [Serializable]
+    private class AnthropicMessageRequest
+    {
+        public string model;
+        public int max_tokens;
+        public float temperature;
+        public string system;
+        public OllamaMessage[] messages;
+    }
+
+    [Serializable]
+    private class AnthropicResponse { public AnthropicContent[] content; }
+    [Serializable]
+    private class AnthropicContent { public string type; public string text; }
 
     [Serializable]
     private class OllamaMessage
