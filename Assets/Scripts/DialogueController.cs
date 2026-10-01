@@ -1,3 +1,4 @@
+using SensingWorld;
 using TMPro;
 using Unity.Behavior;
 using UnityEngine;
@@ -48,7 +49,9 @@ public class DialogueController : MonoBehaviour
         if (target == null) return;
 
         agent.GetVariable<string>(Variable, out var variable);
-        UpdateText(variable?.Value);   // 위치 계산 전에 패널 크기 확정
+
+        LlmResponseParser.TryParse(variable, out var result);
+        UpdateText(result.Dialogue);   // 위치 계산 전에 패널 크기 확정
 
         Vector3 sp = cam.WorldToScreenPoint(target.position + worldOffset);
 

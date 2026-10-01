@@ -19,13 +19,13 @@ namespace SensingWorld
         [SerializeField] private int maxContextTargets = 12;
         [SerializeField] private bool includeRecentVisionEvents = true;
 
-        private readonly Dictionary<GameObject, ActiveTarget> activeTargets = new();
+        private readonly Dictionary<int, ActiveTarget> activeTargets = new();
         private readonly Dictionary<GameObject, GameObject> heldItems = new();
         private readonly List<SensingWorldEvent> recentVisionEvents = new();
         private readonly List<SensingWorldEvent> recentWorldEvents = new();
         private IDisposable eventSubscription;
 
-        public IReadOnlyCollection<ActiveTarget> ActiveTargets => activeTargets.Values;
+        public Dictionary<int, ActiveTarget> ActiveTargets => activeTargets;
         public IReadOnlyList<SensingWorldEvent> RecentVisionEvents => recentVisionEvents;
         public IReadOnlyList<SensingWorldEvent> RecentWorldEvents => recentWorldEvents;
 
@@ -206,7 +206,7 @@ namespace SensingWorld
                         out target.InteractionScore))
                 {
                     if (target.Target != null)
-                        activeTargets.Remove(target.Target);
+                        activeTargets.Remove(target.Target.GetInstanceID());
 
                     continue;
                 }
@@ -232,7 +232,7 @@ namespace SensingWorld
 
             if (gameEvent.Type == SensingWorldEventType.TargetVisible)
             {
-                activeTargets[gameEvent.Target] = new ActiveTarget
+                activeTargets[gameEvent.Target.GetInstanceID()] = new ActiveTarget
                 {
                     Target = gameEvent.Target,
                     Name = gameEvent.TargetName,
@@ -250,15 +250,15 @@ namespace SensingWorld
             }
             else if (gameEvent.Type == SensingWorldEventType.TargetLost)
             {
-                activeTargets.Remove(gameEvent.Target);
+                activeTargets.Remove(gameEvent.Target.GetInstanceID());
             }
             else if (gameEvent.Type == SensingWorldEventType.ObjectPickedUp)
             {
                 heldItems[gameEvent.Target] = gameEvent.Actor;
 
-                if (!activeTargets.ContainsKey(gameEvent.Target))
+                if (!activeTargets.ContainsKey(gameEvent.Target.GetInstanceID()))
                 {
-                    activeTargets[gameEvent.Target] = new ActiveTarget
+                    activeTargets[gameEvent.Target.GetInstanceID()] = new ActiveTarget
                     {
                         Target = gameEvent.Target,
                         Name = gameEvent.TargetName,
@@ -284,7 +284,7 @@ namespace SensingWorld
                 if (interactionSensor == null ||
                     !interactionSensor.TryGetCurrentData(gameEvent.Target, out _, out _, out _))
                 {
-                    activeTargets.Remove(gameEvent.Target);
+                    activeTargets.Remove(gameEvent.Target.GetInstanceID());
                 }
             }
         }

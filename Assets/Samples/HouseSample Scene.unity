@@ -1909,12 +1909,21 @@ MonoBehaviour:
   m_BlackboardVariableOverridesList:
   - rid: 6453905058044051728
   - rid: 6453905058044051776
+  - rid: 1887216080380494211
   m_OriginalGraph: {fileID: 0}
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
     version: 2
     RefIds:
+    - rid: 1887216080380494211
+      type: {class: 'BlackboardVariable`1[[LlmTargetResolver, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 14355829529576999090
+          m_Value1: 15915613642497921028
+        Name: LlmTargetResolver
+        m_Value: {fileID: 132508402}
     - rid: 6453905058044051728
       type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -2018,6 +2027,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1135917089247754445, guid: ce67235c5df9f5e4fb270dff77f36c1e, type: 3}
   m_PrefabInstance: {fileID: 1216330554}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &132508402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132508376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f758d245f6d005a49b24bc2118455320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LlmTargetResolver
+  agent: {fileID: 132508394}
+  Variable: Result
+  targetObject: {fileID: 0}
 --- !u!1001 &137293624
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13032,9 +13056,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8f7ca881b0191b45b908cc636400b87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LLMService
+  provider: 0
+  fallbackProvider: 0
   ollamaUrl: http://localhost:11434/api/chat
-  model: 'codyssey-cat-q4-test1024:latest '
+  model: 'codyssey-cat-q4-test512:latest  '
   fallbackModel: gemma4:e2b
+  openAiUrl: https://api.openai.com/v1/chat/completions
+  openAiModel: gpt-4o-mini
+  anthropicUrl: https://api.anthropic.com/v1/messages
+  anthropicModel: claude-3-5-haiku-latest
+  anthropicVersion: 2023-06-01
   temperature: 0.2
   timeoutSeconds: 60
 --- !u!4 &921496567
@@ -13080,7 +13111,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.033333335
+  m_VoxelSize: 0.1
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: d5f573d93a4d5c841aac52f0ca43ce2f, type: 2}
   m_BuildHeightMesh: 0
@@ -13098,7 +13129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueController
   target: {fileID: 132508397}
   worldOffset: {x: 0, y: 1, z: 0}
-  screenOffset: {x: 0, y: -20}
+  screenOffset: {x: 0, y: 0}
   panel: {fileID: 519101063}
   canvas: {fileID: 1821824596}
   agent: {fileID: 132508394}
@@ -20509,6 +20540,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 326588212004266615, guid: ce67235c5df9f5e4fb270dff77f36c1e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 132508390}
+    - targetCorrespondingSourceObject: {fileID: 326588212004266615, guid: ce67235c5df9f5e4fb270dff77f36c1e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 132508402}
   m_SourcePrefab: {fileID: 100100000, guid: ce67235c5df9f5e4fb270dff77f36c1e, type: 3}
 --- !u!1001 &1219629660
 PrefabInstance:
@@ -21018,7 +21052,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1270226912}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9ca49cde12f5b24d99f9bc2ae88b8ef, type: 3}
   m_Name: 
