@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
 namespace SensingWorld
@@ -32,9 +33,13 @@ namespace SensingWorld
         private Collider[] heldColliders;
 
         private bool restoreGravity;
+        private bool restoreIsKinematic;
         private CollisionDetectionMode restoreCollisionDetectionMode;
         private RigidbodyInterpolation restoreInterpolation;
         private float restoreSleepThreshold;
+
+        private NavMeshAgent pendingNavMeshAgent;
+        private GrabbableObject pendingNavMeshObject;
 
         private void Awake()
         {
@@ -121,11 +126,15 @@ namespace SensingWorld
             Rigidbody body = heldObject.Body;
 
             restoreGravity = body.useGravity;
+            restoreIsKinematic = body.isKinematic;
             restoreCollisionDetectionMode = body.collisionDetectionMode;
             restoreInterpolation = body.interpolation;
             restoreSleepThreshold = body.sleepThreshold;
 
             body.useGravity = false;
+            // Kinematic Rigidbody에는 AddForce가 적용되지 않으므로,
+            // 잡고 있는 동안에는 반드시 물리 Rigidbody로 전환한다.
+            body.isKinematic = false;
             body.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
             body.interpolation = RigidbodyInterpolation.Interpolate;
             body.sleepThreshold = 0f; // 잡고 있는 동안 재우지 않음
@@ -137,6 +146,16 @@ namespace SensingWorld
                 heldColliders = heldObject.GetComponentsInChildren<Collider>();
                 foreach (var col in heldColliders)
                     Physics.IgnoreCollision(col, playerCollider, true);
+            }
+
+            if (heldObject.transform.TryGetComponent(out NavMeshAgent agent))
+            {
+                if (agent.enabled)
+                {
+                    agent.isStopped = true;
+                    agent.enabled = false;
+                }
+                body.isKinematic = false; // NavMeshAgent가 Rigidbody를 제어하지 않도록 전환
             }
 
             heldObject.SetHeld(true);
@@ -264,6 +283,25 @@ namespace SensingWorld
             Rigidbody body = heldObject.Body;
 
             body.useGravity = restoreGravity;
+
+            bool hasNavMeshAgent = heldObject.transform.TryGetComponent(
+                out NavMeshAgent agent);
+
+            // NavMeshAgent가 있던 NPC는 놓는 즉시 Agent를 켜지 않는다.
+            // 먼저 실제 물리 충돌을 받아 바닥/벽에 안착한 뒤 재활성화한다.
+            if (hasNavMeshAgent)
+            {
+                body.isKinematic = false;
+                pendingNavMeshAgent = agent;
+                pendingNavMeshObject = heldObject;
+                pendingNavMeshObject.CollisionEntered +=
+                    OnPendingNavMeshObjectCollision;
+            }
+            else
+            {
+                body.isKinematic = restoreIsKinematic;
+            }
+
             body.collisionDetectionMode = restoreCollisionDetectionMode;
             body.interpolation = restoreInterpolation;
             body.sleepThreshold = restoreSleepThreshold;
@@ -291,6 +329,42 @@ namespace SensingWorld
             heldObject = null;
         }
 
+        private void OnPendingNavMeshObjectCollision(Collision collision)
+        {
+            if (pendingNavMeshObject == null || pendingNavMeshAgent == null)
+                return;
+
+            Vector3 position = pendingNavMeshObject.transform.position;
+            int areaMask = pendingNavMeshAgent.areaMask;
+
+            if (!NavMesh.SamplePosition(position, out NavMeshHit navHit, 1.5f, areaMask))
+                return;
+
+            GrabbableObject grabbable = pendingNavMeshObject;
+            NavMeshAgent agent = pendingNavMeshAgent;
+            Rigidbody body = grabbable.Body;
+
+            grabbable.CollisionEntered -= OnPendingNavMeshObjectCollision;
+            pendingNavMeshObject = null;
+            pendingNavMeshAgent = null;
+
+            // 충돌 후 NavMesh 높이만 보정한 다음 Agent를 다시 맡긴다.
+            Vector3 snappedPosition = grabbable.transform.position;
+            snappedPosition.y = navHit.position.y;
+            grabbable.transform.position = snappedPosition;
+
+            agent.enabled = true;
+            if (!agent.isOnNavMesh)
+            {
+                agent.enabled = false;
+                return;
+            }
+
+            agent.isStopped = false;
+            agent.ResetPath();
+            body.isKinematic = true;
+        }
+
         public void Throw()
         {
             if (heldObject == null)
@@ -303,6 +377,24 @@ namespace SensingWorld
             body.interpolation = restoreInterpolation;
             body.sleepThreshold = restoreSleepThreshold;
             body.linearVelocity = Camera.main.transform.forward * ThrowPower;
+
+            bool hasNavMeshAgent = heldObject.transform.TryGetComponent(
+                out NavMeshAgent agent);
+
+            // NavMeshAgent가 있던 NPC는 놓는 즉시 Agent를 켜지 않는다.
+            // 먼저 실제 물리 충돌을 받아 바닥/벽에 안착한 뒤 재활성화한다.
+            if (hasNavMeshAgent)
+            {
+                body.isKinematic = false;
+                pendingNavMeshAgent = agent;
+                pendingNavMeshObject = heldObject;
+                pendingNavMeshObject.CollisionEntered +=
+                    OnPendingNavMeshObjectCollision;
+            }
+            else
+            {
+                body.isKinematic = restoreIsKinematic;
+            }
 
             body.WakeUp();
 
@@ -321,7 +413,7 @@ namespace SensingWorld
                 heldObject == pointedObject);
 
             PublishEvent(
-                SensingWorldEventType.ObjectDropped,
+                SensingWorldEventType.Throw,
                 heldObject.gameObject);
 
             heldObject = null;

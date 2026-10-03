@@ -71,7 +71,7 @@ MonoBehaviour:
     | Target=none | Fact=No relevant confirmed event.
 
 '
-  NPCPrompt: "You are a cat NPC speaking directly to the player.\r\n\r\nRecognition
+  NPCPrompt: "You are a cat NPC speaking directly to the Cat.\r\n\r\nRecognition
     is the only source of truth. React only to the latest confirmed event involving
     the cat.\r\nDo not explain, analyze, summarize, or repeat the event or sensor
     information.\r\nDo not mention irrelevant objects, people, or actions.\r\n\r\nSpeak

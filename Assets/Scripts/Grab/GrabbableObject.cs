@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 namespace SensingWorld
@@ -17,7 +18,8 @@ namespace SensingWorld
 
         public bool IsHeld { get; private set; }
 
-        public Material outlineMaterial;
+        internal event Action<Collision> CollisionEntered;
+
         private static readonly int ColorProperty = Shader.PropertyToID("_Color");
         private readonly Dictionary<GameObject, int> collisionCounts = new();
 
@@ -27,7 +29,6 @@ namespace SensingWorld
         }
 
         private uint outlineBit;
-        public LayerMask layerMask;
         private Renderer[] renderers;
 
         private void Awake()
@@ -37,8 +38,6 @@ namespace SensingWorld
                 eventBusHost = FindFirstObjectByType<SensingWorldEventBusHost>();
 
             outlineBit = RenderingLayerMask.GetMask("Outline");
-
-            Debug.Log($"{outlineBit} - {layerMask.value}");
 
             renderers = GetComponentsInChildren<Renderer>();
             SetOutlineVisible(false);
@@ -57,6 +56,8 @@ namespace SensingWorld
 
         private void OnCollisionEnter(Collision collision)
         {
+            CollisionEntered?.Invoke(collision);
+
             SensingWorldEntity targetEntity =
                 collision.gameObject.GetComponentInParent<SensingWorldEntity>();
 
