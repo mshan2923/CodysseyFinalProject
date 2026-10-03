@@ -100,6 +100,12 @@ namespace Unity.Behavior
                 return Status.Failure;
             }
 
+            if (!m_NavMeshAgent.isOnNavMesh)
+            {
+                UpdateAnimatorSpeed(0f);
+                return Status.Running;
+            }
+
             if (targetChanged || !m_NavMeshAgent.hasPath)
             {
                 m_LastTargetPosition = targetPosition;
@@ -214,6 +220,12 @@ namespace Unity.Behavior
 
             m_NavMeshAgent.stoppingDistance =
                 DistanceThreshold.Value;
+
+            if (!m_NavMeshAgent.isOnNavMesh)
+            {
+                UpdateAnimatorSpeed(0f);
+                return Status.Running;
+            }
 
             m_NavMeshAgent.SetDestination(
                 Target.Value

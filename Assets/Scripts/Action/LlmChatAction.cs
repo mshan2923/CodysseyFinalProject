@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Unity.Behavior;
 using UnityEngine;
+using SensingWorld;
 
 [Serializable]
 [NodeDescription(name: "LLM Chat", story: "Send [Message] to the local LLM -> [Reslut]", category: "Action/LLM", id: "69bb9246f09d5128ac54a5c068f7b509")]
@@ -59,10 +60,26 @@ public class LlmChatAction : Unity.Behavior.Action
         isCompleted = false;
         isSuccess = false;
 
+        string requestMessage = Message.Value;
+
+        // 대사 생성 직전에 최신 이벤트를 다시 읽는다. 첫 번째 인식 요청이
+        // 진행되는 동안 발생한 충돌도 같은 대사 요청에 포함되어야 한다.
+        if (!requireSelectedEntities.Value && SensingWorldState.Instance != null)
+        {
+            requestMessage =
+                SensingWorldState.Instance.BuildContext() +
+                "\n[PLAYER_BEHAVIOR]\n" +
+                Message.Value;
+
+            // 이 요청에 포함한 이벤트를 소비한다. 요청 중 새로 발생한 이벤트는
+            // 다음 사이클에서 다시 읽히므로 중복 대사가 나오지 않는다.
+            SensingWorldState.Instance.ClearRecentEvents();
+        }
+
         Debug.Log(
             $"[LLMChat] Request\n" +
             $"System: {systemMessage.Value}\n" +
-            $"Message: {Message.Value}");
+            $"Message: {requestMessage}");
 
         float? temperatureOverride = Temperature != null
             ? Mathf.Clamp(Temperature.Value, 0f, 2f)
@@ -70,7 +87,7 @@ public class LlmChatAction : Unity.Behavior.Action
 
         LLMService.Instance.Chat(
             systemMessage.Value,
-            Message.Value,
+            requestMessage,
 
             response =>
             {
