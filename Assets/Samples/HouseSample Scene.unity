@@ -1889,7 +1889,6 @@ MonoBehaviour:
   - rid: 6453905058044051728
   - rid: 6453905058044051776
   - rid: 1887216080380494211
-  - rid: 1887216147804455605
   m_OriginalGraph: {fileID: 0}
   m_IsInitialised: 0
   m_IsStarted: 0
@@ -1904,14 +1903,6 @@ MonoBehaviour:
           m_Value1: 15915613642497921028
         Name: LlmTargetResolver
         m_Value: {fileID: 132508402}
-    - rid: 1887216147804455605
-      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 14083751219055346629
-          m_Value1: 1235734624168423571
-        Name: Speed
-        m_Value: 0.6
     - rid: 6453905058044051728
       type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -1948,7 +1939,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 132508376}
   m_Enabled: 1
   m_AgentTypeID: -1372625422
-  m_Radius: 1
+  m_Radius: 0.3
   m_Speed: 0.75
   m_Acceleration: 8
   avoidancePriority: 50
@@ -12945,7 +12936,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.1
+  m_VoxelSize: 0.033333335
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: d5f573d93a4d5c841aac52f0ca43ce2f, type: 2}
   m_BuildHeightMesh: 0
@@ -28492,7 +28483,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 830280172714785100, guid: 65835fdfb7e6f7643b6cbeacdc6d24a9, type: 3}
       propertyPath: m_Convex
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2052949429746086893, guid: 65835fdfb7e6f7643b6cbeacdc6d24a9, type: 3}
       propertyPath: m_RayTracingMode
@@ -28558,8 +28549,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Desk 2
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 830280172714785100, guid: 65835fdfb7e6f7643b6cbeacdc6d24a9, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -28589,7 +28579,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 2.172692, y: 0.92710227, z: 0.90268576}
   m_Center: {x: 0.00000037656747, y: 0.46355098, z: -0.00000166893}
