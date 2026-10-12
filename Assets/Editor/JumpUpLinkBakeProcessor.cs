@@ -18,12 +18,12 @@ public sealed class JumpUpLinkBakeProcessor : EditorWindow
     [SerializeField, Min(0.05f)] private float linkSpacing = 1f;
     [SerializeField, Min(0f)] private float edgePadding = 0.1f;
     [SerializeField, Min(0.01f)] private float startOffset = 0.5f;
-    [SerializeField, Min(0f)] private float landingOffset = 0.05f;
+    [SerializeField, Min(0f)] private float landingOffset = 0.2f;
     [SerializeField, Min(0.01f)] private float stepHeight = 0.45f;
     [SerializeField, Min(0.01f)] private float maxJumpHeight = 2.5f;
     [SerializeField, Min(0f)] private float linkCost = 1f;
     [SerializeField] private NavMeshSurface navMeshSurface;
-    [SerializeField] private LayerMask groundMask = ~0;
+    [SerializeField] private LayerMask groundMask = 1;//~0;
     [SerializeField] private int area;
     [SerializeField] private bool bidirectional;
     [SerializeField] private bool clearPreviousLinks = true;

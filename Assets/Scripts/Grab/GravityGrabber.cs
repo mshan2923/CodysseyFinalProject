@@ -370,13 +370,20 @@ namespace SensingWorld
             if (heldObject == null)
                 return;
 
+            // Throw 경로에서도 같은 프레임에 heldObject를 비우고
+            // 대상의 IsHeld 상태를 해제할 수 있도록 참조를 고정한다.
+            GrabbableObject thrownObject = heldObject;
+
             Rigidbody body = heldObject.Body;
 
             body.useGravity = restoreGravity;
             body.collisionDetectionMode = restoreCollisionDetectionMode;
             body.interpolation = restoreInterpolation;
             body.sleepThreshold = restoreSleepThreshold;
-            body.linearVelocity = Camera.main.transform.forward * ThrowPower;
+            Vector3 throwDirection = viewCamera != null
+                ? viewCamera.transform.forward
+                : transform.forward;
+            body.linearVelocity = throwDirection * ThrowPower;
 
             bool hasNavMeshAgent = heldObject.transform.TryGetComponent(
                 out NavMeshAgent agent);
@@ -408,9 +415,9 @@ namespace SensingWorld
             }
             heldColliders = null;
 
-            heldObject.SetHeld(false);
-            heldObject.SetOutlineVisible(
-                heldObject == pointedObject);
+            thrownObject.SetHeld(false);
+            thrownObject.SetOutlineVisible(
+                thrownObject == pointedObject);
 
             PublishEvent(
                 SensingWorldEventType.Throw,

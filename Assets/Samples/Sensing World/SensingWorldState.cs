@@ -277,7 +277,7 @@ namespace SensingWorld
                     };
                 }
             }
-            else if (gameEvent.Type == SensingWorldEventType.ObjectDropped)
+            else if (gameEvent.Type == SensingWorldEventType.ObjectDropped || gameEvent.Type == SensingWorldEventType.Throw)
             {
                 heldItems.Remove(gameEvent.Target);
 
