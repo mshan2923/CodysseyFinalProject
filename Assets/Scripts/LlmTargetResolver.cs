@@ -6,11 +6,14 @@ public class LlmTargetResolver : MonoBehaviour
 {
     [SerializeField]
     private BehaviorGraphAgent agent;
-        public string Variable = "Result";
+
+    public string Variable = "Result";
 
     [SerializeField]
     private GameObject targetObject;
     public GameObject TargetObject { get => targetObject; private set => targetObject = value; }
+
+    public bool selfAction {get => targetObject == gameObject;}
 
     void Start()
     {
@@ -29,6 +32,7 @@ public class LlmTargetResolver : MonoBehaviour
             {
                 Debug.DrawLine(transform.position, result.TargetObject.transform.position, Color.red);
                 TargetObject = result.TargetObject;
+
             }
         }
     }

@@ -28101,6 +28101,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 605852765}
     m_Modifications:
+    - target: {fileID: 296223119046550761, guid: 65835fdfb7e6f7643b6cbeacdc6d24a9, type: 3}
+      propertyPath: hided
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 830280172714785100, guid: 65835fdfb7e6f7643b6cbeacdc6d24a9, type: 3}
       propertyPath: m_Convex
       value: 0
@@ -28127,7 +28131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5842860830462879149, guid: 65835fdfb7e6f7643b6cbeacdc6d24a9, type: 3}
       propertyPath: m_LocalScale.x
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5842860830462879149, guid: 65835fdfb7e6f7643b6cbeacdc6d24a9, type: 3}
       propertyPath: m_LocalPosition.x

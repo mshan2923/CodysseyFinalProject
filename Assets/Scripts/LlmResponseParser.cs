@@ -1,14 +1,18 @@
-using System.Text.RegularExpressions;
+
 using UnityEngine;
 
 namespace SensingWorld
 {
     public static class LlmResponseParser
     {
-        private static readonly Regex TargetRegex = new(
-            @"Target:\s*(.+?)\s*\(InstanceID:\s*(\d+)\)",
-            RegexOptions.Compiled
-        );
+        [System.Serializable]
+        private class LlmResponse
+        {
+            public string dialogue;
+            public string targetName;
+            public int targetInstanceId;
+            public string action;
+        }
 
         public struct Result
         {
@@ -16,6 +20,7 @@ namespace SensingWorld
             public string TargetName;
             public int InstanceID;
             public GameObject TargetObject;
+            public string Action;
 
             public bool HasTarget => TargetObject != null;
         }
@@ -27,46 +32,49 @@ namespace SensingWorld
             if (string.IsNullOrWhiteSpace(response))
                 return false;
 
-            // -------------------------
-            // 대사 / Target 정보 분리
-            // -------------------------
+            // JSON 앞뒤에 불필요한 텍스트가 있는 경우를 대비
+            response = response.Trim();
 
-            string[] parts = response.Split(
-                new[] { "---" },
-                System.StringSplitOptions.None
+            int start = response.IndexOf('{');
+            int end = response.LastIndexOf('}');
+
+            if (start < 0 || end < start)
+                return false;
+
+            string json = response.Substring(
+                start,
+                end - start + 1
             );
 
-            result.Dialogue = parts[0].Trim();
+            LlmResponse data;
 
-            // Target 정보가 없는 경우
-            if (parts.Length < 2)
-                return true;
-
-            // -------------------------
-            // Target 정보 파싱
-            // -------------------------
-
-            Match match = TargetRegex.Match(parts[1]);
-
-            if (!match.Success)
-                return true;
-
-            result.TargetName = match.Groups[1].Value.Trim();
-
-            if (!int.TryParse(
-                match.Groups[2].Value,
-                out result.InstanceID))
+            try
             {
-                return true;
+                data = JsonUtility.FromJson<LlmResponse>(json);
+            }
+            catch (System.Exception)
+            {
+                return false;
             }
 
-            // -------------------------
-            // 실제 Unity 대상 찾기
-            // -------------------------
+            if (data == null ||
+                string.IsNullOrWhiteSpace(data.dialogue) ||
+                string.IsNullOrWhiteSpace(data.action))
+            {
+                return false;
+            }
 
-            if (SensingWorldState.Instance != null &&
+            result.Dialogue = data.dialogue.Trim();
+            result.TargetName = data.targetName;
+            result.InstanceID = data.targetInstanceId;
+            result.Action = data.action.Trim();
+
+            // 대상이 지정된 경우 실제 Unity 객체 조회
+            if (!string.IsNullOrWhiteSpace(data.targetName) &&
+                data.targetInstanceId != 0 &&
+                SensingWorldState.Instance != null &&
                 SensingWorldState.Instance.ActiveTargets.TryGetValue(
-                    result.InstanceID,
+                    data.targetInstanceId,
                     out SensingWorldState.ActiveTarget target))
             {
                 result.TargetObject = target.Target;
