@@ -24,7 +24,7 @@ namespace SensingWorld
         {
             sensorCollider = GetComponent<SphereCollider>();
             sensorCollider.isTrigger = true;
-            sensorCollider.radius = detectionRadius;
+            sensorCollider.radius = detectionRadius * gameObject.transform.localScale.x;
 
             if (eventBusHost == null)
                 eventBusHost = FindFirstObjectByType<SensingWorldEventBusHost>();
@@ -127,7 +127,7 @@ namespace SensingWorld
             Vector3 direction = distance > 0.001f ? toTarget / distance : transform.forward;
             facingDot = Vector3.Dot(transform.forward, direction);
 
-            float distanceScore = 1f - Mathf.Clamp01(distance / detectionRadius);
+            float distanceScore = 1f - Mathf.Clamp01(distance / (detectionRadius * gameObject.transform.localScale.x));
             float facingScore = Mathf.InverseLerp(minimumFacingDot, 1f, facingDot);
             float totalWeight = distanceWeight + facingWeight;
 

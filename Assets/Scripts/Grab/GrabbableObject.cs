@@ -27,7 +27,6 @@ namespace SensingWorld
         }
 
         private uint outlineBit;
-        public LayerMask layerMask;
         private Renderer[] renderers;
 
         private void Awake()
@@ -37,8 +36,6 @@ namespace SensingWorld
                 eventBusHost = FindFirstObjectByType<SensingWorldEventBusHost>();
 
             outlineBit = RenderingLayerMask.GetMask("Outline");
-
-            Debug.Log($"{outlineBit} - {layerMask.value}");
 
             renderers = GetComponentsInChildren<Renderer>();
             SetOutlineVisible(false);

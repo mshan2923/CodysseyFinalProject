@@ -78,7 +78,7 @@ namespace SensingWorld
             {
                 targetPosition =
                     viewCamera.transform.position +
-                    viewCamera.transform.forward * holdDistance;
+                    viewCamera.transform.forward * holdDistance * gameObject.transform.localScale.x;
             }
             else if (holdPoint != null)
             {
@@ -90,7 +90,7 @@ namespace SensingWorld
             }
 
             // 너무 멀어지면 (벽에 막혀서 못 따라오는 경우 등) 자동으로 놓기
-            if (Vector3.Distance(body.position, targetPosition) > maxHoldDistanceBeforeDrop)
+            if (Vector3.Distance(body.position, targetPosition) > maxHoldDistanceBeforeDrop * gameObject.transform.localScale.x)
             {
                 Release();
                 return;
@@ -159,7 +159,7 @@ namespace SensingWorld
             if (!Physics.Raycast(
                     ray,
                     out RaycastHit hit,
-                    maxGrabDistance,
+                    maxGrabDistance * gameObject.transform.localScale.x,
                     grabbableLayers,
                     QueryTriggerInteraction.Ignore))
             {
@@ -181,7 +181,7 @@ namespace SensingWorld
             if (!Physics.Raycast(
                     ray,
                     out RaycastHit hit,
-                    maxGrabDistance,
+                    maxGrabDistance * gameObject.transform.localScale.x,
                     grabbableLayers,
                     QueryTriggerInteraction.Ignore))
             {
@@ -383,7 +383,7 @@ namespace SensingWorld
 
             Gizmos.DrawRay(
                 viewCamera.transform.position,
-                viewCamera.transform.forward * maxGrabDistance);
+                viewCamera.transform.forward * maxGrabDistance * gameObject.transform.localScale.x);
         }
     }
 }
