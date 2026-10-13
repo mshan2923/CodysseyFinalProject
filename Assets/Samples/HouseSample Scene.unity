@@ -1679,6 +1679,7 @@ MonoBehaviour:
   - rid: 6453905058044051728
   - rid: 6453905058044051776
   - rid: 1887216080380494211
+  - rid: 1887216330741121530
   m_OriginalGraph: {fileID: 0}
   m_IsInitialised: 0
   m_IsStarted: 0
@@ -1693,6 +1694,14 @@ MonoBehaviour:
           m_Value1: 15915613642497921028
         Name: LlmTargetResolver
         m_Value: {fileID: 132508402}
+    - rid: 1887216330741121530
+      type: {class: 'BlackboardVariable`1[[System.Boolean, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 323163791445998634
+          m_Value1: 2246435006461728277
+        Name: RandomAction
+        m_Value: 1
     - rid: 6453905058044051728
       type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:

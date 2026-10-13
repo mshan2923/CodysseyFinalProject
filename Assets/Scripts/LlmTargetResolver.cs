@@ -15,6 +15,8 @@ public class LlmTargetResolver : MonoBehaviour
 
     public bool selfAction {get => targetObject == gameObject;}
 
+    public LlmResponseParser.Result Result { get; private set; }
+
     void Start()
     {
 
@@ -27,12 +29,12 @@ public class LlmTargetResolver : MonoBehaviour
 
         if (LlmResponseParser.TryParse(variable, out var result))
         {
-
+            Result = result;
+            
             if (result.HasTarget)
             {
                 Debug.DrawLine(transform.position, result.TargetObject.transform.position, Color.red);
                 TargetObject = result.TargetObject;
-
             }
         }
     }

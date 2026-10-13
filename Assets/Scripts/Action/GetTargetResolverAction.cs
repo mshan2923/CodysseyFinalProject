@@ -16,6 +16,8 @@ public partial class GetTargetResolverAction : Action
     [SerializeReference] public BlackboardVariable<string> Action;
 
 
+    [SerializeReference] public BlackboardVariable<bool> RandomAction;
+
     protected override Status OnStart()
     {
         if (TargetResolver == null || TargetResolver.Value == null)
@@ -31,11 +33,22 @@ public partial class GetTargetResolverAction : Action
             return Status.Failure;
         }
 
+
         if (string.IsNullOrEmpty(Action.Value))
         {
-            int randomIndex = UnityEngine.Random.Range(0, ActionList.Value.Count);
-            Action.Value = ActionList.Value[randomIndex];
+            if (RandomAction.Value)
+            {
+                int randomIndex = UnityEngine.Random.Range(0, ActionList.Value.Count);
+                Action.Value = ActionList.Value[randomIndex];
+            }else
+            {
+                Action.Value = TargetResolver.Value.Result.Action;
+            }
         }
+
+
+
+        // TargetResolver.Value.
         //SensingWorldEventType
 
         return Status.Success;
