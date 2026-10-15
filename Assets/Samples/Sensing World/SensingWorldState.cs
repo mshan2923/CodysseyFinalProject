@@ -39,6 +39,8 @@ namespace SensingWorld
         {
             if(Instance == null)
                 Instance = this;
+            else
+                Debug.LogWarning("[SensingWorld] Multiple instances of SensingWorldState detected. Only one instance should exist in the scene.", this);
 
             if (eventBusHost == null)
                 eventBusHost = GetComponent<SensingWorldEventBusHost>();

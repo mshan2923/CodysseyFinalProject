@@ -13,22 +13,26 @@ MonoBehaviour:
   m_Name: Readme
   m_EditorClassIdentifier: 
   icon: {fileID: 2800000, guid: 727a75301c3d24613a3ebcec4a24c2c8, type: 3}
-  title: URP Empty Template
+  title: Codyssey - 상황을 기억하는 AI NPC 프로젝트
   sections:
-  - heading: Welcome to the Universal Render Pipeline
-    text: This template includes the settings and assets you need to start creating with the Universal Render Pipeline.
-    linkText: 
+  - heading: 프로젝트 개요
+    text: Codyssey는 플레이어의 행동과 게임 월드의 사건을 감지하고, 그 상황을 기억해 다음 대사와 행동에 반영하는 AI NPC 프로젝트입니다. 플레이어가 물건을 집거나 던지고, NPC와 충돌하거나 특정 대상을 바라보는 행동이 NPC 반응의 재료가 됩니다.
+    linkText:
     url:
-  - heading: URP Documentation
-    text:
-    linkText: Read more about URP
-    url: https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@latest
-  - heading: Forums
-    text:
-    linkText: Get answers and support
-    url: https://forum.unity.com/forums/universal-render-pipeline.383/
-  - heading: Report bugs
-    text:
-    linkText: Submit a report
-    url: https://unity3d.com/unity/qa/bug-reporting
+  - heading: 실행 및 주요 씬
+    text: 주요 테스트 씬은 Assets/Scenes/CatGameRoom.unity와 Assets/Samples/Cat/CatNPC Scene.unity입니다. Play Mode에서 플레이어 행동, 고양이 NPC 반응, 이벤트 로그를 함께 확인합니다.
+    linkText:
+    url:
+  - heading: AI 시스템 구조
+    text: SensingWorldState가 현재 대상과 최근 Vision/World Event를 수집합니다. Unity Behavior가 Recognition과 Dialogue 요청을 분리하고, LLMService가 Ollama를 기본으로 호출합니다. 대화 요청 직전에 최신 Context를 다시 구성해 최근 사건을 다음 반응에 포함합니다.
+    linkText:
+    url:
+  - heading: 주요 구현 기능
+    text: 플레이어 이동과 점프, 물체 Grab/Drop/Throw, 충돌 이벤트, 전투와 체력, NavMesh 기반 이동 및 Jump-Up Link, LLM 인식과 대화, Ollama/OpenAI/Anthropic provider 구성을 포함합니다.
+    linkText:
+    url:
+  - heading: 모델 및 보안 주의사항
+    text: 로컬 Ollama 모델 codyssey-cat-q4-test1024:latest를 기본으로 사용하며, Gemma 4 E2B QLoRA 파인튜닝 결과를 연결할 수 있습니다. API 키는 프로젝트 루트의 .env에서 관리하고 실제 키는 Git에 커밋하지 않습니다. 모델 응답은 Play Mode에서 사건 반영 여부를 확인합니다.
+    linkText:
+    url:
   loadedLayout: 1
