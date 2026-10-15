@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
     {
         if (controller.isGrounded)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            velocity.y = Mathf.Sqrt(jumpHeight * gameObject.transform.localScale.y * -2f * gravity);
 
             eventBusHost.Publish(new SensingWorldEvent(
                 SensingWorldEventType.Jump, gameObject, gameObject, Time.time, gameObject.transform.position, gameObject.tag, 0,0,0
@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour
 
         Vector2 input = moveAction.ReadValue<Vector2>();
         Vector3 move = transform.right * input.x + transform.forward * input.y;
-        controller.Move(move * moveSpeed * Time.deltaTime);
+        controller.Move(move * moveSpeed * gameObject.transform.localScale.x * Time.deltaTime);
 
         if (controller.isGrounded && velocity.y < 0f)
         {
