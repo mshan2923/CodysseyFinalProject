@@ -111,3 +111,6 @@ InitTestScene*.unity*
 Assets/GemmaFineTune
 Assets/.presentation_build
 Assets/.presentation_output
+GemmaFineTune
+WebBuild
+*.zip

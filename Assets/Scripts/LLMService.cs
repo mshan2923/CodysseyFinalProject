@@ -76,6 +76,11 @@ public class LLMService : MonoBehaviour
 
     private void LoadApiKeysFromDotEnv()
     {
+#if UNITY_WEBGL && !UNITY_EDITOR
+        // WebGL 빌드에는 프로젝트 루트의 .env가 존재하지 않으며,
+        // 브라우저 파일 시스템을 직접 읽을 수도 없습니다.
+        return;
+#else
         string projectRoot = Directory.GetParent(Application.dataPath).FullName;
         string envPath = Path.Combine(projectRoot, ".env");
         if (!File.Exists(envPath))
@@ -104,6 +109,7 @@ public class LLMService : MonoBehaviour
             openAiApiKey = openAiKey;
         if (string.IsNullOrWhiteSpace(anthropicApiKey) && values.TryGetValue("ANTHROPIC_API_KEY", out string anthropicKey))
             anthropicApiKey = anthropicKey;
+#endif
     }
 
     public void ReloadApiKeysFromDotEnv()
@@ -112,6 +118,22 @@ public class LLMService : MonoBehaviour
         anthropicApiKey = null;
         LoadApiKeysFromDotEnv();
         Debug.Log("[LLMService] .env에서 API 키를 다시 읽었습니다.");
+    }
+
+    // WebGL 데모에서 사용자가 입력한 키를 실행 중 메모리에만 보관합니다.
+    // PlayerPrefs, .env, 로그에는 저장하지 않습니다.
+    public void SetApiKeyForProvider(string providerName, string apiKey)
+    {
+        string trimmedKey = apiKey == null ? string.Empty : apiKey.Trim();
+
+        if (string.Equals(providerName, "OpenAI", StringComparison.OrdinalIgnoreCase))
+            openAiApiKey = trimmedKey;
+        else if (string.Equals(providerName, "Anthropic", StringComparison.OrdinalIgnoreCase))
+            anthropicApiKey = trimmedKey;
+        else
+            return;
+
+        Debug.Log($"[LLMService] {providerName} 키를 현재 실행에만 적용했습니다.");
     }
 
     public void Chat(
