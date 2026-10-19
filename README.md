@@ -1,5 +1,3 @@
-# CodysseyFinalProject
-
 ## 배포 버전 먼저 보기
 
 ### 웹 버전
