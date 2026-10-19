@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 velocity;
     private float cameraPitch;
-    private bool MouseLook = true;
+    [SerializeField] private bool MouseLook = true;
     private readonly HashSet<SensingWorldEntity> activeControllerContacts = new();
     private readonly HashSet<SensingWorldEntity> controllerContactsThisMove = new();
 

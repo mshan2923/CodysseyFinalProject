@@ -106,6 +106,14 @@ public class LLMService : MonoBehaviour
             anthropicApiKey = anthropicKey;
     }
 
+    public void ReloadApiKeysFromDotEnv()
+    {
+        openAiApiKey = null;
+        anthropicApiKey = null;
+        LoadApiKeysFromDotEnv();
+        Debug.Log("[LLMService] .env에서 API 키를 다시 읽었습니다.");
+    }
+
     public void Chat(
         string systemPrompt,
         string userMessage,
@@ -281,6 +289,19 @@ public class LLMService : MonoBehaviour
         selectedProvider == Provider.Ollama && isFallback ? fallbackModel :
         selectedProvider == Provider.Ollama ? model :
         selectedProvider == Provider.OpenAI ? openAiModel : anthropicModel;
+
+    public void SetModel(string modelName)
+    {
+        if (Provider.TryParse(modelName, true, out Provider parsedProvider))
+        {
+            provider = parsedProvider;
+            Debug.Log($"[LLMService] 모델이 {provider}로 설정되었습니다.");
+        }
+        else
+        {
+            Debug.LogWarning($"[LLMService] 알 수 없는 모델 이름: {modelName}");
+        }
+    }
 
     private string ExtractContent(Provider selectedProvider, string json)
     {
