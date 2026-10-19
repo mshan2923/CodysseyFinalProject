@@ -1,5 +1,58 @@
 # Codyssey
 
+## 배포 버전 먼저 보기
+
+### 웹 버전
+
+브라우저에서 바로 실행하는 WebGL 버전입니다.
+
+**[웹 버전 실행 링크](https://play.unity.com/en/games/5f3ba5da-6cf7-4dab-9081-c67dfcdf2866/ai-cat)**
+
+- 별도 설치 없이 링크를 열어 실행합니다.
+- WebGL 버전은 공개된 Ollama 서버에 의존하지 않습니다.
+- 실행 후 Provider에서 OpenAI 또는 Anthropic을 선택하고, 화면에 API 키를 입력해 시연합니다.
+- 입력한 키는 해당 실행 중에만 메모리에 보관하며 프로젝트 파일이나 `PlayerPrefs`에 저장하지 않습니다.
+
+### Windows 버전
+
+Windows 버전은 향후 Steam 출시를 기준으로, 사용자가 게임 본 파일을 설치하고 로컬 Ollama를 연결하는 방식으로 구성했습니다.
+
+**[Windows 본 파일 다운로드 링크](https://mega.nz/file/nANnHDJQ#QJzcEVn9FAkbLg3kZYqsoZMhxf_6G0NXt2ETbWLlJYI)**
+
+Windows 버전을 실행하려면 다음 순서로 준비합니다.
+
+1. 위 링크에서 Windows 본 파일을 다운로드하고 원하는 폴더에 압축을 풉니다.
+2. [Ollama 설치](https://ollama.com/download/windows)를 완료합니다.
+3. 아래 GGUF 파일 중 사용할 모델을 다운로드합니다.
+
+   - [Codyssey GGUF 다운로드](https://mega.nz/file/mdME0QxB#U0BYvN0CaRiRxt3nLlZ4bq1O7CxTgOubd5QcukvV4PA)
+
+4. 다운로드한 GGUF 파일로 Ollama 모델을 등록합니다.
+5. Ollama가 실행 중인 상태에서 Windows 본 파일을 실행합니다.
+
+#### Windows용 Ollama 모델 등록
+
+GGUF 파일을 준비한 뒤, GGUF 파일과 같은 폴더에 `Modelfile`을 만들고 다음처럼 작성합니다.
+
+```text
+FROM ./gemma-4-e2b-cat-Q4_K_M-test512.gguf
+
+PARAMETER temperature 0.8
+PARAMETER top_p 0.9
+PARAMETER repeat_penalty 1.05
+```
+
+PowerShell에서 해당 폴더로 이동해 모델을 등록합니다.
+
+```powershell
+ollama create codyssey-cat-q4-test512 -f .\Modelfile
+ollama run --think=false codyssey-cat-q4-test512
+```
+
+Unity Windows 버전은 로컬 Ollama의 `http://localhost:11434`를 사용합니다. 모델 이름이 빌드의 `LLMService` 설정과 다르면 해당 설정에 맞춰 `ollama create`의 이름을 변경해야 합니다.
+
+---
+
 ## 상황을 기억하는 AI NPC 프로젝트
 
 Codyssey는 플레이어의 행동과 게임 월드에서 발생한 사건을 감지하고, 그 상황을 NPC의 다음 대사와 행동에 반영하는 Unity 기반 AI NPC 프로젝트입니다.
@@ -305,7 +358,7 @@ LLM은 상황을 해석하고, 머신러닝은 누적된 프로젝트 데이터�
 
 ---
 
-## 7. 실행 방법
+## 7. 개발자용 Unity 프로젝트 실행 방법
 
 ### Unity 프로젝트 열기
 
@@ -353,7 +406,7 @@ Assets/Samples/HouseSample Scene.unity
 ```text
 codyssey-cat-q4-test512:latest
 ```
-[[GGUF 파일 다운로드 링크](https://mega.nz/file/mdME0QxB#U0BYvN0CaRiRxt3nLlZ4bq1O7CxTgOubd5QcukvV4PA)]
+배포용 GGUF 다운로드 링크와 Windows용 등록 방법은 문서 상단의 [배포 버전 먼저 보기](#배포-버전-먼저-보기)를 참고합니다.
 
 fallback 모델 예시는 다음과 같습니다.
 
@@ -365,14 +418,14 @@ Ollama는 로컬에서 실행할 수 있어 반복적인 Play Mode 테스트에 
 
 ### OpenAI와 Anthropic
 
-API provider를 사용할 경우 프로젝트 루트의 `.env` 파일에 키를 설정합니다.
+개발 중 Unity Editor에서 OpenAI 또는 Anthropic을 사용할 경우 프로젝트 루트의 `.env` 파일에 키를 설정할 수 있습니다.
 
 ```text
 OPENAI_API_KEY=your_key_here
 ANTHROPIC_API_KEY=your_key_here
 ```
 
-프로젝트에는 `.env.example` 파일이 있으며, 실제 `.env`는 직접 생성해야 합니다.
+프로젝트에는 `.env.example` 파일이 있으며, 실제 `.env`는 직접 생성해야 합니다. 배포된 WebGL 버전은 `.env`를 읽지 않고 화면의 API 키 입력창을 사용합니다. Windows/Steam 기준 버전은 로컬 Ollama 사용을 기본으로 하므로 일반적인 실행에는 API 키가 필요하지 않습니다.
 
 실제 API 키는 다음 위치에 저장하거나 커밋하지 않습니다.
 
