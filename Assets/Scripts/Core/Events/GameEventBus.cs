@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Codyssey.Core.Events
 {
@@ -27,6 +28,8 @@ namespace Codyssey.Core.Events
         {
             if (!subscribers.TryGetValue(typeof(TEvent), out var handlers))
                 return;
+
+
 
             // Copy so a subscriber may safely unsubscribe while handling an event.
             var snapshot = handlers.ToArray();

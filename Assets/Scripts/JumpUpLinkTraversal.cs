@@ -1,0 +1,161 @@
+using System.Collections;
+using Unity.AI.Navigation;
+using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.Events;
+
+/// <summary>
+/// Traverses generated upward NavMeshLinks with a simple parabolic jump.
+/// Add this component next to a NavMeshAgent used by an NPC.
+/// </summary>
+[RequireComponent(typeof(NavMeshAgent))]
+public sealed class JumpUpLinkTraversal : MonoBehaviour
+{
+    [System.Serializable]
+    public sealed class FloatEvent : UnityEvent<float>
+    {
+    }
+
+    [Header("Jump")]
+    [SerializeField, Min(0.01f)] private float duration = 0.55f;
+    [SerializeField, Min(0.01f)] private float fallDuration = 0.35f;
+    [SerializeField, Min(0f)] private float arcHeight = 1.25f;
+    [SerializeField, Min(0f)] private float fallArcHeight = 0.45f;
+    [SerializeField, Min(0.1f)] private float animationTimeout = 1.5f;
+
+    [Header("Animation")]
+    [SerializeField] private Animator animator;
+    [SerializeField] private string jumpParameter = "Jump";
+    [SerializeField] private string fallParameter = "Fall";
+
+    [Header("Gameplay hook")]
+    [Tooltip("Optional hook for stamina or action-point systems. The value is the configured link cost.")]
+    public FloatEvent onJumpStarted;
+
+    [SerializeField, Min(0f)] private float jumpCost = 1f;
+
+    private NavMeshAgent agent;
+    private bool traversing;
+
+    public bool IsTraversing => traversing;
+
+    private void Awake()
+    {
+        agent = GetComponent<NavMeshAgent>();
+
+        if (animator == null)
+            animator = GetComponentInChildren<Animator>();
+
+        agent.autoTraverseOffMeshLink = false;
+    }
+
+    private void Update()
+    {
+        if (traversing || agent == null || !agent.isOnOffMeshLink)
+            return;
+
+        OffMeshLinkData data = agent.currentOffMeshLinkData;
+
+        bool isJumpUp = data.endPos.y > data.startPos.y + 0.05f;
+        StartCoroutine(Traverse(data, isJumpUp));
+    }
+
+    private IEnumerator Traverse(OffMeshLinkData data, bool isJumpUp)
+    {
+        traversing = true;
+        agent.updatePosition = false;
+
+        if (isJumpUp)
+            onJumpStarted?.Invoke(jumpCost);
+
+        // Animator 전이: JumpStart --Fall=true--> Jumping --Fall=false--> JumpEnd
+        SetAnimation(true, true);
+
+        Vector3 start = transform.position;
+        Vector3 end = data.endPos + Vector3.up * agent.baseOffset;
+        float elapsed = 0f;
+        float safeDuration = Mathf.Max(0.01f, isJumpUp ? duration : fallDuration);
+
+        while (elapsed < safeDuration)
+        {
+            float t = elapsed / safeDuration;
+            float selectedArcHeight = isJumpUp ? arcHeight : fallArcHeight;
+            float height = selectedArcHeight * 4f * t * (1f - t);
+            Vector3 position = Vector3.Lerp(start, end, t) + Vector3.up * height;
+
+            transform.position = position;
+            agent.nextPosition = position;
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = end;
+        agent.nextPosition = end;
+        agent.CompleteOffMeshLink();
+        agent.updatePosition = true;
+        agent.nextPosition = transform.position;
+
+        // JumpStart -> Jumping requires Fall=true. Keep it on until the
+        // Animator has actually reached Jumping, regardless of movement time.
+        yield return WaitForState("Jumping", animationTimeout);
+
+        // Jumping -> JumpEnd requires Fall=false.
+        SetAnimation(true, false);
+        yield return WaitForStateComplete("JumpEnd", animationTimeout);
+
+        SetAnimation(false, false);
+        traversing = false;
+    }
+
+    private IEnumerator WaitForState(string stateName, float timeout)
+    {
+        if (animator == null)
+            yield break;
+
+        float elapsed = 0f;
+        while (elapsed < timeout)
+        {
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName(stateName))
+                yield break;
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    private IEnumerator WaitForStateComplete(string stateName, float timeout)
+    {
+        if (animator == null)
+            yield break;
+
+        float elapsed = 0f;
+        while (elapsed < timeout)
+        {
+            AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
+            if (state.IsName(stateName) && state.normalizedTime >= 0.9f)
+                yield break;
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    private void SetAnimation(bool jumping, bool falling)
+    {
+        if (animator == null)
+            return;
+
+        if (!string.IsNullOrWhiteSpace(jumpParameter))
+            animator.SetBool(jumpParameter, jumping);
+
+        if (!string.IsNullOrWhiteSpace(fallParameter))
+            animator.SetBool(fallParameter, falling);
+    }
+}
+
+/// <summary>
+/// Marker placed on links generated by JumpUpLinkBakeProcessor.
+/// </summary>
+public sealed class JumpUpLinkMarker : MonoBehaviour
+{
+}

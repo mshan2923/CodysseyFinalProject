@@ -1,0 +1,236 @@
+using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using Unity.Behavior;
+using UnityEngine;
+using SensingWorld;
+
+[Serializable]
+[NodeDescription(name: "LLM Chat", story: "Send [Message] to the local LLM -> [Reslut]", category: "Action/LLM", id: "69bb9246f09d5128ac54a5c068f7b509")]
+public class LlmChatAction : Unity.Behavior.Action
+{
+    private static readonly Regex SelectedEntityPattern = new Regex(
+        @"(?<name>[^,:;\r\n]+?)\s*(?:\(InstanceID:\s*|\()(?<id>-?\d+)\)",
+        RegexOptions.Compiled);
+
+    [SerializeReference]
+    public BlackboardVariable<string> systemMessage;
+
+    [SerializeReference]
+    public BlackboardVariable<string> Message;
+
+    [SerializeReference]
+    public BlackboardVariable<string> Reslut;
+
+    [SerializeReference]
+    public BlackboardVariable<float> Temperature = new BlackboardVariable<float>(0.7f);
+
+    [Tooltip("SelectedEntities와 InstanceID가 응답에 포함되어야 하는지 여부입니다.")]
+    [SerializeReference]
+    public BlackboardVariable<bool> requireSelectedEntities = new BlackboardVariable<bool>(true);
+
+
+    [SerializeReference]
+    public BlackboardVariable<string> TextTag;
+        [SerializeReference]
+    public BlackboardVariable<bool> SaveData;
+
+    private bool isCompleted;
+    private bool isSuccess;
+
+    protected override Status OnStart()
+    {
+        Debug.Log("[LLMChat] Start");
+
+        if (LLMService.Instance == null)
+        {
+            Debug.LogError("[LLMChat] LLMService가 없습니다.");
+            return Status.Failure;
+        }
+
+
+        if (Message == null)
+        {
+            Debug.LogError("[LLMChat] Message가 null입니다.");
+            return Status.Failure;
+        }
+
+        
+
+        isCompleted = false;
+        isSuccess = false;
+
+        string requestMessage = Message.Value;
+
+        // 대사 생성 직전에 최신 이벤트를 다시 읽는다. 첫 번째 인식 요청이
+        // 진행되는 동안 발생한 충돌도 같은 대사 요청에 포함되어야 한다.
+        if (!requireSelectedEntities.Value && SensingWorldState.Instance != null)
+        {
+            requestMessage =
+                SensingWorldState.Instance.BuildContext() +
+                "\n[PLAYER_BEHAVIOR]\n" +
+                Message.Value;
+
+            // 이 요청에 포함한 이벤트를 소비한다. 요청 중 새로 발생한 이벤트는
+            // 다음 사이클에서 다시 읽히므로 중복 대사가 나오지 않는다.
+            SensingWorldState.Instance.ClearRecentEvents();
+        }
+
+        Debug.Log(
+            $"[LLMChat] Request\n" +
+            $"System: {systemMessage.Value}\n" +
+            $"Message: {requestMessage}");
+
+        float? temperatureOverride = Temperature != null
+            ? Mathf.Clamp(Temperature.Value, 0f, 2f)
+            : null;
+
+        LLMService.Instance.Chat(
+            systemMessage.Value,
+            requestMessage,
+
+            response =>
+            {
+                Debug.Log(
+                    $"[LLMChat] Response Received\n" +
+                    $"Response: [{response}]");
+
+                if (requireSelectedEntities.Value)
+                    LogSelectedEntities(response);
+
+                if (requireSelectedEntities.Value)
+                {
+                    string recognition = ExtractRecognitionEvents(response);
+
+                    if (string.IsNullOrWhiteSpace(recognition))
+                        Debug.LogWarning("[LLM Recognition] Recognition을 찾지 못했습니다.");
+
+                    int eventCount = CountRecognitionEvents(recognition);
+                    Debug.Log($"[LLM Recognition] Preserved events: {eventCount}");
+
+                    if (SaveData.Value)
+                        TrainingBundleTextWriter.Append(
+                            Message.Value,
+                            recognition,
+                            response,
+                            eventCount);
+
+                    Reslut.Value = recognition;
+                }else
+                {
+                    string dialogue = ExtractLabeledText(response, "Dialogue:");
+                    Reslut.Value = string.IsNullOrWhiteSpace(dialogue)
+                        ? response.Trim()
+                        : dialogue;
+                }
+
+                Debug.Log(
+                    $"[LLMChat] Result Saved\n" +
+                    $"{TextTag.Value} -- Result: [{Reslut.Value}]");
+
+                isSuccess = true;
+                isCompleted = true;
+            },
+
+            error =>
+            {
+                Debug.LogError(
+                    $"[LLMChat] Error: {error}");
+
+                isSuccess = false;
+                isCompleted = true;
+            },
+            temperatureOverride: temperatureOverride);
+
+        return Status.Running;
+    }
+
+    protected override Status OnUpdate()
+    {
+        if (!isCompleted)
+            return Status.Running;
+
+        return isSuccess
+            ? Status.Success
+            : Status.Failure;
+    }
+
+    private static void LogSelectedEntities(string response)
+    {
+        var selectedIds = new HashSet<int>();
+
+        foreach (Match match in SelectedEntityPattern.Matches(response ?? string.Empty))
+        {
+            if (!int.TryParse(match.Groups["id"].Value, out int instanceId))
+                continue;
+
+            if (!selectedIds.Add(instanceId))
+                continue;
+
+            string entityName = match.Groups["name"].Value.Trim();
+            Debug.Log($"[LLM Recognition] Target: {entityName} (InstanceID: {instanceId})");
+        }
+
+        if (selectedIds.Count == 0)
+            Debug.LogWarning("[LLM Recognition] SelectedEntities에서 InstanceID를 찾지 못했습니다.");
+        else
+            Debug.Log($"[LLM Recognition] Selected InstanceIDs: {string.Join(", ", selectedIds)}");
+    }
+
+    private static string ExtractLabeledText(string response, string marker)
+    {
+        if (string.IsNullOrWhiteSpace(response))
+            return string.Empty;
+
+        int markerIndex = response.IndexOf(marker, StringComparison.OrdinalIgnoreCase);
+        if (markerIndex < 0)
+            return string.Empty;
+
+        return response.Substring(markerIndex + marker.Length).Trim();
+    }
+
+    private static string ExtractRecognitionEvents(string response)
+    {
+        string recognition = ExtractLabeledText(response, "Recognition:");
+
+        if (string.IsNullOrWhiteSpace(recognition))
+            return string.Empty;
+
+        var lines = recognition.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+        var eventLines = new List<string>();
+
+        foreach (string rawLine in lines)
+        {
+            string line = rawLine.Trim();
+
+            if (line.StartsWith("```") || line.Equals("Recognition:", StringComparison.OrdinalIgnoreCase))
+                continue;
+
+            if (line.StartsWith("Event ", StringComparison.OrdinalIgnoreCase))
+                eventLines.Add(line);
+        }
+
+        // Keep a non-conforming response available for diagnosis instead of losing it.
+        return eventLines.Count > 0
+            ? string.Join("\n", eventLines)
+            : recognition.Trim().Trim('`');
+    }
+
+    private static int CountRecognitionEvents(string recognition)
+    {
+        if (string.IsNullOrWhiteSpace(recognition))
+            return 0;
+
+        int count = 0;
+        string[] lines = recognition.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string line in lines)
+        {
+            if (line.TrimStart().StartsWith("Event ", StringComparison.OrdinalIgnoreCase))
+                count++;
+        }
+
+        return count > 0 ? count : 1;
+    }
+
+}
